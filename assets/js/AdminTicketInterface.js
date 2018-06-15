@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
     $("#replymessage").focus(function () {
         var gotValidResponse = false;
         $.post("supporttickets.php", { action: "makingreply", id: ticketid, token: csrfToken },
@@ -32,8 +31,12 @@ $(document).ready(function(){
     $("#frmAddTicketReply").submit(function (e, options) {
         options = options || {};
 
-        $("#btnPostReply").attr("disabled", "disabled");
-        $("#btnPostReply i").removeClass("fa-reply").addClass("fa-spinner fa-spin");
+        var formSubmitButton = $('#btnPostReply'),
+            thisElement = jQuery(this),
+            swapClass = 'fa-reply';
+
+        formSubmitButton.attr("disabled", "disabled");
+        formSubmitButton.find('i').removeClass(swapClass).addClass("fa-spinner fa-spin").end();
 
         if (options.skipValidation) {
             return true;
@@ -41,84 +44,42 @@ $(document).ready(function(){
 
         e.preventDefault();
 
-        var gotValidResponse = false;
-        var postReply = false;
-        var responseMsg = '';
-        var thisElement = jQuery(this);
+        post_validate_changes_and_submit(
+            thisElement,
+            formSubmitButton,
+            swapClass
+        );
+    });
 
-        $.post("supporttickets.php", { action: "validatereply", id: ticketid, status: $("#ticketstatus").val(), token: csrfToken },
-            function(data){
-                gotValidResponse = true;
-                if (data.valid) {
-                    if (data.statusChanged) {
-                        // status has changed, confirm to post
-                        $('#statusChangeStatus').html(data.currentStatus);
-                        $('#modalStatusChanged').modal('show');
-                    } else {
-                        postReply = true;
-                    }
-                } else {
-                    // access denied
-                    responseMsg = 'Access Denied. Please try again.';
-                }
-            }, "json")
-            .always(function() {
-                if (!gotValidResponse) {
-                    responseMsg = 'Session Expired. Please <a href="javascript:location.reload()" class="alert-link">reload the page</a> before continuing.';
-                }
+    $('#frmTicketOptions').submit(function(e, options) {
+        options = options || {};
 
-                if (responseMsg) {
-                    postReply = false;
-                    $("#replyingAdminMsg").html(responseMsg);
-                    $("#replyingAdminMsg").removeClass('alert-info').addClass('alert-warning');
-                    if (!$("#replyingAdminMsg").is(":visible")) {
-                        $("#replyingAdminMsg").hide().removeClass('hidden').slideDown();
-                    }
-                    $('html, body').animate({
-                        scrollTop: $("#replyingAdminMsg").offset().top - 15
-                    }, 400);
-                }
+        var formSubmitButton = $('#btnSaveChanges'),
+            thisElement = $(this),
+            swapClass = 'fa-save';
 
-                if (postReply) {
-                    $("#replyingAdminMsg").slideUp();
-                    thisElement.attr('data-no-clear', 'false');
-                    $("#frmAddTicketReply").trigger('submit', { 'skipValidation': true });
-                } else {
-                    $("#btnPostReply").removeAttr("disabled");
-                    $("#btnPostReply i").removeClass("fa-spinner fa-spin").addClass("fa-reply");
-                }
-            });
+        formSubmitButton.attr('disabled', 'disabled');
+        formSubmitButton.find('i').removeClass(swapClass).addClass('fa-spinner fa-spin').end();
+
+        if (options.skipValidation) {
+            return true;
+        }
+
+        e.preventDefault();
+
+        post_validate_changes_and_submit(
+            thisElement,
+            formSubmitButton,
+            swapClass
+        );
+
+
     });
 
     $("#frmAddTicketNote").submit(function () {
         $("#btnAddNote").attr("disabled", "disabled");
         $("#btnAddNote i").removeClass("fa-reply").addClass("fa-spinner fa-spin");
     });
-
-    $("#StatusChanged-Yes").click(function () {
-        $("#frmAddTicketReply").trigger('submit', { 'skipValidation': true });
-    });
-
-    var currentTags = '';
-    if ($('#ticketTags').length) {
-    $('#ticketTags').textext({
-        plugins : 'tags prompt focus autocomplete ajax',
-        prompt : 'Add one...',
-        tagsItems: ticketTags,
-        ajax : {
-            url : 'supporttickets.php?action=gettags',
-            data: 'token='+csrfToken,
-            dataType : 'json',
-            cacheResults : true
-        }
-    }).bind('setFormData', function(e, data, isEmpty) {
-            var newTags = $(e.target).textext()[0].hiddenInput().val();
-            if (newTags!=currentTags) {
-                $.post("supporttickets.php", { action: "savetags", id: ticketid, tags: newTags, token: csrfToken });
-                currentTags = newTags;
-            }
-        });
-    }
 
     $(window).unload( function () {
         $.post("supporttickets.php", { action: "endreply", id: ticketid, token: csrfToken });
@@ -154,8 +115,42 @@ $(document).ready(function(){
         e.preventDefault();
         window.open('supportticketskbarticle.php','kbartwnd','width=500,height=400,scrollbars=yes');
     });
-    $("#ticketstatus").change(function () {
-        $.post("supporttickets.php", { action: "changestatus", id: ticketid, status: this.options[this.selectedIndex].text, token: csrfToken });
+    $("#ticketstatus").change(function (e, options) {
+        var currentStatus = $('#currentStatus'),
+            skip = 0;
+
+        options = options || {};
+
+        if (options.skipValidation) {
+            skip = 1;
+        }
+
+        post_validate_and_change(
+            {
+                action: "changestatus",
+                id: ticketid,
+                status: this.options[this.selectedIndex].text,
+                currentStatus: currentStatus.val(),
+                lastReplyId: $('#lastReplyId').val(),
+                currentSubject: $('#currentSubject').val(),
+                currentCc: $('#currentCc').val(),
+                currentUserId: $('#currentUserId').val(),
+                currentDepartmentId: $('#currentdeptid').val(),
+                currentFlag: $('#currentflagto').val(),
+                currentPriority: $('#currentpriority').val(),
+                skip: skip,
+                token: csrfToken
+            },
+            currentStatus,
+            this.options[this.selectedIndex].text,
+            $(this)
+        );
+    });
+    $("#predefq").keypress(function(e){
+        // Stop form submit
+        if(e.which === 13){
+            return false;
+        }
     });
     $("#predefq").keyup(function () {
         var intellisearchlength = $("#predefq").val().length;
@@ -219,7 +214,46 @@ $(document).ready(function(){
             }
         );
     });
+
+
+    jQuery(".sidebar-ticket-ajax").on('change', function(e, options) {
+        var self = $(this),
+            val = self.data('update-type'),
+            currentValue = $('#current' + val),
+            skip = 0;
+
+        options = options || {};
+
+        if (options.skipValidation) {
+            skip = 1;
+        }
+
+        post_validate_and_change(
+            {
+                action: "viewticket",
+                id: ticketid,
+                updateticket: val,
+                value: self.val(),
+                currentValue: currentValue.val(),
+                lastReplyId: $('#lastReplyId').val(),
+                currentSubject: $('#currentSubject').val(),
+                currentCc: $('#currentCc').val(),
+                currentUserId: $('#currentUserId').val(),
+                currentDepartmentId: $('#currentdeptid').val(),
+                currentFlag: $('#currentflagto').val(),
+                currentPriority: $('#currentpriority').val(),
+                currentStatus: $('#currentStatus').val(),
+                skip: skip,
+                token: csrfToken
+            },
+            currentValue,
+            self.val(),
+            self
+        );
+    });
 });
+
+var replyingAdminMessage = $("#replyingAdminMsg");
 
 function doDeleteReply(id) {
     if (confirm(langdelreplysure)) {
@@ -254,30 +288,38 @@ function expandRelServices() {
         $("#relatedservicesexpand").fadeOut();
     });
 }
-function updateTicket(val) {
-    $.post("supporttickets.php", { action: "viewticket", id: ticketid, updateticket: val, value: $("#"+val).val(), token: csrfToken });
-}
 function editTicket(id) {
-    $(".editbtns"+id).toggle();
-    $("#content"+id+" div.message").hide();
-    $("#content"+id+" div.message").after('<textarea rows="15" style="width:99%" id="ticketedit'+id+'">'+langloading+'</textarea>');
-    $.post("supporttickets.php", { action: "getmsg", ref: id, token: csrfToken },
-        function(data){
+    $(".editbtns"+id+" input[type=button]").prop('disabled', true);
+    $(".editbtns"+id+" img.saveSpinner").show();
+    $.post("supporttickets.php", { action: "getmsg", ref: id, token: csrfToken })
+        .done(function(data){
+            $(".editbtns"+id).toggle();
+            $("#content"+id+" div.message").hide();
+            $("#content"+id+" div.message").after('<textarea rows="15" style="width:99%" id="ticketedit'+id+'">'+langloading+'</textarea>');
             $("#ticketedit"+id).val(data);
+        })
+        .always(function(){
+            $(".editbtns"+id+" img.saveSpinner").hide();
+            $(".editbtns"+id+" input[type=button]").removeProp('disabled');
         });
 }
 function editTicketCancel(id) {
     $("#ticketedit"+id).hide();
     $("#content"+id+" div.message").show();
+    $(".editbtns"+id+" input[type=button]").prop('disabled', false);
     $(".editbtns"+id).toggle();
 }
 function editTicketSave(id) {
-    $("#ticketedit"+id).hide();
-    $("#content"+id+" div.message").show();
-    $(".editbtns"+id).toggle();
-    $.post("supporttickets.php", { action: "updatereply", ref: id, text: $("#ticketedit"+id).val(), token: csrfToken },
-        function(data){
+    $(".editbtns"+id+" input[type=button]").prop('disabled', true);
+    $("#ticketedit"+id).prop('disabled', true);
+    $(".editbtns"+id+" img.saveSpinner").show();
+    $.post("supporttickets.php", { action: "updatereply", ref: id, text: $("#ticketedit"+id).val(), token: csrfToken })
+        .done(function(data){
             $("#content"+id+" div.message").html(data);
+        })
+        .always(function(){
+            $(".editbtns"+id+" img.saveSpinner").hide();
+            editTicketCancel(id);
         });
 }
 function quoteTicket(id,ids) {
@@ -303,4 +345,144 @@ function selectpredefreply(artid) {
         $("#replymessage").addToReply(data);
     });
     $("#prerepliescontainer, #ticketPredefinedReplies").fadeOut();
+}
+
+function post_validate_and_change(vars, updateElement, newValue, self)
+{
+    var gotValidResponse = false,
+        responseMsg = '',
+        done = false;
+    $.post(
+        "supporttickets.php",
+        vars,
+        function(data){
+            gotValidResponse = true;
+            if (typeof data.changes !== 'undefined') {
+                if (data.changes === true) {
+                    // there have been changes
+                    swal({
+                            title: changesTitle,
+                            text: changes + "\r\n\r\n" + data.changeList,
+                            icon: 'info',
+                            dangerMode: true,
+                            showCancelButton: true,
+                            confirmButtonColor: "#DD6B55",
+                            confirmButtonText: continueText
+                        },
+                        function(){
+                            replyingAdminMessage.slideUp();
+                            self.trigger('change', { 'skipValidation': true });
+                        }
+                    )
+                } else {
+                    done = true;
+                    updateElement.val(newValue);
+                }
+            } else {
+                // access denied
+                responseMsg = 'Access Denied. Please try again.';
+            }
+        },
+        "json"
+    )
+    .always(function()
+        {
+            if (!gotValidResponse) {
+                responseMsg = 'Session Expired. Please <a href="javascript:location.reload()" class="alert-link">reload the page</a> before continuing.';
+            }
+
+            if (responseMsg) {
+                replyingAdminMessage.html(responseMsg);
+                replyingAdminMessage.removeClass('alert-info').addClass('alert-warning');
+                if (!replyingAdminMessage.is(":visible")) {
+                    $("#replyingAdminMsg").hide().removeClass('hidden').slideDown();
+                }
+                $('html, body').animate({
+                    scrollTop: replyingAdminMessage.offset().top - 15
+                }, 400);
+            } else {
+                replyingAdminMessage.slideUp();
+            }
+        }
+    );
+    return done;
+}
+
+function post_validate_changes_and_submit(form, submitButton, swapClass)
+{
+    var gotValidResponse = false,
+        allowPost = false,
+        responseMsg = '';
+
+    $.post(
+        'supporttickets.php',
+        {
+            action: 'validatereply',
+            id: ticketid,
+            status: $("#ticketstatus").val(),
+            lastReplyId: $('#lastReplyId').val(),
+            currentSubject: $('#currentSubject').val(),
+            currentCc: $('#currentCc').val(),
+            currentUserId: $('#currentUserId').val(),
+            currentDepartmentId: $('#currentdeptid').val(),
+            currentFlag: $('#currentflagto').val(),
+            currentPriority: $('#currentpriority').val(),
+            currentStatus: $('#currentStatus').val(),
+            token: csrfToken
+        },
+        function(data){
+            gotValidResponse = true;
+            if (data.valid) {
+                if (data.changes) {
+                    // there have been ticket changes
+                    allowPost = false;
+                    swal({
+                        title: changesTitle,
+                        text: changes + "\r\n\r\n" + data.changeList,
+                        icon: 'info',
+                        dangerMode: true,
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: continueText
+                    },
+                        function(){
+                            replyingAdminMessage.slideUp();
+                            form.attr('data-no-clear', 'false');
+                            form.trigger('submit', { 'skipValidation': true });
+                        }
+                    )
+                } else {
+                    allowPost = true;
+                }
+            } else {
+                // access denied
+                responseMsg = 'Access Denied. Please try again.';
+            }
+        }, "json")
+    .always(function() {
+        if (!gotValidResponse) {
+            responseMsg = 'Session Expired. Please <a href="javascript:location.reload()" class="alert-link">reload the page</a> before continuing.';
+        }
+
+        if (responseMsg) {
+            allowPost = false;
+            replyingAdminMessage.html(responseMsg);
+            replyingAdminMessage.removeClass('alert-info').addClass('alert-warning');
+            if (!replyingAdminMessage.is(':visible')) {
+                $("#replyingAdminMsg").hide().removeClass('hidden').slideDown();
+            }
+            $('html, body').animate({
+                scrollTop: replyingAdminMessage.offset().top - 15
+            }, 400);
+        }
+
+        if (allowPost) {
+            replyingAdminMessage.slideUp();
+            form.attr('data-no-clear', 'false');
+            form.trigger('submit', { 'skipValidation': true });
+        } else {
+            submitButton.removeAttr('disabled');
+            submitButton.find('i').removeClass('fa-spinner fa-spin').addClass(swapClass).end();
+        }
+    });
 }

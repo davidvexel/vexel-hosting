@@ -13,7 +13,7 @@
  *
  * @package    WHMCS
  * @author     WHMCS Limited <development@whmcs.com>
- * @copyright  Copyright (c) WHMCS Limited 2005-2014
+ * @copyright  Copyright (c) WHMCS Limited 2005-2015
  * @license    http://www.whmcs.com/license/ WHMCS Eula
  * @version    $Id$
  * @link       http://www.whmcs.com/
@@ -209,7 +209,7 @@ $_LANG['clientareanavhome'] = "בית";
 $_LANG['clientareanavlogout'] = "התנתקות";
 $_LANG['clientareanavorder'] = "הזמנת פרטים נוספים";
 $_LANG['clientareanavsecurityquestions'] = "שינוי שאלת אבטחה";
-$_LANG['clientareanavservices'] = "השירותים שלכם";
+$_LANG['clientareanavservices'] = "שירותים ומוצרים בחשבון";
 $_LANG['clientareanavsupporttickets'] = "פניות השירות שלכם";
 $_LANG['clientareanocontacts'] = "לא נמצאו אנשי קשר";
 $_LANG['clientareapassword'] = "סיסמה";
@@ -282,11 +282,11 @@ $_LANG['creditcardsecuritynotice'] = "כל מידע המוזן כאן מאובט
 $_LANG['creditcarduseexisting'] = "השתמשו בכרטיס קיים";
 $_LANG['customfieldvalidationerror'] = "ערך לא נכון";
 $_LANG['days'] = "ימים";
-$_LANG['hours'] = "Hours";
-$_LANG['minutes'] = "Minutes";
-$_LANG['seconds'] = "Seconds";
+$_LANG['hours'] = "שעות";
+$_LANG['minutes'] = "דקות";
+$_LANG['seconds'] = "שניות";
 $_LANG['defaultbillingcontact'] = "איש קשר ברירת מחדל לנושא חיובים";
-$_LANG['domainalternatives'] = ": נסו את החלופות הבאות";
+$_LANG['domainalternatives'] = ":נסו את החלופות הבאות";
 $_LANG['domainavailable'] = "זמין! הזמן עכשיו";
 $_LANG['domainavailable1'] = "! ברכות";
 $_LANG['domainavailable2'] = "! זמין";
@@ -295,7 +295,6 @@ $_LANG['domainbulksearch'] = "חיפוש כמות גדולה של דומייני
 $_LANG['domainbulksearchintro'] = "באמצעות כלי החיפוש בזמן אמת של כמות דומיינים גדולה - ניתן לחפש עד 20 דומיינים בבת אחת. אנא הזינו את הדומיינים לחיפוש בחלונית מטה, אחד בכל שורה ללא קידומת של www. או http:// לפני כל דומיין.";
 $_LANG['domainbulktransferdescription'] = "אתם יכולים להעביר אלינו את הדומיינים הקיימים שלכם עוד היום! כדי להתחיל פשוט הזינו את הדומיינים שלכם בחלונית מטה, אחד בכל שורה ללא  www. או http:// לפני כל דומין";
 $_LANG['domainbulktransfersearch'] = "העברת כמות גדולה של דומיינים";
-$_LANG['domaincheckerdescription'] = "בדקו את הזמינות של הדומיין";
 $_LANG['domaincontactinfo'] = "פרטי יצירת קשר";
 $_LANG['domaincurrentrenewaldate'] = "תאריך חידוש נוכחי";
 $_LANG['domaindnsaddress'] = "כתובת";
@@ -414,10 +413,10 @@ $_LANG['invoiceaddcreditdesc1'] = "ייתרת האשראי שלך";
 $_LANG['invoiceaddcreditdesc2'] = "ניתן להחיל זאת על החשבונית באמצעות הטופס מטה";
 $_LANG['invoiceaddcreditoverbalance'] = "אינכם יכולים להחיל קרדיט נוסף מעבר ליתרה האמורה";
 $_LANG['invoiceaddcreditovercredit'] = "אינכם יכולים להשתמש ביותר קרדיט ממה שיש בחשבונכם";
-$_LANG['invoicenumber'] = "# חשבונית עסקה מספר ";
+$_LANG['invoicenumber'] = " חשבונית עסקה מספר ";
 $_LANG['invoiceofflinepaid'] = "תשלומים בכרטיס אשראי באופן לא מקוון מטופלים באופן ידני. <br /> אישור בדואר אלקטרוני ישלח אליכם ברגע שהתשלום יבוצע בפועל.";
 $_LANG['invoicerefnum'] = "מספר סימוכין";
-$_LANG['invoices'] = "חשבוניות עסקה";
+$_LANG['invoices'] = "חשבוניות";
 $_LANG['invoicesamount'] = "סכום";
 $_LANG['invoicesattn'] = "לידי";
 $_LANG['invoicesbacktoclientarea'] = "חזרה לאזור האישי";
@@ -431,20 +430,20 @@ $_LANG['invoicesdatedue'] = "תאריך יעד";
 $_LANG['invoicesdescription'] = "תיאור";
 $_LANG['invoicesdownload'] = "הורדה כקובץ";
 $_LANG['invoiceserror'] = "אירעה שגיאה. אנא נסו שוב מאוחר יותר";
-$_LANG['invoicesinvoicedto'] = ":פרטי המשלם";
+$_LANG['invoicesinvoicedto'] = "פרטי המשלם";
 $_LANG['invoicesinvoicenotes'] = "הערות לחשבונית";
 $_LANG['invoicesnoinvoices'] = "אין חשבוניות";
 $_LANG['invoicesnotes'] = "הערות";
 $_LANG['invoicesoutstandinginvoices'] = "חשבוניות לפירעון";
 $_LANG['invoicespaid'] = "שולם";
 $_LANG['invoicespaynow'] = "שלמו עכשיו";
-$_LANG['invoicespayto'] = "תשלום אל:";
+$_LANG['invoicespayto'] = "תשלום אל";
 $_LANG['invoicesrefunded'] = "הוחזר";
 $_LANG['invoicesstatus'] = "סטטוס";
 $_LANG['invoicessubtotal'] = "סכום ביניים";
 $_LANG['invoicestax'] = "מס לתשלום";
 $_LANG['invoicestaxindicator'] = "מסמן פריט החייב במס";
-$_LANG['invoicestitle'] = "# חשבונית עסקה מספר ";
+$_LANG['invoicestitle'] = " חשבונית מספר";
 $_LANG['invoicestotal'] = "סך הכל לתשלום";
 $_LANG['invoicestransactions'] = "תשלומים בפועל";
 $_LANG['invoicestransamount'] = "סכום";
@@ -460,6 +459,7 @@ $_LANG['kbsuggestions'] = "הצעות ממאגר המידע";
 $_LANG['kbsuggestionsexplanation'] = "ייתכן והתשובה לפנייתכם נמצאת באחד מהמאמרים הבאים שנמצאו במאגר המידע שלנו. אנא קראו אותם לפני שליחת פנייתכם.";
 $_LANG['knowledgebasearticles'] = "מאמרים";
 $_LANG['knowledgebasecategories'] = "קטגוריות";
+$_LANG['nokbcategories'] = "לא הוגדרו קטגוריות";
 $_LANG['knowledgebasedescription'] = "עלעלו במאגר המידע שלנו כדי למצוא תשובות לשאלות נפוצות";
 $_LANG['knowledgebasefavorites'] = "הוסיפו למועדפים";
 $_LANG['knowledgebasehelpful'] = " ?האם התשובה שקיבלתם הייתה מועילה";
@@ -470,7 +470,7 @@ $_LANG['knowledgebasenoarticles'] = "לא נמצאו מאמרים";
 $_LANG['knowledgebasenorelated'] = "אין מאמרים רלוונטיים";
 $_LANG['knowledgebasepopular'] = "המאמרים הנפוצים ביותר";
 $_LANG['knowledgebaseprint'] = "הדפסת המאמר";
-$_LANG['knowledgebaserating'] = ":דירוג";
+$_LANG['knowledgebaserating'] = "דירוג";
 $_LANG['knowledgebaseratingtext'] = "משתמשים שמצאו מאמר זה מועיל";
 $_LANG['knowledgebaserelated'] = "מאמרים קשורים";
 $_LANG['knowledgebasesearch'] = "חיפוש";
@@ -608,7 +608,7 @@ $_LANG['ordernoproducts'] = "לא נמצאו מוצרים";
 $_LANG['ordernotes'] = "הערות ומידע נוסף";
 $_LANG['ordernotesdescription'] = "כאן תוכלו להזין מידע נוסף או הערות לגבי הזמנתכם.";
 $_LANG['ordernowbutton'] = "הזמינו עכשיו";
-$_LANG['ordernumberis'] = "מספר הזמנתכם הוא:";
+$_LANG['ordernumberis'] = "מספר הזמנתכם הוא";
 $_LANG['orderpaymentmethod'] = "שיטת תשלום";
 $_LANG['orderpaymentterm12month'] = "מחיר ל - 12 חודשים";
 $_LANG['orderpaymentterm1month'] = "מחיר ל - חודש אחד";
@@ -671,7 +671,7 @@ $_LANG['please'] = "בבקשה";
 $_LANG['pleasewait'] = "אנא המתינו...";
 $_LANG['presalescontactdescription'] = "הזינו כל שאלה בטרם היותכם לקוחות כאן";
 $_LANG['previouspage'] = "דף קודם";
-$_LANG['proformainvoicenumber'] = "חשבונית עסקה מספר  # ";
+$_LANG['proformainvoicenumber'] = "חשבונית עסקה מספר #";
 $_LANG['promoexistingclient'] = "עליכם להיות עם מוצר או שירות פעילים כדי להשתמש בקוד זה";
 $_LANG['promoonceperclient'] = "ניתן להשתמש בקוד זה רק פעם אחת לכל לקוח";
 $_LANG['pwstrengthfail'] = "הסיסמה שהזנתם אינה מאובטחת דייה -  אנא הזינו סיסמה יותר מורכבת.";
@@ -761,9 +761,9 @@ $_LANG['supportticketsfilenotallowed'] = "ניסתם לצרף קובץ מסוג 
 $_LANG['supportticketsheader'] = "אם אינכם יכולים למצוא מענה לפנייתכם במאגר המידע שלנו – אתם יכולים לפתוח פניה למחלקה המתאימה להלן:";
 $_LANG['supportticketsnotfound'] = "לא נמצאה כרטיס פניה";
 $_LANG['supportticketsopentickets'] = "פניות פתוחות";
-$_LANG['supportticketspagetitle'] = "פנייה אלינו";
+$_LANG['supportticketspagetitle'] = "כל הפניות";
 $_LANG['supportticketsposted'] = "נשלח";
-$_LANG['supportticketsreply'] = "שליחת תגובה";
+$_LANG['supportticketsreply'] = "לשליחת תגובה לחצו כאן";
 $_LANG['supportticketsstaff'] = "איש צוות";
 $_LANG['supportticketsstatus'] = "סטטטוס";
 $_LANG['supportticketsstatusanswered'] = "נענה";
@@ -774,20 +774,20 @@ $_LANG['supportticketsstatusinprogress'] = "בתהליך";
 $_LANG['supportticketsstatusonhold'] = "מושהה";
 $_LANG['supportticketsstatusopen'] = "פתוח";
 $_LANG['supportticketssubject'] = "נושא";
-$_LANG['supportticketssubmitticket'] = "פתיחת פניה";
+$_LANG['supportticketssubmitticket'] = "פתיחת פנייה";
 $_LANG['supportticketssystemdescription'] = "מערכת ניהול הפניות מאפשרת לנו לטפל בפנייתכם ביעילות ובמהירות. כאשר נשיב לפנייתכם תקבלו על כך מענה בדואר אלקטרוני.";
 $_LANG['supportticketsticketattachments'] = "קבצים מצורפים";
 $_LANG['supportticketsticketcreated'] = "הפניה נוצרה";
 $_LANG['supportticketsticketcreateddesc'] = "פנייתכם נפתחה בהצלחה, במקביל שלחנו אליכם דואר אלקטרוני עם פרטי הפניה. אתם יכולים לצפות בפניה כבר עכשיו.";
 $_LANG['supportticketsticketid'] = "מספר קריאה";
 $_LANG['supportticketsticketsubject'] = "נושא";
-$_LANG['supportticketsticketsubmit'] = "פתיחת פניה";
+$_LANG['supportticketsticketsubmit'] = "שליחה";
 $_LANG['supportticketsticketurgency'] = "דחיפות";
 $_LANG['supportticketsticketurgencyhigh'] = "גבוהה";
 $_LANG['supportticketsticketurgencylow'] = "נמוכה";
 $_LANG['supportticketsticketurgencymedium'] = "בינונית";
 $_LANG['supportticketsuploadfailed'] = "לא ניתן להעלות את הקובץ המצורף";
-$_LANG['supportticketsuploadtoolarge'] = "Uploaded file was too large. Please try uploading a smaller file.";
+$_LANG['supportticketsuploadtoolarge'] = "הקובץ שצורף היה כבד מידי. אנא נסו לצרף קובץ קטן יותר. ";
 $_LANG['supportticketsviewticket'] = "צפייה בפניה";
 $_LANG['supportticketclosedmsg'] = "פניה זו סגורה. ניתן להשיב על פניה זו כדי לפתוח אותה מחדש.";
 $_LANG['telesignincorrectpin'] = "קוד לא נכון";
@@ -798,7 +798,7 @@ $_LANG['telesigninvalidpin2'] = "הקוד שהזנתם לא נכון.";
 $_LANG['telesigninvalidpinmessage'] = "אימות הקוד נכשל";
 $_LANG['telesignmessage'] = "אימות טלפוני למספר %s החל. אנא המתינו...";
 $_LANG['telesignphonecall'] = "שיחת טלפון";
-$_LANG['telesignpin'] = "הזינו את הקוד: ";
+$_LANG['telesignpin'] = "הזינו את הקוד";
 $_LANG['telesignsms'] = "מסרון";
 $_LANG['telesignsmstextmessage'] = "תודה שהשתמשתם במערכת האימות באמצעות מסרונים. הקוד שלכם הוא  %s אנא הזינו אותו במחשב עכשיו.";
 $_LANG['telesigntitle'] = "מערכת אימות טלפונית";
@@ -1052,7 +1052,7 @@ $_LANG['quotefinalpayment'] = "מאזן מהפיקדון";
 $_LANG['invoiceoneoffpayment'] = "לשלם בתשלום אחד";
 $_LANG['invoicesubscriptionpayment'] = "תשלום אוטומטי לפי מחזורי חיוב";
 
-$_LANG['invoicepaymentpendingreview'] = "תודה רבה! התשלום התקבל בהצלחה ויחול על החשבונית ברגע שמערכת 2CheckOut תסיים לבצע את החיוב. .<br /><br /> תהליך זה עלול להימשך מספר שעות – נודה לסבלנותכם.";
+$_LANG['invoicepaymentpendingreview'] = "תודה רבה! התשלום התקבל בהצלחה ויחול על החשבונית ברגע שמערכת 2 CheckOut תסיים לבצע את החיוב. .<br /><br /> תהליך זה עלול להימשך מספר שעות – נודה לסבלנותכם.";
 
 $_LANG['step'] = "שלב %s";
 $_LANG['cartdomainexists'] = "הדומיין הזה כבר רשום במערכת שלנו ולכן אי אפשר להזמין אותו שוב.";
@@ -1190,7 +1190,7 @@ $_LANG['bundlewarningdomainaddon'] = "בכדי להשתמש בבאדנל בו ב
 
 # New Client Area Template  Lines
 
-$_LANG['navservices'] = "שירותים";
+$_LANG['navservices'] = "מוצרים ושירותים";
 $_LANG['navservicesorder'] = "הזמנת מוצרים ושרותים חדשים";
 $_LANG['navservicesplaceorder'] = "הזמנה חדשה";
 $_LANG['navdomains'] = "דומיינים";
@@ -1202,7 +1202,7 @@ $_LANG['navbilling'] = "חיובים ותשלומים";
 $_LANG['navinvoices'] = "חשבוניות";
 $_LANG['navsupport'] = "פניות ומידע";
 $_LANG['navtickets'] = "פניות שירות";
-$_LANG['navopenticket'] = "פתיחת פניה";
+$_LANG['navopenticket'] = "פתיחת פנייה";
 $_LANG['navmanagecc'] = "ניהול פרטי אשראי";
 $_LANG['navemailssent'] = "דואר אלקטרוני שנשלח אליכם";
 
@@ -1248,7 +1248,6 @@ $_LANG['supportticketsintro'] = "פתיחת פניות ומעקב אחרי הס�
 $_LANG['addfundsintro'] = "הפקדה מראש של כסף בחשבונכם";
 $_LANG['registerintro'] = "ליצירת חשבון אצלנו...";
 $_LANG['masspayintro'] = "תשלום כל החשבוניות הפתוחות בתשלום אחד פשוט";
-$_LANG['domaincheckerintro'] = "התחילו את החיפוש שלכם אחרי שירותי אירוח, בבדיקה האם שם הדומיין שרציתם פנוי...";
 $_LANG['networkstatusintro'] = "מידע לגבי סטטוס השרתים, הודעות, השבתות מתוכננות ועוד";
 
 $_LANG['creditcardyourinfo'] = "מידע לגבי חיובים ותשלומים";
@@ -1304,20 +1303,14 @@ $_LANG['creditcardexpirydateinvalid'] = "תאריך התוקף חייב להיו
 $_LANG['domaincheckerchoosedomain'] = "בחרו דומיין....";
 $_LANG['domaincheckerchecknewdomain'] = "בדיקת זמינות של דומיין חדש";
 $_LANG['domaincheckerdomainexample'] = " למשל example.com";
-$_LANG['domaincheckerinvalidtld'] = "הסיומת שבחרתם אינה תקינה, אנא נסו שוב.";
-$_LANG['domaincheckerinvalidtld2'] = "הסיומת אינה תקינה.";
-$_LANG['domaincheckerinvaliddomain'] = "שם הדומיין שביקשתם אינו תקין.";
-$_LANG['domaincheckernopricing'] = "לא הוגדר תמחור לסיומת זו.";
 $_LANG['domaincheckerhostingonly'] = "הזמנת מוצרים ושירותים";
-$_LANG['domaincheckeravailtransfer'] = "זמין להעברה";
 $_LANG['domaincheckerenterdomain'] = "התחילו את העבודה שלכם אתנו בתחום אירוח השרתים על ידי הזנה של שם דומיין שאתם רוצים לרשום או להעביר או פשוט רכשו חבילת אירוח.";
-$_LANG['domaincheckerbulkinvaliddomain'] = "אחד או יותר מהדומיינים שהזנתם מעלה היה לא תקין ולכן השמטנו אותו מהתוצאות";
 
 $_LANG['kbquestionsearchere'] = "יש לכם שאלות? התחילו את החיפוש מכאן.";
 $_LANG['contactus'] = "צרו קשר";
 
-$_LANG['opennewticket'] = "פתיחת פניה חדשה";
-$_LANG['searchtickets'] = "מספר פניה או נושא";
+$_LANG['opennewticket'] = "פתיחת פנייה חדשה";
+$_LANG['searchtickets'] = "מספר פנייה או נושא";
 $_LANG['supportticketspriority'] = "עדיפות";
 $_LANG['supportticketsubmitted'] = "תאריך פתיחה";
 $_LANG['supportticketscontact'] = "איש קשר";
@@ -1375,7 +1368,7 @@ $_LANG['globalsignvouchersnotissued'] = "עדיין לא הונפק";
 
 $_LANG['domaintrffailreasonunavailable'] = "סיבת כישלון לא זמינה";
 
-$_LANG['clientareaprojects'] = "הפרויקטים שלי";
+$_LANG['clientareaprojects'] = "ניהול פרויקטים";
 
 $_LANG['clientgroupdiscount'] = "הנחת לקוח";
 $_LANG['billableitemshours'] = "שעות";
@@ -1438,7 +1431,7 @@ $_LANG['feedbackworst'] = "גרוע";
 $_LANG['feedbackbest'] = "הכי טוב";
 $_LANG['feedbackimprove'] = "כיצד נוכל לשפר את השירות שלנו בעתיד?";
 $_LANG['pleaserate2'] = "טיפל בצורה טובה בפניה הזו";
-$_LANG['feedbacksupplyrating'] = "Please supply at least a rating for :staffname (comments are optional)";
+$_LANG['feedbacksupplyrating'] = "נשמח אם תדרגו את שביעות רצונכם מהטיפול שקיבלתם מ :staffname (ניתן גם להוסיף הערות כלליות)";
 
 $_LANG['returnclient'] = "חזרה לאזור האישי";
 
@@ -1573,7 +1566,7 @@ $_LANG['update'] = "עדכון";
 $_LANG['yourinfo'] = "הפרטים שלכם";
 $_LANG['shortcuts'] = "קיצורי דרך";
 
-$_LANG['yourservices'] = "השירותים שלכם";
+$_LANG['yourservices'] = "שירותים ומוצרים פעילים בחשבון";
 $_LANG['yourdomains'] = "הדומיינים שלכם";
 $_LANG['yourtickets'] = "הפניות שלכם";
 $_LANG['managecontacts'] = "ניהול אנשי קשר";
@@ -1657,7 +1650,6 @@ $_LANG['passwordtips'] = "<strong>המלצות לסיסמה טובה</strong><br
 $_LANG['regdate'] = "תאריך רישום";
 $_LANG['nextdue'] = "תאריך החידוש הבא";
 
-$_LANG['domaincheckertagline'] = "מצאו את הדומיין המושלם עבורכם";
 $_LANG['findyourdomain'] = "מצאו את שם הדומיין החדש שלכם";
 $_LANG['searchtermrequired'] = "עליכם להזין שם דומיין או מילת מפתח בכדי לבצע חיפוש";
 $_LANG['unabletolookup'] = "מצטערים, לא הצלחנו לבצע חיפוש למונח כפי שהקלדתם אותו";
@@ -1707,6 +1699,7 @@ $_LANG['domainsCancelled'] = "בוטל";
 $_LANG['domainsFraud'] = "הונאה";
 $_LANG['domainsPending'] = "בהמתנה";
 $_LANG['domainsPendingTransfer'] = "בהמתנה להעברה";
+$_LANG['domainsTransferredAway'] = "הועבר";
 $_LANG['domainsExpiringInTheNext30Days'] = "פג תוקף במהלך 30 הימים הקרובים";
 $_LANG['domainsExpiringInTheNext90Days'] = "פג תוקף במהלך 90 הימים הקרובים";
 $_LANG['domainsExpiringInTheNext180Days'] = "פג תוקף במהלך 180 הימים הקרובים";
@@ -1962,7 +1955,7 @@ $_LANG['orderForm']['addToCart'] = "הוספה לעגלת הקניות";
 $_LANG['orderForm']['addedToCartRemove'] = "התווסף לעגלת הקניות (הסרה)";
 $_LANG['orderForm']['configureDesiredOptions'] = "הגדירו את האפשרויות המבוקשות והמשיכו לסיום תהליך הרכישה";
 $_LANG['orderForm']['haveQuestionsContact'] = "יש לכם שאלות? צרו אתנו קשר ונשמע לעזור בכל שאלה או פניה.";
-$_LANG['orderForm']['haveQuestionsClickHere'] = "Click here";
+$_LANG['orderForm']['haveQuestionsClickHere'] = "לחצו כאן";
 $_LANG['orderForm']['use'] = "השתמש";
 $_LANG['orderForm']['check'] = "בדוק";
 $_LANG['orderForm']['transfer'] = "העבר";
@@ -1970,7 +1963,7 @@ $_LANG['orderForm']['domainAddedToCart'] = "הדומיין התווסף לעגל
 $_LANG['orderForm']['registerLongerAndSave'] = "רשמו את הדומיין לתקופה ארוכה יותר וחסכו כסף!";
 $_LANG['orderForm']['tryRegisteringInstead'] = "נסו לרשום את הדומיין הזה במקום.";
 $_LANG['orderForm']['domainAvailabilityCached'] = "תוצאות זמינות הדומיין מתבססות על זיכרון מטמון – כך שייתכן ודומיינים שנרשמו לאחרונה יופיעו כזמינים.";
-$_LANG['orderForm']['submitTicket'] = "פתיחת פניה";
+$_LANG['orderForm']['submitTicket'] = "פתיחת פנייה";
 $_LANG['orderForm']['promotionAccepted'] = "קוד ההנחה התקבל בהצלחה! הסכום בהזמנה עודכן בהתאם.";
 $_LANG['orderForm']['productOptions'] = "אפשרויות / מוצר";
 $_LANG['orderForm']['qty'] = "כמות";
@@ -2002,7 +1995,7 @@ $_LANG['cloudSlider']['feature02DescriptionTwo'] = "גם המחויבות שלנ
 $_LANG['cloudSlider']['feature03Title'] = "אבטחה מהשורה הראשונה";
 $_LANG['cloudSlider']['feature03Description'] = "הסירו דאגה מליבכם ביידעה שאנו מספקים 24/7 שירותי אבטחה והגנה מפני התקפות מניעת שירות. אתם לוקחים ברצינות את אבטחת המידע של הלקוחות שלכם – וכך גם אנחנו. צוות אבטחת המידע ואמצעי ההגנה שלנו עובדים מסביב לשעון בכדי לספק את רמת אבטחת המידע הנדרשת בעידן בדיגיטלי בו אנו נמצאים. ";
 $_LANG['cloudSlider']['feature03DescriptionTwo'] = "מגוון רחב מאוד של כלי אבטחה זמינים לשירותך, כולל תעודות SSL, הגדרות חומת אש, שירות ניטור אבטחה, גישה ב VPN ועוד.";
-$_LANG['cloudSlider']['selectProductLevel'] = "Select the Perfect Level for You!";
+$_LANG['cloudSlider']['selectProductLevel'] = "בחרו את הרמה המושלמת עבורכם!";
 
 $_LANG['domainChecker.additionalPricingOptions'] = "אפשרויות תמחור נוספות עבור :domain";
 
@@ -2015,7 +2008,7 @@ $_LANG['insufficientstockmessage'] = "לצערנו חסרים לנו במלאי 
 $_LANG['only'] = "בלבד";
 $_LANG['startingat'] = "החל מ";
 
-$_LANG['yourdomainplaceholder'] = "example";
+$_LANG['yourdomainplaceholder'] = "הדומיין שלך";
 $_LANG['yourtldplaceholder'] = "com";
 
 $_LANG['subaccountpermsproductsso'] = "בצע התחברות באמצעות מנגנון הזדהות אחד למספר מערכות (Single Sign-On)";
@@ -2031,58 +2024,243 @@ $_LANG['oauth']['badTwoFactorAuthModule'] = "מודול האימות הדו של
 $_LANG['oauth']['permAccessNameAndEmail'] = "גישה לשמכם וכתובת הדואר האלקטרוני שלכם";
 
 $_LANG['errorButTryAgain'] = "אירעה שגיאה. אנא נסו שנית.";
-$_LANG['emailSent'] = "Email Sent";
-$_LANG['verificationKeyExpired'] = "This email verification key has expired. Please login to request a new one.";
-$_LANG['emailAddressVerified'] = "Thank you for confirming your email address.";
-$_LANG['emailKeyExpired'] = "This email verification key has expired. Please request a new one.";
-$_LANG['verifyEmailAddress'] = "Please check your email and follow the link to verify your email address.";
-$_LANG['resendEmail'] = "Resend Verification Email";
+$_LANG['emailSent'] = "דואר אלקטרוני נשלח";
+$_LANG['verificationKeyExpired'] = "קוד אימות הדואר האלקטרוני שלכם פג תוקף. אנא התחברו מחדש בכדי לבקש קוד אימות נוסף.";
+$_LANG['emailAddressVerified'] = "תודה שאימת את כתובת הדואר האלקטרוני";
+$_LANG['emailKeyExpired'] = "קוד אימות הדואר האלקטרוני שלכם פג תוקף. אנא בקשו קוד אימות חדש.";
+$_LANG['verifyEmailAddress'] = "אנא בדקו את תיבת הדואר האלקטרוני שלכם ופעלו לפי ההנחיות המופיעות בדואר האלקטרוני ששלחנו אליכם.";
+$_LANG['resendEmail'] = "שליחה מחדש של הדואר האלקטרוני לביצוע האימות";
 
 // Markdown Editor Help
-$_LANG['markdown']['title'] = "Markdown Guide";
-$_LANG['markdown']['emphasis'] = "Emphasis";
-$_LANG['markdown']['bold'] = "bold";
-$_LANG['markdown']['italics'] = "italics";
-$_LANG['markdown']['strikeThrough'] = "strikethrough";
-$_LANG['markdown']['headers'] = "Headers";
-$_LANG['markdown']['bigHeader'] = "Big header";
-$_LANG['markdown']['mediumHeader'] = "Medium header";
-$_LANG['markdown']['smallHeader'] = "Small header";
-$_LANG['markdown']['tinyHeader'] = "Tiny header";
-$_LANG['markdown']['lists'] = "Lists";
-$_LANG['markdown']['genericListItem'] = "Generic list item";
-$_LANG['markdown']['numberedListItem'] = "Numbered list item";
-$_LANG['markdown']['links'] = "Links";
-$_LANG['markdown']['textToDisplay'] = "Text to display";
+$_LANG['markdown']['title'] = "עורך הטקסט";
+$_LANG['markdown']['emphasis'] = "הדגשה";
+$_LANG['markdown']['bold'] = "טקסט מודגש";
+$_LANG['markdown']['italics'] = "טקסט נוטה";
+$_LANG['markdown']['strikeThrough'] = "טקסט עם קו חוצה";
+$_LANG['markdown']['headers'] = "כותרות";
+$_LANG['markdown']['bigHeader'] = "כותרת גדולה";
+$_LANG['markdown']['mediumHeader'] = "כותרת בינונית";
+$_LANG['markdown']['smallHeader'] = "כותרת קטנה";
+$_LANG['markdown']['tinyHeader'] = "כותרת קטנה מאוד";
+$_LANG['markdown']['lists'] = "רשימות";
+$_LANG['markdown']['genericListItem'] = "רשימות כלליות";
+$_LANG['markdown']['numberedListItem'] = "רשימות ממוספרות";
+$_LANG['markdown']['links'] = "קישורים";
+$_LANG['markdown']['textToDisplay'] = "טקסט להצגה";
 $_LANG['markdown']['exampleLink'] = "http://www.example.com";
-$_LANG['markdown']['quotes'] = "Quotes";
-$_LANG['markdown']['thisIsAQuote'] = "This is a quote.";
-$_LANG['markdown']['quoteMultipleLines'] = "It can span multiple lines!";
-$_LANG['markdown']['tables'] = "Tables";
-$_LANG['markdown']['columnOne'] = "Column 1";
-$_LANG['markdown']['columnTwo'] = "Column 2";
-$_LANG['markdown']['columnThree'] = "Column 3";
-$_LANG['markdown']['withoutAligning'] = "Or without aligning the columns...";
-$_LANG['markdown']['john'] = "John";
-$_LANG['markdown']['doe'] = "Doe";
-$_LANG['markdown']['male'] = "Male";
-$_LANG['markdown']['mary'] = "Mary";
-$_LANG['markdown']['smith'] = "Smith";
-$_LANG['markdown']['female'] = "Female";
-$_LANG['markdown']['displayingCode'] = "Displaying code";
-$_LANG['markdown']['spanningMultipleLines'] = "Or spanning multiple lines...";
-$_LANG['markdown']['saved'] = "saved";
-$_LANG['markdown']['saving'] = "autosaving";
+$_LANG['markdown']['quotes'] = "ציטוטים";
+$_LANG['markdown']['thisIsAQuote'] = "זה ציטוט.";
+$_LANG['markdown']['quoteMultipleLines'] = "ניתן להתפרס למספר שורות";
+$_LANG['markdown']['tables'] = "טבלאות";
+$_LANG['markdown']['columnOne'] = "עמודה 1";
+$_LANG['markdown']['columnTwo'] = "עמודה 2";
+$_LANG['markdown']['columnThree'] = "עמודה 3";
+$_LANG['markdown']['withoutAligning'] = "או ללא יישור של העמודות";
+$_LANG['markdown']['john'] = "ישראל";
+$_LANG['markdown']['doe'] = "ישראלי";
+$_LANG['markdown']['male'] = "זכר";
+$_LANG['markdown']['mary'] = "ישראלה";
+$_LANG['markdown']['smith'] = "ישראלי";
+$_LANG['markdown']['female'] = "נקבה";
+$_LANG['markdown']['displayingCode'] = "הצגת קוד";
+$_LANG['markdown']['spanningMultipleLines'] = "או להתפרס למספר שורות...";
+$_LANG['markdown']['saved'] = "נשמר";
+$_LANG['markdown']['saving'] = "שמירה אוטומטית";
 
-$_LANG['oauth']['authoriseAppToAccess'] = "Authorise :appName<br />to access your account?";
-$_LANG['oauth']['willBeAbleTo'] = "This application will be able to";
-$_LANG['oauth']['authorise'] = "Authorise";
-$_LANG['oauth']['currentlyLoggedInAs'] = "You are currently logged in as :firstName :lastName";
-$_LANG['oauth']['notYou'] = "Not You?";
-$_LANG['oauth']['returnToApp'] = "Return to :appName";
-$_LANG['oauth']['copyrightFooter'] = "Copyright &copy; :dateYear :companyName. All Rights Reserved.";
-$_LANG['oauth']['loginToGrantApp'] = "Login to grant :appName<br />access to your account";
-$_LANG['oauth']['redirectDescriptionOne'] = "Redirecting you back to the application. This may take a few moments.";
-$_LANG['oauth']['redirectDescriptionTwo'] = "If your browser doesn't redirect you, please";
-$_LANG['oauth']['redirectDescriptionThree'] = "click here to continue";
+$_LANG['oauth']['authoriseAppToAccess'] = "אשר ל :appName<br />להתחבר לחשבונך?";
+$_LANG['oauth']['willBeAbleTo'] = "יישום זה יוכל לבצע";
+$_LANG['oauth']['authorise'] = "אשר";
+$_LANG['oauth']['currentlyLoggedInAs'] = "אתם מחוברים למערכת בתור :firstName :lastName";
+$_LANG['oauth']['notYou'] = "לא אתם?";
+$_LANG['oauth']['returnToApp'] = "חזרה אל :appName";
+$_LANG['oauth']['copyrightFooter'] = "זכויות יוצרים &copy; :dateYear :companyName. כל הזכויות שמורות.";
+$_LANG['oauth']['loginToGrantApp'] = "התחברו למערכת בכדי לאשר ל :appName<br />גישה לחשבונכם";
+$_LANG['oauth']['redirectDescriptionOne'] = "אנחנו מפנים אתכם חזרה ליישום. פעולה זו עלולה להימשך מספר דקות.";
+$_LANG['oauth']['redirectDescriptionTwo'] = "אם הדפדפן שלכם לא מפנה אתכם חזרה, אנא";
+$_LANG['oauth']['redirectDescriptionThree'] = "הקישו כאן בכדי להמשיך";
+$_LANG['downloadLoginRequiredTagline'] = "אנא התחברו למערכת בכדי לקבל גישה להורדת הקובץ שביקשתם.";
+
+$_LANG['orderForm']['year'] = "שנה";
+$_LANG['orderForm']['years'] = "שנים";
+$_LANG['orderForm']['domainOrKeyword'] = "הזינו דומיין או מילת מפתח";
+$_LANG['orderForm']['searching'] = "מחפש";
+$_LANG['orderForm']['domainIsUnavailable'] = "<strong>:domain</strong> אינו זמין";
+$_LANG['orderForm']['add'] = "הוספה";
+$_LANG['orderForm']['suggestedDomains'] = "דומיינים מומלצים";
+$_LANG['orderForm']['generatingSuggestions'] = "אנחנו אוספים עבורכם את ההמלצות";
+$_LANG['orderForm']['addHosting'] = "הוספת אירוח אתרים";
+$_LANG['orderForm']['chooseFromRange'] = "בחרו את ההצעה המתאימה לכם מתוך מגוון ההצעות שלנו";
+$_LANG['orderForm']['packagesForBudget'] = "ההצעות שלנו מתאימות לכל תקציב";
+$_LANG['orderForm']['exploreNow'] = "בדקו את ההצעות שלנו עכשיו";
+$_LANG['orderForm']['transferToUs'] = "העבירו את הדומיין שלכם אלינו";
+$_LANG['orderForm']['transferExtend'] = "העבירו עכשיו בכדי להאריך את הרישום של הדומיין שלכם בשנה נוספת!";
+$_LANG['orderForm']['transferDomain'] = "העברת דומיין";
+$_LANG['orderForm']['extendExclusions'] = "לא כולל סיומות דומיין מסוימות ודומיינים שחודשו לאחרונה";
+$_LANG['orderForm']['singleTransfer'] = "העברת דומיין אחד";
+$_LANG['orderForm']['enterDomain'] = "אנא הזינו את שם הדומיין";
+$_LANG['orderForm']['authCode'] = "קוד אישור";
+$_LANG['orderForm']['authCodePlaceholder'] = "קוד Epp / קוד אימות";
+$_LANG['orderForm']['authCodeTooltip'] = "בכדי להתחיל את ההעברה עליכם לדעת את קוד האישור להעברת הדומיין. את הקוד הזה ניתן לקבל מרשם הדומיינים הנוכחי שלכם. לעיתים קוד זה מכונה גם קוד epp או קוד אימות. קוד זה משמש כסיסמה והוא ייחודי לכל שם דומיין.";
+$_LANG['orderForm']['help'] = "עזרה";
+$_LANG['orderForm']['required'] = "נדרש";
+
+$_LANG['orderForm']['checkingAvailability'] = "Checking availability";
+$_LANG['orderForm']['verifyingTransferEligibility'] = "Verifying transfer eligibility";
+$_LANG['orderForm']['verifyingDomain'] = "Verifying your domain selection";
+$_LANG['orderForm']['transferEligible'] = "Your domain is eligible for transfer";
+$_LANG['orderForm']['transferUnlockBeforeContinuing'] = "Please ensure you have unlocked your domain at your current registrar before continuing.";
+$_LANG['orderForm']['transferNotEligible'] = "Not Eligible for Transfer";
+$_LANG['orderForm']['transferNotRegistered'] = "The domain you entered does not appear to be registered.";
+$_LANG['orderForm']['trasnferRecentlyRegistered'] = "If the domain was registered recently, you may need to try again later.";
+$_LANG['orderForm']['transferAlternativelyRegister'] = "Alternatively, you can perform a search to register this domain.";
+$_LANG['orderForm']['domainInvalid'] = "Invalid domain name provided";
+$_LANG['orderForm']['domainInvalidCheckEntry'] = "Please check your entry and try again.";
+$_LANG['orderForm']['domainPriceRegisterLabel'] = "Continue to register this domain for";
+$_LANG['orderForm']['domainPriceTransferLabel'] = "Transfer to us and extend by 1 year* for";
+
+$_LANG['change'] = "שנה";
+
+$_LANG['filemanagement']['nofileuploaded'] = "לא הועלה קובץ.";
+$_LANG['filemanagement']['invalidname'] = "שמות קבצים יכולים להכיל אותיות, מספרים, נקודות, מקפים וקו תחתי בלבד.";
+$_LANG['filemanagement']['couldNotSaveFile'] = "לא ניתן היה לשמור את הקובץ שהועלה.";
+$_LANG['filemanagement']['checkPermissions'] = "אנא בדקו את ההרשאות.";
+$_LANG['filemanagement']['checkAvailableDiskSpace'] = "אנא בדקו את שטח הדיסק הפנוי.";
+$_LANG['filemanagement']['fileAlreadyExists'] = "הקובץ כבר קיים.";
+$_LANG['filemanagement']['noUniqueName'] = "לא הצלחנו למצוא שם קובץ ייחודי.";
+
+$_LANG['cartSimpleCaptcha'] = "אנא הזינו את הקוד המוצג מטה";
+
+$_LANG['clientHomePanels']['showingRecent100'] = "מוצגות 100 הרשומות העדכניות ביותר";
+$_LANG['orderForm']['domainLetterOrNumber'] = "שם הדומיין חייב להתחיל עם אות או מספר - ";
+$_LANG['orderForm']['domainLengthRequirements'] = "ולהיות באורך של בין <span class=\"min-length\"></span> ל <span class=\"max-length\"></span> תווים בלבד.";
+
+$_LANG['clientareatransferredaway'] = "הועבר";
+$_LANG['clientareacompleted'] = "הסתיים";
+$_LANG['domainContactUs'] = "צור איתנו קשר";
+
+$_LANG['orderForm']['shortPerYear'] = "/:yearsyr";
+$_LANG['orderForm']['shortPerYears'] = "/:yearsyrs";
+
+$_LANG['domainCheckerSalesGroup']['sale'] = "מבצע";
+$_LANG['domainCheckerSalesGroup']['hot'] = "חם";
+$_LANG['domainCheckerSalesGroup']['new'] = "חדש";
+
+$_LANG['pricing']['browseExtByCategory'] = "עיון בסיומות לפי קטגוריה";
+$_LANG['pricing']['register'] = "מחיר חדש";
+$_LANG['pricing']['transfer'] = "העברה";
+$_LANG['pricing']['renewal'] = "חידוש";
+$_LANG['pricing']['selectExtCategory'] = "אנא בחרו קטגוריה.";
+
+$_LANG['navStore'] = "חנות";
+$_LANG['navBrowseProductsServices'] = "כל המוצרים";
+
+$_LANG['navWebsiteSecurity'] = "אתרי אינטרנט ואבטחה";
+$_LANG['navMarketConnectService']['symantec'] = "SSL תעודת";
+$_LANG['navMarketConnectService']['weebly'] = "בונה אתרים";
+$_LANG['navMarketConnectService']['spamexperts'] = "שירותי דואר אלקטרוני";
+
+$_LANG['store']['emailServices']['title'] = "שירותי דואר אלקטרוני";
+$_LANG['store']['ssl']['title'] = "SSL תעודות";
+$_LANG['store']['ssl']['dv']['title'] = "תעודות SSL ברמת הדומיין";
+$_LANG['store']['ssl']['ov']['title'] = "תעודת SSL ברמת הארגון / חברה";
+$_LANG['store']['ssl']['ev']['title'] = "תעודת SSL מורחבת";
+$_LANG['store']['ssl']['wildcard']['title'] = "Wildcard SSL";
+$_LANG['store']['websiteBuilder']['title'] = "בונה אתרים";
+$_LANG['store']['configure']['configureProduct'] = "הגדרות מוצרים";
+
+$_LANG['store']['ssl']['dv']['tagline'] = "אבטחו את האתר שלכם תוך דקות ספורות!";
+$_LANG['store']['ssl']['dv']['descriptionTitle'] = "מה היא תעודת DV SSL סטנדרטית?";
+$_LANG['store']['ssl']['dv']['descriptionContent'] = " תעודת אבטחה ברמת הדומיין מהווה דרך מהירה וחסכונית להטמיע אבטחתSSL  באתר שלכם. תעודת אבטחה ברמת הדומיין מהווה אסמכתא שאתם בעלי הדומיין, אבל לא מבצעת בדיקת אימות ברמת הארגון. </p><p>תעודת אבטחה ברמת הדומיין אידיאלית עבור אתרים פרטיים, בלוגים ורשתות חברתיות, או כל אתר אחר שלא מכיל מידע פרטי או סודי. שימוש בתעודת אבטחה ברמת הדומיין מפעיל את מנעול הדפדפן ומאפשר שימוש בקידומת מאובטחת (HTTPS) בכדי שהלקוחות והמבקרים באתר שלכם ידעו שאתם לוקחים את הפרטיות שלהם ברצינות. </p>";
+
+$_LANG['store']['ssl']['ov']['tagline'] = "תעודת SSL מתקדמת המראה למבקרים באתר שלכם שהזהות שלכם עברה תהליך בדיקה ואימות.";
+$_LANG['store']['ssl']['ov']['descriptionTitle'] = "מהי תעודת SSL  ברמת הארגון / חברה?";
+$_LANG['store']['ssl']['ov']['descriptionContent'] = "<p>תעודת SSL ברמת הארגון / חברה מאפשרת אימות זהות מיידי והצפנת SSL  חזקה עבור האתר שלכם ועבור הארגון / חברה שלכם. </p><p> תעודת SSL ברמת הארגון / חברה מציגה אמות של הארגון / חברה שלכם וכך משדרגת את תחושת הביטחון והאמינות שחווים הלקוחות והמבקרים באתר שלכם לעומת תעודת אבטחה ברמת הדומיין בלבד. שימוש בתעודת SSL ברמת הארגון / חברה מפעיל את מנעול הדפדפן, מאפשר שימוש בקידומת מאובטחת (HTTPS), מציג את הפרטים המאומתים של הארגון / החברה שלכם ומראים בצורה ברורה ללקוחות שלכם שאתם לוקחים את נושא אבטחת המידע בצורה רצינית. גולשים לאתר שלכם יוכלו לוודא שהאתר אכן מופעל על ידי ארגון / חברה אמיתיים ולגיטימיים ולא אתר מתחזה. </p>";
+
+$_LANG['store']['ssl']['ev']['tagline'] = "צבעו את חלון הכתובת בצבע ירוק כדי להציג באופן ברור ללקוחות שלכם שאתם מאובטחים ומאומתים – והגדילו את יחס ההמרה באופן משמעותי.";
+$_LANG['store']['ssl']['ev']['descriptionTitle'] = "מהי תעודת SSL מורחבת?";
+$_LANG['store']['ssl']['ev']['descriptionContent'] = "<p>תעודתSSL  מורחבת היא תעודת ה SSL  הגבוהה ביותר שקיימת היום, היא משרה אמינות ותחושת ביטחון לגולשים באתר שלכם יותר מכל תעודתSSL  אחרת. </p><p> תעודתSSL  מורחבת צובעת את שורת הכתובת בצע ירוק ומציגה את שם הארגון / חברה שלכם ישירות בשורת הכתובת. סימני אבטחה ברורים אלו מראים לגולשים באתר שנקטתם אמצעים רבים בכדי להגן על הפרטיות שלהם ושל המידע שהם מוסרים וכך משרים עליהם תחושת ביטחון ואמינות וזאת הסיבה שרוב הארגונים והחברות הגדולות בוחרים בתעודתSSL  מורחבת. </p>";
+
+$_LANG['store']['ssl']['wildcard']['tagline'] = "אבטחת מספר בלתי מוגבל של סאב דומיינים בתעודה אחת.";
+$_LANG['store']['ssl']['wildcard']['descriptionTitle'] = "מהי תעודת SSL מסוג Wildcard?";
+$_LANG['store']['ssl']['wildcard']['descriptionContent'] = "<p>תעודת SSL  מסוג Wildcard מאפשרת לכם לאבטח מספר בלתי מוגבל של סאב דומיינים באמצעות תעודה אחת. זהו פתרון מעולה עבור כל אחד שמארח או מנהל מספר אתרים או דפים אשר קיימים תחת דומיין אחד. העלות החד פעמית של התעודה מאפשרת לכם להוסיף גם בעתיד סאב דומיינים נוספים. </p><p> בניגוד לתעודת SSL סטנדרטית אשר מונפקת עבור דומיין מלא (למשל (www.yourdomain.com ולכן יכולה לאבטח רק את שם הדומיין המדויק עבורו היא הונפקה, תעודת SSL  מסוג Wildcard מונפקת עבור *.yourdomain.com כאשר הכוכבית מייצגת את כל האפשרויות לסאב דומיין תחת הדומיין הראשי. </p><p> תעודת SSL  מסוג Wildcard מתאימה לתעודות SSL  ברמת הדומיין וגם לתעודת SSL  ברמת הארגון / חברה. </p>";
+
+$_LANG['store']['websiteBuilder']['headline'] = "בניית אתר אינטרנט מעולם לא הייתה פשוטה וקלה יותר.";
+$_LANG['store']['websiteBuilder']['tagline'] = "צרו את האתר המושלם בעזרת כלים רבי עוצמה של גרירה ושחרור";
+$_LANG['store']['websiteBuilder']['introduction'] = "כלי הגרירה והשחרור לבניית אתרים של Weebly מאפשרים לכם לבנות אתר מקצועי ורב עוצמה ללא צורך בידע או כישורים טכניים. מעל 40 מיליון יזמים ועסקים קטנים כבר השתמשו בבונה האתרים של Weebly בכדי לבנות את הנוכחות האינטרנטית שלהם בעזרת אתר אינטרנט, בלוג או חנות אינטרנטית.";
+
+$_LANG['store']['emailServices']['headline'] = "אבטחת דואר אלקטרוני – במיוחד עבורכם.";
+$_LANG['store']['emailServices']['tagline'] = "קחו בחזרה את השליטה על תיבת הדואר הנכנס שלכם";
+$_LANG['store']['emailServices']['blockSpamHeadline'] = "חסום כמעט 100% מהווירוסים, התוכנות זדוניות ומדואר הזבל לפני שהם מגיעים לתיבת הדואר הנכנס שלך";
+
+$_LANG['navManageSsl'] = "ניהול תעודות SSL ";
+
+$_LANG['invoicesPaymentPending'] = "ממתין לתשלום";
+
+$_LANG['ssl']['changeApproverEmail'] = "שינוי הדואר האלקטרוני לאישור התעודה";
+$_LANG['ssl']['reissueCertificate'] = "הנפקה מחדש של התעוד";
+$_LANG['ssl']['retrieveCertificate'] = "איחזור התעודה";
+
+$_LANG['upgradeCredit'] = "שידרוג קרדיט";
+$_LANG['upgradeCreditDescription'] = "החישוב מתבסס על :daysRemaining ימים ללא שימוש מתוך :totalDays יום במחזור החיוב הנוכחי.";
+
+$_LANG['orderForm']['domainExtensionTransferNotSupported'] = "לצערנו לא ניתן להעביר אלינו את הדומיין שבחרתם. אנא בחרו דומיין אחר.";
+$_LANG['orderForm']['domainExtensionTransferPricingNotConfigured'] = "לצערנו לא ניתן להעביר אלינו את הדומיין שבחרתם. אנא בחרו דומיין אחר.";
+
+$_LANG['remoteAuthn']['success'] = "בוצע בהצלחה!";
+$_LANG['remoteAuthn']['errorExclamation'] = "שגיאה!";
+$_LANG['remoteAuthn']['error'] = "שגיאה";
+$_LANG['remoteAuthn']['linkInitiated'] = "הקישור הוחל!";
+$_LANG['remoteAuthn']['areYouSure'] = "בטוחים?";
+$_LANG['remoteAuthn']['yesUnlinkIt'] = "כן, נתק את הקישור!";
+$_LANG['remoteAuthn']['unlinked'] = "הקישור נותק!";
+$_LANG['remoteAuthn']['unavailable'] = "לא זמין כרגע, אנא נסו שוב מאוחר יותר.";
+$_LANG['remoteAuthn']['connectError'] = "לא הצלחנו לחבר את החשבון, אנא פנו למנהל המערכת שלכם.";
+$_LANG['remoteAuthn']['completeSignIn'] = "אנא השלימו את תהליך ההתחברות באמצעות ספק השירות שבחרתם.";
+$_LANG['remoteAuthn']['redirecting'] = "ההתחברות האוטומטית הצליחה! ההפניה מתבצעת...";
+$_LANG['remoteAuthn']['accountNowLinked'] = "החשבון שלכם מקושר כעת לחשבון :displayName";
+$_LANG['remoteAuthn']['oneTimeAuthRequired'] = "בכדי לסיים את התהליך אנא בצעו התחברות רגילה למערכת (באמצעות שם המשתמש והסיסמה שלכם אצלנו). זוהי פעולה חד פעמית ולא תתבקשו לחזור עליה שוב.";
+$_LANG['remoteAuthn']['completeRegistrationForm'] = "אנא השלימו את טופס ההרשמה המצורף.";
+$_LANG['remoteAuthn']['completeNewAccountForm'] = "אנא השלימו את פרטי החשבון החדש שלכם.";
+$_LANG['remoteAuthn']['linkedToAnotherClient'] = "חשבון זה כבר מקושר לחשבון לקוח אחר שכבר רשום אצלנו. אנא בחרו בחשבון אחר.";
+$_LANG['remoteAuthn']['alreadyLinkedToYou'] = "חשבון זה כבר מקושר לחשבון שלכם אצלנו. אנא בחרו בחשבון אחר.";
+$_LANG['remoteAuthn']['saveTimeByLinking'] = "חסכו זמן והתחברו באמצעות החשבון שלכם באחד מהשירותים הבאים";
+$_LANG['remoteAuthn']['unlinkDesc'] = "פעולה זו תנתק באופן קבוע את הקישור לחשבון שעבר אימות. ";
+$_LANG['remoteAuthn']['mayHaveMultipleLinks'] = "בכדי לפשט את תהליך ההתחברות התחברו לחשבון שלכם בעזרת כל אחד מהחשבונות שלכם בשירותים המופיעים מטה. אנחנו נשתמש בפרטים שלכם רק לצורך אימות החשבון ולעולם לא נשתמש בהם לכל דבר אחר.";
+$_LANG['remoteAuthn']['titleSignUpVerb'] = "הירשמו";
+$_LANG['remoteAuthn']['titleOr'] = "או";
+$_LANG['remoteAuthn']['titleLinkedAccounts'] = "חשבונות מקושרים";
+$_LANG['remoteAuthn']['provider'] = "ספק";
+$_LANG['remoteAuthn']['name'] = "שם";
+$_LANG['remoteAuthn']['emailAddress'] = "כתובת דואר אלקטרוני";
+$_LANG['remoteAuthn']['actions'] = "פעולות";
+$_LANG['remoteAuthn']['noLinkedAccounts'] = "לא נמצאו חשבונות מקושרים";
+$_LANG['remoteAuthn']['signInWith'] = "כניסה באמצעות :provider";
+$_LANG['remoteAuthn']['connectWith'] = "התחברות באמצעות :provider ";
+$_LANG['remoteAuthn']['signUpWith'] = "הרשמה באמצעות :provider";
+
+$_LANG['unlink'] = "ביטול הקישור";
+
+$_LANG['invoicePaymentSuccessAwaitingNotify'] = "תודה שסיימתם את תהליך התשלום. אנחנו ממתינים לאישור על כך שהתשלום בוצע בהצלחה ולאחר מכן נשלח אליכם הודעת דואר אלקטרוני המאשרת את התשלום.";
+
+$_LANG['errorPage']['404']['title'] = "אופס!";
+$_LANG['errorPage']['404']['subtitle'] = "לא הצלחנו למצוא את הדך המבוקש";
+$_LANG['errorPage']['404']['description'] = "אנא נסו להשתמש באחת מהאפשרויות המופיעות מטה.";
+$_LANG['errorPage']['404']['home'] = "דף הבית";
+$_LANG['errorPage']['404']['submitTicket'] = "יצירת קשר";
+
+$_LANG['creditCard']['removeDescription'] = "אתם בטוחים שברצונכם להסיר את פרטי כרטיס האשראי שלכם?";
+
+$_LANG['marketConnect']['weebly']['ftpHost'] = "כתובת ל FTP";
+$_LANG['marketConnect']['weebly']['ftpUsername'] = "שם משתמש ל FTP";
+$_LANG['marketConnect']['weebly']['ftpPassword'] = "סיסמת התחברות ל FTP";
+$_LANG['marketConnect']['weebly']['ftpPath'] = "נתיב ל FTP";
+$_LANG['marketConnect']['weebly']['updateFtp'] = "עדכון הרשאות FTP";
+$_LANG['marketConnect']['weebly']['manage'] = "התחברות ל Weebly";
+
+$_LANG['domainChecker']['contactSupport'] = "צרו איתנו קשר כדי לרכוש";
+
+$_LANG['cart']['availableCreditBalance'] = "עומד לזכותכם קרדיט של :amount.";
+$_LANG['cart']['applyCreditAmount'] = "תשלום של  <span>:amount</span> באמצעות הקרדיט הקיים בחשבון ותשלום היתרה באמצעות אחד מאמצעי התשלום המופיעים מטה.";
+$_LANG['cart']['applyCreditAmountNoFurtherPayment'] = "תשלום של  <span>:amount</span> באמצעות הקרדיט הקיים בחשבון. אין צורך בתשלום נוסף.";
+$_LANG['cart']['applyCreditSkip'] = "לא להשתמש בקרדיט הקיים בחשבון. התשלום יתבצע במלואו באמצעות אחד מאמצעי התשלום המופיעים מטה.";
 ////////// End of hebrew language file.  Do not place any translation strings below this line!

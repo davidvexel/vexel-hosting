@@ -171,5 +171,5 @@
 </div>
 
 <form method="post" action="index.php?m=project_management">
-<p><input type="submit" value="{$LANG.clientareabacklink}" class="btn" /></p>
+    <p><input type="submit" value="{$LANG.clientareabacklink}" class="btn" /></p>
 </form>

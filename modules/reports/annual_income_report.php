@@ -71,15 +71,15 @@ for ($i = 1; $i <= 12; $i++) {
             ),
             array(
                 'v'=>$reportvalues[$currentyear-2][$i][3],
-                'f'=>formatCurrency($reportvalues[$currentyear-2][$i][3]),
+                'f'=>formatCurrency($reportvalues[$currentyear-2][$i][3])->toFull(),
             ),
             array(
                 'v'=>$reportvalues[$currentyear-1][$i][3],
-                'f'=>formatCurrency($reportvalues[$currentyear-1][$i][3]),
+                'f'=>formatCurrency($reportvalues[$currentyear-1][$i][3])->toFull(),
             ),
             array(
                 'v'=>$reportvalues[$currentyear][$i][3],
-                'f'=>formatCurrency($reportvalues[$currentyear][$i][3]),
+                'f'=>formatCurrency($reportvalues[$currentyear][$i][3])->toFull(),
             ),
         ),
     );

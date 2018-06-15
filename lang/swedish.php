@@ -110,7 +110,7 @@ $_LANG['choosedomains'] = "Välj Domäner";
 $_LANG['clickheretologin'] = "Klicka här för att logga in";
 $_LANG['clientareaaccountaddons'] = "Produkttillägg";
 $_LANG['clientareaactive'] = "Aktiv";
-$_LANG['clientareaaddfundsdisabled'] = "We do not allow depositing funds in advance with us at the current time.";
+$_LANG['clientareaaddfundsdisabled'] = "Vi tillåter inte insättning av deposition i förskott för tillfället.";
 $_LANG['clientareaaddfundsnotallowed'] = "Du måste ha minst en aktiv order innan du kan lägga till depositioner, så du kan inte göra detta nu!";
 $_LANG['clientareaaddon'] = "Tilläggsdomän";
 $_LANG['clientareaaddonorderconfirmation'] = "Tack! Din beställning av produkttillägget som visas nedan är nu mottagen. Var vänlig och välj önskat betalningssätt nedan.";
@@ -186,7 +186,7 @@ $_LANG['clientareafraud'] = "Bedrägeri";
 $_LANG['clientareafullname'] = "Företag";
 $_LANG['clientareaheader'] = "Välkommen till Kundavdelningen. Kundavdelningen låter dig se och uppdatera dina kontaktuppgifter som vi har registrerade för dig, se detaljer om webbhotellspaket, beställa flera produkter eller tilläggstjänster.";
 $_LANG['clientareahostingaddons'] = "Tillägg";
-$_LANG['clientareahostingaddonsintro'] = "You have the following addons for this product.";
+$_LANG['clientareahostingaddonsintro'] = "Du har följande tillägg för denna produkt.";
 $_LANG['clientareahostingaddonsview'] = "Se";
 $_LANG['clientareahostingamount'] = "Belopp";
 $_LANG['clientareahostingdomain'] = "Domän";
@@ -282,9 +282,9 @@ $_LANG['creditcardsecuritynotice'] = "Det du fyller i här skickas säkert och k
 $_LANG['creditcarduseexisting'] = "Använd existerande kort";
 $_LANG['customfieldvalidationerror'] = "värdet är inte giltigt";
 $_LANG['days'] = "Dagar";
-$_LANG['hours'] = "Hours";
-$_LANG['minutes'] = "Minutes";
-$_LANG['seconds'] = "Seconds";
+$_LANG['hours'] = "Timmar";
+$_LANG['minutes'] = "Minuter";
+$_LANG['seconds'] = "Sekunder";
 $_LANG['defaultbillingcontact'] = "Standard Fakturakontakt";
 $_LANG['domainalternatives'] = "Pröva dessa alternativ:";
 $_LANG['domainavailable'] = "Tillgänglig! Beställ nu";
@@ -295,7 +295,6 @@ $_LANG['domainbulksearch'] = "Bulk Domän Sökning";
 $_LANG['domainbulksearchintro'] = "Bulk real-time domänsökning tillåter dig att söka upp till 20 domäner samtidigt. Fyll i domänerna i fältet nedan, en per rad -  fyll inte i www. eller http:// före.";
 $_LANG['domainbulktransferdescription'] = "Du kan flytta din domän till oss idag.  För att påbörja detta, fyll i domänen nedan, en per rad - skriv INTE med  www. eller http://";
 $_LANG['domainbulktransfersearch'] = "Bulk Domän Flytt";
-$_LANG['domaincheckerdescription'] = "Kontrollera tillgängligheten för en domän";
 $_LANG['domaincontactinfo'] = "Kontaktinformation";
 $_LANG['domaincurrentrenewaldate'] = "Nuvarande Förnyelsedatum";
 $_LANG['domaindnsaddress'] = "Adress";
@@ -460,6 +459,7 @@ $_LANG['kbsuggestions'] = "Kunskapsdatabas Förslag";
 $_LANG['kbsuggestionsexplanation'] = "Följande artiklar hittades i kunskapsdatabasen som kanske kan besvara din fråga. Var snäll och läs förslagen innan du skickar in.";
 $_LANG['knowledgebasearticles'] = "Artiklar";
 $_LANG['knowledgebasecategories'] = "Kategorier";
+$_LANG['nokbcategories'] = "Det finns inga kategorier";
 $_LANG['knowledgebasedescription'] = "Sök i vår kunskapsdatabas för svar på vanligt förekommande frågor";
 $_LANG['knowledgebasefavorites'] = "Lägg till i favoriter";
 $_LANG['knowledgebasehelpful'] = "Hjälpte svaret dig?";
@@ -630,7 +630,7 @@ $_LANG['orderpromoinvalid'] = "Rabattkoden du angav gäller inte för denna orde
 $_LANG['orderpromomaxusesreached'] = "Rabattkoden du angav har redan använts";
 $_LANG['orderpromotioncode'] = "Rabattkod";
 $_LANG['orderpromovalidatebutton'] = "Bekräfta kod&raquo;";
-$_LANG['orderPromoCodePlaceholder'] = "Enter promo code if you have one";
+$_LANG['orderPromoCodePlaceholder'] = "Ange kampanjkod om du har en";
 $_LANG['orderprorata'] = "Pro rata";
 $_LANG['orderreceived'] = "Tack for din beställing. Du kommer inom kort få en bekräftelse till din e-post från oss.";
 $_LANG['orderregisterdomain'] = "Registrera en ny domän";
@@ -675,12 +675,12 @@ $_LANG['proformainvoicenumber'] = "Proforma Faktura #";
 $_LANG['promoexistingclient'] = "Du måste ha en aktiv produkt/tjänst för att kunna använda denna kod";
 $_LANG['promoonceperclient'] = "Denna kod kan endast användas en gång per kund";
 $_LANG['pwstrengthfail'] = "Lösenordet du angav är inte säkert nog - var snäll och ange ett mer komplicerat lösenord";
-$_LANG['pwdoesnotmatch'] = "The passwords entered do not match";
+$_LANG['pwdoesnotmatch'] = "De angivna lösenorden stämmer inte överens";
 $_LANG['quicknav'] = "Snabbnavigering";
 $_LANG['recordsfound'] = "Uppgifter Hittades";
 $_LANG['recurring'] = "Återkommande";
 $_LANG['recurringamount'] = "Återkommande belopp";
-$_LANG['every'] = "Every";
+$_LANG['every'] = "per";
 $_LANG['registerdomain'] = "Registrera Domän";
 $_LANG['registerdomaindesc'] = "Fyll i domännamnet du vill registrera ovan för att se om det är ledigt.";
 $_LANG['registerdomainname'] = "Registrera ett Domännamn";
@@ -690,13 +690,13 @@ $_LANG['securityanswerrequired'] = "Du måste ange ett säkerhetssvar";
 $_LANG['securitybothnotmatch'] = "Ditt svar och bekräkftelsesvar matchar inte";
 $_LANG['securitycurrentincorrect'] = "Din fråga och svar är fel";
 $_LANG['serverchangepassword'] = "Ändra Lösenord";
-$_LANG['serverchangepasswordintro'] = "From here you can change the password of the product/service (note: this does not affect your password for our client area)";
+$_LANG['serverchangepasswordintro'] = "Härifrån kan du ändra tjänstens lösenord (OBS: detta ändrar inte ditt lösenord för MinaSidor)";
 $_LANG['serverchangepasswordconfirm'] = "Bekräfta Lösenord";
 $_LANG['serverchangepasswordenter'] = "Fyll i nytt Lösenord";
 $_LANG['serverchangepasswordfailed'] = "Ändringen av Lösenordet misslyckades!";
 $_LANG['serverchangepasswordsuccessful'] = "Ändringen av Lösenordet lyckades!";
 $_LANG['serverchangepasswordupdate'] = "Uppdatera";
-$_LANG['serverhostname'] = "Hostname";
+$_LANG['serverhostname'] = "Hostnamn";
 $_LANG['serverlogindetails'] = "Loginuppgifter";
 $_LANG['servername'] = "Server";
 $_LANG['serverns1prefix'] = "NS1 Prefix";
@@ -710,7 +710,7 @@ $_LANG['serverstatusoffline'] = "Offline";
 $_LANG['serverstatusonline'] = "Online";
 $_LANG['serverstatusphpinfo'] = "PHP Info";
 $_LANG['serverstatusserverload'] = "Serverbelastning";
-$_LANG['serverstatustitle'] = "Server Status";
+$_LANG['serverstatustitle'] = "Serverstatus";
 $_LANG['serverstatusuptime'] = "Upptid";
 $_LANG['serverusername'] = "Användarnamn";
 $_LANG['show'] = "Visa";
@@ -719,7 +719,7 @@ $_LANG['ssladmininfodetails'] = "Kontaktinformationen nedan kommer inte visas p�
 $_LANG['sslcertapproveremail'] = "Certifikatgodkännande Mail";
 $_LANG['sslcertapproveremaildetails'] = "Du måste välja från valen nedan till vart du vill att mailet med godkännandet för detta certifikat ska skickas till.";
 $_LANG['sslcertinfo'] = "SSL Certifikats Information";
-$_LANG['pleasechooseone'] = "Please choose one...";
+$_LANG['pleasechooseone'] = "Vänligen välj en...";
 $_LANG['sslcerttype'] = "Certifikat Typ";
 $_LANG['sslconfigcomplete'] = "Konfigurationen Komplett";
 $_LANG['sslconfigcompletedetails'] = "Ditt SSL certifikat har nu konfigurerats klart och har skickats till Certifikat Utlämnaren för validation. Du bö få ett mail från dom inom kort.";
@@ -730,7 +730,7 @@ $_LANG['sslerrorentercsr'] = "Du måste fylla i din certifikat signing request (
 $_LANG['sslerrorselectserver'] = "Du måste välja server typ";
 $_LANG['sslinvalidlink'] = "Ogiltig Länk Följdes.";
 $_LANG['sslorderdate'] = "Order Datum";
-$_LANG['sslserverinfo'] = "Server Information";
+$_LANG['sslserverinfo'] = "Serverinformation";
 $_LANG['sslserverinfodetails'] = "Du måste ha en validerad \"CSR\" (Certificate Signing Request) för att konfigurera dina SSL Certifikat. CSR är en crypterad text som genereras av webbservern där SSL Certifikatet ska installeras. Om du inte har en CSR redan, måste du generera en eller fråga din web hosting provider att generera en till dig. Se till att du fyller i rätt information eftersom det inte kan ändras efter att SSL Certifikatet har utfärdats.";
 $_LANG['sslservertype'] = "Webbserver Typ";
 $_LANG['sslstatus'] = "Konfiguration Status";
@@ -787,9 +787,9 @@ $_LANG['supportticketsticketurgencyhigh'] = "Hög";
 $_LANG['supportticketsticketurgencylow'] = "Låg";
 $_LANG['supportticketsticketurgencymedium'] = "Medel";
 $_LANG['supportticketsuploadfailed'] = "Kunde inte visa den bifogade filen";
-$_LANG['supportticketsuploadtoolarge'] = "Uploaded file was too large. Please try uploading a smaller file.";
+$_LANG['supportticketsuploadtoolarge'] = "Den uppladdade filen var för stor. Försök med en mindre.";
 $_LANG['supportticketsviewticket'] = "Se supportärenden";
-$_LANG['supportticketclosedmsg'] = "This ticket is closed.  You may reply to this ticket to reopen it.";
+$_LANG['supportticketclosedmsg'] = "Detta ärende är stängt. Du kan svara på ärendet för att öppna det igen.";
 $_LANG['telesignincorrectpin'] = "Fel PIN kod!";
 $_LANG['telesigninitiatephone'] = "Vi kan inte genomföra en telefonverifikation for ditt nummer. Var snäll och kontakta oss.";
 $_LANG['telesigninvalidnumber'] = "Ogiltigt telefonnumer";
@@ -879,7 +879,7 @@ $_LANG['invoicepaymentfailedconfirmation'] = "Tyvärr misslyckades Din betalning
 $_LANG['promoappliedbutnodiscount'] = "Rabattkoden har lagts till i kundvagnen men inga av produkterna är godkända att få rabatt ännu - vänligen kontrollera villkoren.";
 
 $_LANG['upgradeerroroverdueinvoice'] = "Du kan inte uppgradera eller nedgradera den här produkten pga att det redan finns en skapad faktura för den.<br /><br />För att fortsätta ber vi dig betala fakturan och därefter kommer du att kunna uppgradera eller nedgradera direkt. Du kommer att debiteras eller få tillbaka pengar beroende på vad du valde.";
-$_LANG['upgradeexistingupgradeinvoice'] = "You cannot currently upgrade or downgrade this product because an upgrade or downgrade is already in progress.<br /><br />To proceed, please first pay the outstanding invoice and then you will be able to upgrade or downgrade immediately following that and be charged the difference or credited as appropriate.<br/><br/>If you believe you are receiving this message in error, please submit a trouble ticket.";
+$_LANG['upgradeexistingupgradeinvoice'] = "Du kan just nu inte uppgradera eller nedgradera denna produkt då detta redan pågår.<br /><br />För att fortsätta, betala först den kvarvarande fakturan och därefter kan du omgående uppgradera eller nedgradera och debiteras/krediterad beroende på skillnaden.<br/><br/>Om du anser att du fått detta meddelande felaktigt, vänligen öppna ett ärende.";
 
 $_LANG['subaccountactivate'] = "Aktivera sub-konto";
 $_LANG['subaccountactivatedesc'] = "Bocka i för att konfigurera ett sub-konto med tillträde till Kundavdelningen";
@@ -898,7 +898,7 @@ $_LANG['subaccountpermsorders'] = "Beställ/Uppgradera/Uppsägning";
 $_LANG['subaccountpermissiondenied'] = "Du har inte tillåtelse att komma åt den sidan";
 $_LANG['subaccountallowedperms'] = "Du har tillåtelse att:";
 $_LANG['subaccountcontactmaster'] = "Kontakta huvudägaren till kontot om du tror att detta är fel.";
-$_LANG['subaccountSsoDenied'] = "You do not have permission to login using Single Sign-On.";
+$_LANG['subaccountSsoDenied'] = "Du har inte rättigheter att logga in med Single Sign-On.";
 
 $_LANG['knowledgebasealsoread'] = "Läs även";
 
@@ -951,9 +951,9 @@ $_LANG['vpsnetnobackups'] = "Det finns inga backuper";
 $_LANG['vpsnetrunning'] = "Kör";
 $_LANG['vpsnetnotrunning'] = "Körs inte";
 $_LANG['vpsnetpowercycling'] = "Omstart pågår";
-$_LANG['vpsnetcloud'] = "Cloud";
+$_LANG['vpsnetcloud'] = "Moln";
 $_LANG['vpsnettemplate'] = "Mall";
-$_LANG['vpsnetstatus'] = "System Status";
+$_LANG['vpsnetstatus'] = "Systemstatus";
 $_LANG['vpsnetbwusage'] = "Bandbreddsanvändning";
 
 $_LANG['twitterlatesttweets'] = "Våra senaste Tweets";
@@ -1026,7 +1026,7 @@ $_LANG['quoteview'] = "View";
 $_LANG['quotedownload'] = "Se/Ladda ned";
 $_LANG['quoteacceptbtn'] = "Acceptera";
 $_LANG['quotedlpdfbtn'] = "Ladda ner PDF";
-$_LANG['quotediscountheading'] = "Discount (%)";
+$_LANG['quotediscountheading'] = "Rabatt (%)";
 $_LANG['noquotes'] = "Det finns inga offerter sparade för närvarande.<br />För att få en offert, vänligen kontakta supportern.";
 $_LANG['quotenumber'] = "Offert #";
 $_LANG['quotesubject'] = "Ämne";
@@ -1038,7 +1038,7 @@ $_LANG['quoteqty'] = "Antal";
 $_LANG['quotedesc'] = "Beskrivning";
 $_LANG['quoteunitprice'] = "Styckpris";
 $_LANG['quotediscount'] = "Rabatt %";
-$_LANG['quotelinetotal'] = "Total";
+$_LANG['quotelinetotal'] = "Totalt";
 $_LANG['quotestagedraft'] = "Koncept";
 $_LANG['quotestagedelivered'] = "Levererad";
 $_LANG['quotestageonhold'] = "Vilande";
@@ -1170,7 +1170,7 @@ $_LANG['recaptcha-incorrect-captcha-sol'] = "Tecknen du fyllde i matchar inte ve
 
 # Product Bundles
 
-$_LANG['bundledeal'] = "Bundle Deal!";
+$_LANG['bundledeal'] = "Produktpaket!";
 $_LANG['bundlevaliddateserror'] = "Paket Tillgängliga";
 $_LANG['bundlevaliddateserrordesc'] = "Detta paket är antingen inte aktiverat ännu eller så har det utgått. Om du tycker detta är ett fel ber vi dig kontakta supporten.";
 $_LANG['bundlemaxusesreached'] = "Paket Otillgängliga";
@@ -1192,14 +1192,14 @@ $_LANG['bundlewarningdomainaddon'] = "Det valda paketet kräver att du väljer t
 
 $_LANG['navservices'] = "Tjänster";
 $_LANG['navservicesorder'] = "Beställ nya tjänster";
-$_LANG['navservicesplaceorder'] = "Place a New Order";
+$_LANG['navservicesplaceorder'] = "Lägg en ny beställning";
 $_LANG['navdomains'] = "Domäner";
 $_LANG['navrenewdomains'] = "Förnya Domäner";
 $_LANG['navregisterdomain'] = "Registrera en ny domän";
 $_LANG['navtransferdomain'] = "Flytta en domän till oss";
-$_LANG['navdomainsearch'] = "Domain Search";
+$_LANG['navdomainsearch'] = "Domänsök";
 $_LANG['navbilling'] = "Fakturering";
-$_LANG['navinvoices'] = "Invoices";
+$_LANG['navinvoices'] = "Fakturor";
 $_LANG['navsupport'] = "Support";
 $_LANG['navtickets'] = "Ärenden";
 $_LANG['navopenticket'] = "Öppna ärende";
@@ -1248,7 +1248,6 @@ $_LANG['supportticketsintro'] = "Lämna in och spåra frågor här...";
 $_LANG['addfundsintro'] = "Lägg till pengar i förväg i en deposition";
 $_LANG['registerintro'] = "Skapa ett konto hos oss . . .";
 $_LANG['masspayintro'] = "Betala alla fakturor som listas nedan i en betalning och välj betalningsmetoden";
-$_LANG['domaincheckerintro'] = "Starta din webbhotellssökning här genom att kontrollera om din domän är ledig...";
 $_LANG['networkstatusintro'] = "Information om tjänster och Nätverksmeddelanden";
 
 $_LANG['creditcardyourinfo'] = "Din information";
@@ -1288,7 +1287,7 @@ $_LANG['domainnsexp'] = "Du kan ändra vart din domän pekar här. Uppmärksamma
 $_LANG['domainlockingexp'] = "Lås din domän för att förhindra att den flyttas iväg utan din tillåtelse.";
 $_LANG['domaincurrentlyunlocked'] = "Domänen är just nu olåst!";
 $_LANG['domaincurrentlyunlockedexp'] = "Du borde aktivera registrar lock om du inte ska flytta iväg din domän.";
-$_LANG['searchmultipletlds'] = "Search Multiple TLDs";
+$_LANG['searchmultipletlds'] = "Sök på flera TLDs";
 
 $_LANG['networkstatustitle'] = "Nätverksstatus";
 $_LANG['networkstatusnone'] = "Det förekommer inga %s Nätverksstörningar för närvarande";
@@ -1304,14 +1303,8 @@ $_LANG['creditcardexpirydateinvalid'] = "Utgångsdatumet måste fyllas i formate
 $_LANG['domaincheckerchoosedomain'] = "Välj en domän...";
 $_LANG['domaincheckerchecknewdomain'] = "Kontrollera tillgängligheten för en ny domän";
 $_LANG['domaincheckerdomainexample'] = " tex. example.com";
-$_LANG['domaincheckerinvalidtld'] = "är inte en giltig TLD. var snäll och försök igen.";
-$_LANG['domaincheckerinvalidtld2'] = "TLD är felaktig.";
-$_LANG['domaincheckerinvaliddomain'] = "Begärd domän är felaktig.";
-$_LANG['domaincheckernopricing'] = "Pris ej tillgänglig för denna TLD.";
 $_LANG['domaincheckerhostingonly'] = "Beställ bara webbhotell";
-$_LANG['domaincheckeravailtransfer'] = "Tillgänglig för överföring";
 $_LANG['domaincheckerenterdomain'] = "Starta din webbhotellsupplevelse hos oss genom att fylla i domännamnet du vill registrera, flytta eller välj bara ett kontopaket för nedan...";
-$_LANG['domaincheckerbulkinvaliddomain'] = "En eller flera domäner du fyllde i ovan var ogiltig så den har utelämnats från resultatet";
 
 $_LANG['kbquestionsearchere'] = "Har Du en fråga? Starta med att söka här.";
 $_LANG['contactus'] = "Kontakta Oss";
@@ -1330,11 +1323,11 @@ $_LANG['jobtitlereqforcompany'] = "(Krävs om Organisationsnamn är valt)";
 
 $_LANG['downloadproductrequired'] = "För att kunna ladda ned följande objekt krävs att du har en aktiv instans av följande produkter/tjänster:";
 
-$_LANG['affiliatesignuptitle'] = "Get Paid for Referring Customers to Us";
-$_LANG['affiliatesignupintro'] = "Activate your affiliate account and start earning money today...";
-$_LANG['affiliatesignupinfo1'] = "We pay commissions for every signup that comes via your custom signup link.";
-$_LANG['affiliatesignupinfo2'] = "We track the visitors you refer to us using cookies, so users you refer don't have to purchase instantly for you to receive your commission.  Cookies last for up to 90 days following the initial visit.";
-$_LANG['affiliatesignupinfo3'] = "If you would like to find out more, please contact us.";
+$_LANG['affiliatesignuptitle'] = "Få betalt för att tipsa kunder om oss";
+$_LANG['affiliatesignupintro'] = "Aktivera ditt ÅF-konto för att börja tjäna pengar redan idag...";
+$_LANG['affiliatesignupinfo1'] = "Vi betalar provision på varje ny kund som kommer från din länk.";
+$_LANG['affiliatesignupinfo2'] = "Vi spårar besökare som du hänvisar till oss genom cookies, besökare som du hänvisar behöver inte handla omgående för att du ska få din provision. Cookies vara upp till 90 ddagar från första besöket.";
+$_LANG['affiliatesignupinfo3'] = "Vill du veta med ber vi dig kontakta oss.";
 
 # Version 5.1
 
@@ -1362,7 +1355,7 @@ $_LANG['xpanellogin'] = "Logga in till XPanel";
 $_LANG['heartinternetlogin'] = "Logga in till Control Panel";
 $_LANG['gamecplogin'] = "Logga in till GameCP";
 $_LANG['fluidvmrestart'] = "Starta om VPS Server";
-$_LANG['enomtrustedesc'] = "The TRUSTe Control Panel contains the set up wizard to get your Privacy Policy up and running.";
+$_LANG['enomtrustedesc'] = "TRUSTe kontrollpanel innehåller komigång wizard för att få din Privacy Policy upp och snurra.";
 $_LANG['enomtrustelogin'] = "Logga in till TrustE Control Panel";
 $_LANG['directadminlogin'] = "Logga in till DirectAdmin";
 $_LANG['centovacastlogin'] = "Logga in till Centova Cast";
@@ -1388,109 +1381,109 @@ $_LANG['quotefilename'] = "Citat-";
 
 $_LANG['domainaddons'] = "Tillägg";
 $_LANG['domainaddonsinfo'] = "Följande tillägg är tillgängliga för dina domäner..";
-$_LANG['domainaddonsdnsmanagement'] = "DNS Host Record Management";
-$_LANG['domainaddonsidprotectioninfo'] = "Protect your personal information and reduce the amount of spam to your inbox by enabling ID Protection.";
-$_LANG['domainaddonsdnsmanagementinfo'] = "External DNS Hosting can help speed up your website and improve availability with reduced redundancy.";
+$_LANG['domainaddonsdnsmanagement'] = "DNS Host Record hantering";
+$_LANG['domainaddonsidprotectioninfo'] = "Skydda din personliga information och minska mängden spam genom att aktivera ID Protection.";
+$_LANG['domainaddonsdnsmanagementinfo'] = "External DNS Hosting can help speed up your website and improve availability with increased redundancy.";
 $_LANG['domainaddonsemailforwardinginfo'] = "Get emails forwarded to alternate email addresses of your choice so that you can monitor all from a single account.";
-$_LANG['domainaddonsbuynow'] = "Buy Now for";
+$_LANG['domainaddonsbuynow'] = "Köp nu för";
 $_LANG['domainaddonsperyear'] = "/år";
-$_LANG['domainaddonscancelareyousure'] = "Are you sure you want to disable & cancel this domain addon?";
-$_LANG['domainaddonsconfirm'] = "Confirm Cancellation";
-$_LANG['domainaddonscancelsuccess'] = "Addon Deactivated Successfully!";
-$_LANG['domainaddonscancelfailed'] = "Failed to deactivate addon. Please contact support.";
+$_LANG['domainaddonscancelareyousure'] = "Är du säker på att du vill avsluta detta domäntillägg?";
+$_LANG['domainaddonsconfirm'] = "Bekräfta avslutning";
+$_LANG['domainaddonscancelsuccess'] = "Tillägget är avslutat!";
+$_LANG['domainaddonscancelfailed'] = "Misslyckades att avsluta tillägg. Vänligen kontakta vår support.";
 
 # Version 5.2
 
-$_LANG['yourclientareahostingaddons'] = "You have the following addons for this product.";
-$_LANG['loginrequired'] = "Login Required";
-$_LANG['unsubscribe'] = "Unsubscribe";
-$_LANG['emailoptout'] = "Newsletter Opt-out";
-$_LANG['newsletterunsubscribe'] = "Newsletter Unsubscribe";
-$_LANG['emailoptoutdesc'] = "Tick to unsubscribe from our newsletters";
-$_LANG['alreadyunsubscribed'] = "You have already unsubscribed from our newsletter.";
-$_LANG['newsletterresubscribe'] = "If you wish to re-subscribe you can do so from the %sMy Details%s section of our client area at any time.";
-$_LANG['unsubscribehashinvalid'] = "Unsubscribe failed, please contact support.";
-$_LANG['unsubscribesuccess'] = "Unsubscribe Successful";
-$_LANG['newsletterremoved'] = "Thank you, Your email has now been removed from our mailing list.";
-$_LANG['erroroccured'] = "An Error Occurred";
-$_LANG['pwresetsuccessdesc'] = "Your password has now been reset. %sClick here%s to continue to the client area...";
-$_LANG['pwresetenternewpw'] = "Please enter your desired new password below.";
-$_LANG['ordererrorsbudomainbanned'] = "The subdomain prefix you entered is not allowed - please try another";
+$_LANG['yourclientareahostingaddons'] = "Du har följande tilläggstjänster för denna tjänst.";
+$_LANG['loginrequired'] = "Du måste logga in";
+$_LANG['unsubscribe'] = "Avsluta";
+$_LANG['emailoptout'] = "Nyhetsbrev Opt-out";
+$_LANG['newsletterunsubscribe'] = "Avsluta nyhetsbrev";
+$_LANG['emailoptoutdesc'] = "Bocka i för att avbeställa nyhetsbrevet";
+$_LANG['alreadyunsubscribed'] = "Du har redan avbeställt nyhetsbrevet.";
+$_LANG['newsletterresubscribe'] = "Om du vill återbeställa kan du göra det från %sMy Details%s på MinaSidor när som helst.";
+$_LANG['unsubscribehashinvalid'] = "Avbeställning misslyckades, vänligen kontakta vår support.";
+$_LANG['unsubscribesuccess'] = "Avbeställning lyckades";
+$_LANG['newsletterremoved'] = "Tack, din e-post har nu tagits bort från vår e-postlista.";
+$_LANG['erroroccured'] = "Ett fel inträffade";
+$_LANG['pwresetsuccessdesc'] = "Ditt lösenord har nu återställts. %sClick here%s för att fortsätta till kunddelen...";
+$_LANG['pwresetenternewpw'] = "Vänligen ange ditt önskade lösenord nedan.";
+$_LANG['ordererrorsbudomainbanned'] = "Det subdomänprefix du angivit är inte tillåtet - vänligen försök med annat";
 
-$_LANG['ticketfeedbacktitle'] = "Feedback Request for Ticket";
+$_LANG['ticketfeedbacktitle'] = "Ge oss gärna feedback på ärendet";
 
-$_LANG['nosupportdepartments'] = "No support departments found. Please try again later.";
+$_LANG['nosupportdepartments'] = "Ingen supportavdelning hittad. Försök igen senare.";
 
-$_LANG['feedbackclosed'] = "Feedback cannot be provided until the ticket is closed";
-$_LANG['feedbackprovided'] = "You have already provided feedback for this ticket";
-$_LANG['feedbackthankyou'] = "We thank you for taking the time to provide your feedback.";
-$_LANG['feedbackreceived'] = "Submission Received";
-$_LANG['feedbackdesc'] = "Please can we ask you to take a moment of your time to fill out the below form about the quality of your experience with our support team.";
-$_LANG['feedbackclickreview'] = "Click here to Review The Ticket";
-$_LANG['feedbackopenedat'] = "Opened At";
-$_LANG['feedbacklastreplied'] = "Last Replied To";
-$_LANG['feedbackstaffinvolved'] = "Staff Involved";
-$_LANG['feedbacktotalduration'] = "Total Duration";
-$_LANG['feedbackpleaserate1'] = "Please rate (on a scale of 1 to 10) how well";
-$_LANG['feedbackpleasecomment1'] = "Please comment on how well";
-$_LANG['feedbackhandled'] = "handled this support request";
-$_LANG['feedbackworst'] = "Worst";
-$_LANG['feedbackbest'] = "Best";
-$_LANG['feedbackimprove'] = "How may we make your experience better in the future?";
-$_LANG['pleaserate2'] = "handled this support request";
-$_LANG['feedbacksupplyrating'] = "Please supply at least a rating for :staffname (comments are optional)";
+$_LANG['feedbackclosed'] = "Du kan inte ge feedback innan ärendet är stängt";
+$_LANG['feedbackprovided'] = "Du har redan gett oss feedback för ärendet";
+$_LANG['feedbackthankyou'] = "Tack för att du tog dig tid att ge oss feedback för ärendet.";
+$_LANG['feedbackreceived'] = "Vi har mottagit din info";
+$_LANG['feedbackdesc'] = "Vänligen kan vi be dig att ta en stund av dig för att fylla i formuläret nedan om kvaliteten på din upplevelse med vårt supportteam.";
+$_LANG['feedbackclickreview'] = "Klicka här för att betygsätta ärendet";
+$_LANG['feedbackopenedat'] = "Öppnad den";
+$_LANG['feedbacklastreplied'] = "Senast besvarad";
+$_LANG['feedbackstaffinvolved'] = "Personal inblandad";
+$_LANG['feedbacktotalduration'] = "Har pågått";
+$_LANG['feedbackpleaserate1'] = "Betygsätt (på en skala 1 till 10) hur bra";
+$_LANG['feedbackpleasecomment1'] = "Vänligen kommentera hur bra";
+$_LANG['feedbackhandled'] = "hanterade detta ärende";
+$_LANG['feedbackworst'] = "Sämst";
+$_LANG['feedbackbest'] = "Bäst";
+$_LANG['feedbackimprove'] = "Hur kan vi göra din upplevelse bättre i framtiden?";
+$_LANG['pleaserate2'] = "hanterade detta ärende";
+$_LANG['feedbacksupplyrating'] = "Vänligen ange ett betyg för :staffname (kommentar är valfri)";
 
-$_LANG['returnclient'] = "Return to Client Area";
+$_LANG['returnclient'] = "Gå tillbaka till kundytan";
 
-$_LANG['clientareanavsecurity'] = "Security Settings";
-$_LANG['twofactorauth'] = "Two-Factor Authentication";
-$_LANG['twofaenable'] = "Enable Two-Factor Authentication";
-$_LANG['twofadisable'] = "Disable Two-Factor Authentication";
-$_LANG['twofaenableclickhere'] = "Click here to Enable";
-$_LANG['twofadisableclickhere'] = "Click here to Disable";
+$_LANG['clientareanavsecurity'] = "Säkerhetsintällningar";
+$_LANG['twofactorauth'] = "2-Faktor Autentisering";
+$_LANG['twofaenable'] = "Aktivera 2-Faktor Autentisering";
+$_LANG['twofadisable'] = "Avaktivera 2-Faktor Autentisering";
+$_LANG['twofaenableclickhere'] = "Klicka här för att aktivera";
+$_LANG['twofadisableclickhere'] = "Klicka här för att avaktivera";
 $_LANG['twofaenforced'] = "The system administrator has enforced that you must enable Two-Factor Authentication before you can continue. This page will guide you through the process of setting it up.";
-$_LANG['twofasetup'] = "Two-Factor Authentication Setup Process";
-$_LANG['twofasetupgetstarted'] = "Get Started";
-$_LANG['twofaactivationintro'] = "Two-Factor Authentication adds an extra layer of protection to logins. Once enabled &amp; configured, each time you sign in you will be asked to enter both your username & password as well as a second factor such as a security code.";
-$_LANG['twofaactivationmultichoice'] = "To continue, please choose your desired Two-Factor Authentication method from below.";
-$_LANG['twofadisableintro'] = "To disable Two-Factor Authentication please confirm your password in the field below.";
-$_LANG['twofaactivationerror'] = "An error occurred while attempting to activate Two-Factor Authentication for your account. Please try again.";
-$_LANG['twofamoduleerror'] = "An error occurred loading the module. Please try again.";
-$_LANG['twofaactivationcomplete'] = "Two-Factor Authentication Setup is Complete!";
-$_LANG['twofadisableconfirmation'] = "Two-Factor Authentication has now been disabled for your account.";
-$_LANG['twofabackupcodeis'] = "Your Backup Code is";
-$_LANG['twofanewbackupcodeis'] = "Your New Backup Code is";
-$_LANG['twofabackupcodelogin'] = "Enter Your Backup Code to Login";
-$_LANG['twofabackupcodeexpl'] = "Write this down on paper and keep it safe.<br />It will be needed if you ever lose your 2nd factor device or it is unavailable to you.";
-$_LANG['twofaconfirmpw'] = "Enter Your Password";
-$_LANG['twofa2ndfactorreq'] = "Your second factor is required to complete login.";
-$_LANG['twofa2ndfactorincorrect'] = "The second factor you supplied was incorrect. Please try again.";
+$_LANG['twofasetup'] = "Two-Factor Autentisering Startprocess";
+$_LANG['twofasetupgetstarted'] = "Kom igång";
+$_LANG['twofaactivationintro'] = "2-Faktor Autentisering ger ett extra skyddslager för att logga in. När det är aktiverat &amp; konfigurerat, varje gång du loggar in behöver du ange användarnamn och lösenord samt en säkerhetskod.";
+$_LANG['twofaactivationmultichoice'] = "För att fortsätta väljer du din önskade 2-Faktor Autentiserings metod nedan.";
+$_LANG['twofadisableintro'] = "För att avaktivera 2-Faktor Autentisering behöver du bekräfta ditt lösenord i fältet nedan.";
+$_LANG['twofaactivationerror'] = "Ett fel uppstod under aktiveringen av 2-Faktor Autentisering för ditt konto. vänligen försök igen.";
+$_LANG['twofamoduleerror'] = "Ett fel inträffade när modulen laddades. Vänligen försök igen.";
+$_LANG['twofaactivationcomplete'] = "2-Faktor Authentisering aktiveringen lyckades!";
+$_LANG['twofadisableconfirmation'] = "2-Faktor Autentiseringen har nu avaktiverats för ditt konto.";
+$_LANG['twofabackupcodeis'] = "Din backupkod är";
+$_LANG['twofanewbackupcodeis'] = "Din nya backupkod är";
+$_LANG['twofabackupcodelogin'] = "Ange din backupkod för att logga in";
+$_LANG['twofabackupcodeexpl'] = "Skriv ner denna på ett papper och förvara den säkert.<br />Den behövs om du inte har tillgång till din 2-Faktor enhet.";
+$_LANG['twofaconfirmpw'] = "Ange ditt lösenord";
+$_LANG['twofa2ndfactorreq'] = "Din 2-Faktor krävs för att slutföra din inloggning.";
+$_LANG['twofa2ndfactorincorrect'] = "Din angivna 2-Faktor är ogiltlig. Vänligen försök igen.";
 $_LANG['twofabackupcodereset'] = "Login via Backup Code Successful. Backup Codes are valid once only. It will now be reset.";
-$_LANG['twofacantaccess2ndfactor'] = "Can't Access Your 2nd Factor Device?";
-$_LANG['twofaloginusingbackupcode'] = "Login using Backup Code";
-$_LANG['twofageneralerror'] = "An error occurred loading the module. Please try again.";
+$_LANG['twofacantaccess2ndfactor'] = "Kan du inte nå din 2-Faktor enhet?";
+$_LANG['twofaloginusingbackupcode'] = "Logga in med din backuppkod";
+$_LANG['twofageneralerror'] = "Ett fel inträffade när modulen laddades. Vänligen försök igen.";
 
-$_LANG['continue'] = "Continue";
-$_LANG['disable'] = "Disable";
-$_LANG['manage'] = "Manage";
+$_LANG['continue'] = "Fortsätt";
+$_LANG['disable'] = "Stäng av";
+$_LANG['manage'] = "Hantera";
 
 # Version 5.3
-$_LANG['quoteacceptancetitle'] = "Quote Acceptance";
-$_LANG['quoteacceptancehowto'] = "To accept the quote, please confirm your acceptance of our terms of service which can be viewed @";
-$_LANG['quoteacceptancewarning'] = "Please be aware that accepting a quote is considered entering into a contract and you will not be able to cancel once accepted.";
+$_LANG['quoteacceptancetitle'] = "Acceptera offert";
+$_LANG['quoteacceptancehowto'] = "För att acceptera offerten, vänligen bekräfta våra villkor som kan läsas @";
+$_LANG['quoteacceptancewarning'] = "Vänligen notera att acceptera offerten är bindande och går inte att avbryta efteråt.";
 
-$_LANG['contactform'] = "Contact Form";
+$_LANG['contactform'] = "Kontaktaformulär";
 
-$_LANG['twoipverificationstep'] = "Verification Step";
-$_LANG['twoipverificationstepmsg'] = "Enter the security code generated by your mobile authenticator app and we'll make sure it's configured correctly before enabling it.";
-$_LANG['twoipverificationerror'] = "It seem's there's a problem...";
-$_LANG['twoipcodemissmatch'] = "The code you entered did not match what was expected. Please try again.";
-$_LANG['twoiptimebasedpassword'] = "Time-based One-Time Password";
-$_LANG['twoiptimebasedexplain'] = "This authentication option get's it's second factor using a time based algorithm.  Your mobile phone can be used to generate the codes.  If you don't already have an app that can do this, we recommend Google Authenticator which is available for iOS, Android and Windows mobile devices.";
-$_LANG['twoipconfigureapp'] = "To configure your authenticator app:";
-$_LANG['twoipconfigurestep1'] = "Begin by selecting to add a new time based token";
-$_LANG['twoipconfigurestep2'] = "Then use your app to scan the barcode below, or alternatively enter this secret key manually: ";
-$_LANG['twoipgdmissing'] = "GD is missing from the PHP build on your server so unable to generate image";
+$_LANG['twoipverificationstep'] = "Verifieringssteg";
+$_LANG['twoipverificationstepmsg'] = "Ange säkerhetskoden som genererats av din mobila autentiseringsapp så vi kan verifiera att allt fungerar innan vi aktiverar det.";
+$_LANG['twoipverificationerror'] = "Det verkar vara ett problem...";
+$_LANG['twoipcodemissmatch'] = "Koden du angivit kunde inte verifieras. Vänligen försök igen.";
+$_LANG['twoiptimebasedpassword'] = "Tidsbaserad engångslösenord";
+$_LANG['twoiptimebasedexplain'] = "Detta autentiseringsalternativ får sin 2-faktor genom en tidsbaserad algoritm. Din mobil kan användas för att generera koderna. Om du inte redan har en app för detta rekommenderar vi Google Autentisering som finns för iOS, Android och Windows mobile enheter.";
+$_LANG['twoipconfigureapp'] = "För att konfigurera din autentiseringsapp:";
+$_LANG['twoipconfigurestep1'] = "Börja genom att lägga till en ny tidsbegränsad kod";
+$_LANG['twoipconfigurestep2'] = "Sedan använder du din app för att scanna streckkoden nedan, alternativt anger du nyckeln manuellt: ";
+$_LANG['twoipgdmissing'] = "GD saknas från PHP versionen på din server så vi kan inte generera bilden";
 
 $_LANG['domaincontactdetails']['First Name'] = "Förnamn";
 $_LANG['domaincontactdetails']['Last Name'] = "Efternamn";
@@ -1518,9 +1511,9 @@ $_LANG['domaincontactdetails']['Phone'] = "Telefon";
 $_LANG['domaincontactdetails']['Phone Number'] = "Telefonnummer";
 $_LANG['domaincontactdetails']['Fax'] = "Fax";
 
-$_LANG['serverhostnameexample'] = "eg. server1(.example.com)";
-$_LANG['serverns1prefixexample'] = "eg. ns1(.example.com)";
-$_LANG['serverns2prefixexample'] = "eg. ns2(.example.com)";
+$_LANG['serverhostnameexample'] = "ex. server1(.example.com)";
+$_LANG['serverns1prefixexample'] = "ex. ns1(.example.com)";
+$_LANG['serverns2prefixexample'] = "ex. ns2(.example.com)";
 
 $_LANG['hosting'] = "Webbhotell";
 
@@ -1535,103 +1528,103 @@ $_LANG['enomfrregistration']['EU Non-French Companies']['Name'] = "EU Non-French
 $_LANG['enomfrregistration']['EU Non-French Companies']['Requirements'] = "Please provide the company \"DUNS Number\", and the \"Birthdate\" of the Owner Contact.";
 $_LANG['enomfrregistration']['Non-EU Warning'] = "Client contact information must be within the EU or else registration will fail.";
 
-$_LANG['confirm'] = "Confirm";
+$_LANG['confirm'] = "Bekräfta";
 
-$_LANG['maxmind_checkconfiguration'] = "An error occurred with the Fraud Check. Please contact support.";
-$_LANG['maxmind_addressinvalid'] = "Your address is not recognised. Please check and re-enter.";
-$_LANG['maxmind_invalidip'] = "IP Address invalid or a local address. Please contact support.";
+$_LANG['maxmind_checkconfiguration'] = "Ett fel inträffade vid bedrägerichecken. Vänligen kontakta support.";
+$_LANG['maxmind_addressinvalid'] = "Din adress känns inte igen. Vänligen verifiera och försök igen.";
+$_LANG['maxmind_invalidip'] = "IP-adressen är ogiltlig eller en lokal adress. Vänligen kontakta support.";
 
-$_LANG['ssounabletologin'] = "Unable to auto-login. Please contact support.";
-$_LANG['ssofatalerror'] = "A fatal error occurred. Please contact support.";
+$_LANG['ssounabletologin'] = "Kunde inte logga in automatiskt. Vänligen kontakta vår support.";
+$_LANG['ssofatalerror'] = "Ett fel inträffade. Vänligen kontakta vår support.";
 
 # Version 6.0
 
-$_LANG['announcementschoosemonth'] = "Choose Month";
-$_LANG['announcementsbymonth'] = "By Month";
-$_LANG['announcementsolder'] = "Older Announcements";
-$_LANG['createnewcontact'] = "New Contact...";
-$_LANG['due'] = "Due";
+$_LANG['announcementschoosemonth'] = "Välj månad";
+$_LANG['announcementsbymonth'] = "per månad";
+$_LANG['announcementsolder'] = "Äldre nyheter";
+$_LANG['createnewcontact'] = "Ny kontakt...";
+$_LANG['due'] = "Förfaller";
 $_LANG['affiliatessignups'] = "Antal prenumerationer";
 $_LANG['affiliatesconversionrate'] = "konverteringsgrad";
-$_LANG['affiliatesclicks'] = "Clicks";
-$_LANG['contacts'] = "Contacts";
-$_LANG['backtoservicedetails'] = "Back to Service Details";
+$_LANG['affiliatesclicks'] = "Klick";
+$_LANG['contacts'] = "Kontakter";
+$_LANG['backtoservicedetails'] = "Tillbaka till Mina tjänster";
 $_LANG['invoicesintro'] = "Nedan kan du se alla fakturor.";
 
-$_LANG['sidebars']['viewAccount']['yourAccount'] = "Your Account";
-$_LANG['sidebars']['viewAccount']['myDetails'] = "My Details";
-$_LANG['sidebars']['viewAccount']['billingInformation'] = "Billing Information";
-$_LANG['sidebars']['viewAccount']['contacts/subAccounts'] = "Contacts/Sub-Accounts";
-$_LANG['sidebars']['viewAccount']['changePassword'] = "Change Password";
-$_LANG['sidebars']['viewAccount']['securitySettings'] = "Security Settings";
-$_LANG['sidebars']['viewAccount']['emailHistory'] = "Email History";
+$_LANG['sidebars']['viewAccount']['yourAccount'] = "Ditt konto";
+$_LANG['sidebars']['viewAccount']['myDetails'] = "Min information";
+$_LANG['sidebars']['viewAccount']['billingInformation'] = "Fakturainformation";
+$_LANG['sidebars']['viewAccount']['contacts/subAccounts'] = "Kontakter/Under-konton";
+$_LANG['sidebars']['viewAccount']['changePassword'] = "Byt lösenord";
+$_LANG['sidebars']['viewAccount']['securitySettings'] = "Säkerhetsinställningar";
+$_LANG['sidebars']['viewAccount']['emailHistory'] = "E-posthistorik";
 
-$_LANG['aboutsecurityquestions'] = "Why security questions?";
-$_LANG['registersecurityquestionblurb'] = "Setting a security question will provide extra security, as all changes to your account require providing the additional information from your question.";
+$_LANG['aboutsecurityquestions'] = "Varför säkerhetsfråga?";
+$_LANG['registersecurityquestionblurb'] = "Att skapa en säkerhetsfråga ger extra säkerhet då alla förändringar på ditt konto kräver den extra infon från din fråga.";
 
-$_LANG['update'] = "Update";
-$_LANG['yourinfo'] = "Your Info";
-$_LANG['shortcuts'] = "Shortcuts";
+$_LANG['update'] = "Uppdatera";
+$_LANG['yourinfo'] = "Din info";
+$_LANG['shortcuts'] = "Genvägar";
 
-$_LANG['yourservices'] = "Your Services";
-$_LANG['yourdomains'] = "Your Domains";
-$_LANG['yourtickets'] = "Your Tickets";
-$_LANG['managecontacts'] = "Manage Contacts";
-$_LANG['billingdetails'] = "Billing Details";
-$_LANG['homechooseproductservice'] = "Choose a product/service to manage:";
+$_LANG['yourservices'] = "Dina tjänster";
+$_LANG['yourdomains'] = "Dina domäner";
+$_LANG['yourtickets'] = "Dina ärenden";
+$_LANG['managecontacts'] = "Hantera kontakter";
+$_LANG['billingdetails'] = "Fakturadetaljer";
+$_LANG['homechooseproductservice'] = "Välj en produkt/tjänst att hantera:";
 
 $_LANG['invoicesdue'] = "Obetalda Fakturor";
-$_LANG['invoicesduemsg'] = "You have %s invoice(s) currently unpaid with a total balance of %s";
-$_LANG['noinvoicesduemsg'] = "You have no unpaid invoices at this time.";
+$_LANG['invoicesduemsg'] = "Du har %s obetalda faktura/or med ett totalt belopp på %s";
+$_LANG['noinvoicesduemsg'] = "Du har inga obetalda fakturar för tillfället.";
 
-$_LANG['expiringsoon'] = "Expiring Soon";
+$_LANG['expiringsoon'] = "Löper snart ut";
 
-$_LANG['notice'] = "Notice";
-$_LANG['networkstatussubtitle'] = "News & Information";
+$_LANG['notice'] = "Notering";
+$_LANG['networkstatussubtitle'] = "Nyheter & Information";
 
-$_LANG['myaccount'] = "My Account";
+$_LANG['myaccount'] = "Mitt konto";
 
-$_LANG['manageproduct'] = "Manage Product";
-$_LANG['overview'] = "Overview";
+$_LANG['manageproduct'] = "Hantera produkt";
+$_LANG['overview'] = "Överblick";
 $_LANG['servername'] = "Server";
-$_LANG['visitwebsite'] = "Visit Website";
+$_LANG['visitwebsite'] = "Besök hemsida";
 $_LANG['whoisinfo'] = "WHOIS Info";
 
-$_LANG['tableshowing'] = "Showing _START_ to _END_ of _TOTAL_ entries";
-$_LANG['tableempty'] = "Showing 0 to 0 of 0 entries";
-$_LANG['tablefiltered'] = "(filtered from _MAX_ total entries)";
-$_LANG['tablelength'] = "Show _MENU_ entries";
-$_LANG['tableloading'] = "Loading...";
-$_LANG['tableprocessing'] = "Processing...";
-$_LANG['tablepagesfirst'] = "First";
-$_LANG['tablepageslast'] = "Last";
-$_LANG['tablepagesnext'] = "Next";
-$_LANG['tablepagesprevious'] = "Previous";
-$_LANG['tableviewall'] = "All";
-$_LANG['tableentersearchterm'] = "Enter search term...";
+$_LANG['tableshowing'] = "Visar _START_ till _END_ av _TOTAL_ träffar";
+$_LANG['tableempty'] = "Visar 0 till 0 av 0 träffar";
+$_LANG['tablefiltered'] = "(Filtrerad från _MAX_ antal träffar)";
+$_LANG['tablelength'] = "Visa _MENU_ träffar";
+$_LANG['tableloading'] = "Laddar...";
+$_LANG['tableprocessing'] = "Behandlar...";
+$_LANG['tablepagesfirst'] = "Första";
+$_LANG['tablepageslast'] = "Sista";
+$_LANG['tablepagesnext'] = "Nästa";
+$_LANG['tablepagesprevious'] = "Föregående";
+$_LANG['tableviewall'] = "Alla";
+$_LANG['tableentersearchterm'] = "Ange sökord...";
 
-$_LANG['actions'] = "Actions";
+$_LANG['actions'] = "Handlingar";
 
-$_LANG['upgradedowngradeshort'] = "Up/Downgrade";
+$_LANG['upgradedowngradeshort'] = "Upp/nedgradera";
 
 $_LANG['masspayintro'] = "Betala alla fakturor som listas nedan i en betalning och välj betalningsmetoden";
-$_LANG['masspaymentselectgateway'] = "Select Mass Payment Gateway";
+$_LANG['masspaymentselectgateway'] = "Välj massbetalnings metod";
 
-$_LANG['ticketfeedbackrequest'] = "Feedback Request";
-$_LANG['ticketfeedbackforticket'] = "for Ticket #";
+$_LANG['ticketfeedbackrequest'] = "Ge oss feddback";
+$_LANG['ticketfeedbackforticket'] = "för ärende #";
 
-$_LANG['notifications'] = "Notifications";
-$_LANG['notificationsnone'] = "You have no notifications at this time.";
+$_LANG['notifications'] = "Meddelanden";
+$_LANG['notificationsnone'] = "Du har inga meddelanden just nu.";
 
-$_LANG['creditcardnonestored'] = "No card on file";
+$_LANG['creditcardnonestored'] = "Inget kort sparat";
 
-$_LANG['kbviewingarticlestagged'] = "Viewing articles tagged";
+$_LANG['kbviewingarticlestagged'] = "visar artiklar taggade";
 
-$_LANG['domainprivatenameservers'] = "Private Nameservers";
+$_LANG['domainprivatenameservers'] = "Privata namnservrar";
 
-$_LANG['transferinadomain'] = "Transfer in a Domain";
+$_LANG['transferinadomain'] = "Flytta in en domän";
 
-$_LANG['nodomainextensions'] = "There are no Domain Extensions currently configured for purchase";
+$_LANG['nodomainextensions'] = "Det finns för närvarande ingen domänhanterare konfigurerad för beställning";
 
 $_LANG['homebegin'] = "Börja med att söka efter det perfekta domännamnet..";
 $_LANG['howcanwehelp'] = "Hur kan vi hjälpa dig idag?";
@@ -1652,12 +1645,11 @@ $_LANG['readyforquestions'] = "Vi är redo och väntar på dina frågor";
 $_LANG['restrictedpage'] = "Denna sida är privat/skyddad";
 $_LANG['enteremail'] = "Ange e-post";
 
-$_LANG['passwordtips'] = "<strong>Tips for a good password</strong><br />Use both upper and lowercase characters<br />Include at least one symbol (# $ ! % &amp; etc...)<br />Don't use dictionary words";
+$_LANG['passwordtips'] = "<strong>Tips till ett bra lösenord</strong><br />Använd både stora och små och stora tecken<br />Använd minst en symbol (# $ ! % &amp; etc...)<br />Använd inte ordboksord";
 
-$_LANG['regdate'] = "Reg Date";
-$_LANG['nextdue'] = "Next Due";
+$_LANG['regdate'] = "Skapades";
+$_LANG['nextdue'] = "Förfaller";
 
-$_LANG['domaincheckertagline'] = "Hitta den perfekta domänen för dig..";
 $_LANG['findyourdomain'] = "Hitta din nya domän";
 $_LANG['searchtermrequired'] = "Du måste en domän ett nyckelord för att kunan söka";
 $_LANG['unabletolookup'] = "Dessvärre så kan vi inte hitta något på det sökord du angav";
@@ -1674,7 +1666,7 @@ $_LANG['disclaimers'] = "Ansvarsfriskrivning";
 $_LANG['tldpricing'] = "TLD Pris";
 $_LANG['alltldpricing'] = "Alla TLD priser";
 
-$_LANG['quotesdesc'] = "Quotes we have generated for you";
+$_LANG['quotesdesc'] = "Genererade offerter för dig";
 $_LANG['quotesrejected'] = "Avvisad";
 
 $_LANG['ticketsyourhistory'] = "Din supporthistoria";
@@ -1686,7 +1678,7 @@ $_LANG['sslnoconfigurationpossible'] = "Konfiguration har redan slutförts!  Vä
 
 $_LANG['adminloggedin'] = "Du är inloggad som Admin.";
 $_LANG['returntoadminarea'] = "Logga ut & återgår till Admin";
-$_LANG['adminmasqueradingasclient'] = "You are currently masquerading as a client.";
+$_LANG['adminmasqueradingasclient'] = "Du är förnärvarande inne som kund.";
 $_LANG['logoutandreturntoadminarea'] = "Logga ut & återgår till Admin";
 
 $_LANG['supportAndUpdatesExpired'] = "Support & uppdatering har löpt ut.";
@@ -1707,6 +1699,7 @@ $_LANG['domainsCancelled'] = "Avbruten";
 $_LANG['domainsFraud'] = "Bedrägeri";
 $_LANG['domainsPending'] = "Avvaktande";
 $_LANG['domainsPendingTransfer'] = "Avvaktande överföring";
+$_LANG['domainsTransferredAway'] = "Utflyttad";
 $_LANG['domainsExpiringInTheNext30Days'] = "Löper ut inom 30 dagar";
 $_LANG['domainsExpiringInTheNext90Days'] = "Löper ut inom 90 dagar";
 $_LANG['domainsExpiringInTheNext180Days'] = "Löper ut inom 180 dagar";
@@ -1714,13 +1707,13 @@ $_LANG['domainsExpiringInMoreThan180Days'] = "Löper ut inom 180+ dagar";
 
 $_LANG['kbtagcloud'] = "Tag Cloud";
 
-$_LANG['cancellationrequestedexplanation'] = "There is an outstanding cancellation request for this product/service";
+$_LANG['cancellationrequestedexplanation'] = "Det finns en begäran om att avsluta denna tjänst";
 $_LANG['cancellationrequested'] = "Cancellation Requested";
 
-$_LANG['yourrecenttickets'] = "Your Recent Tickets";
+$_LANG['yourrecenttickets'] = "Senaste ärenden";
 
-$_LANG['domains']['deTermsDescription1'] = "To register a new domain, transfer or change registrant information the registrant must explicitly accept the .DE terms and conditions.";
-$_LANG['domains']['deTermsDescription2'] = "(See full text of .de terms and conditions: http://www.denic.de/en/bedingungen.html.)";
+$_LANG['domains']['deTermsDescription1'] = "För att registrera en ny domän, flytta eller byta registrarinformation måste registreraren själv godkänna .DE villkor.";
+$_LANG['domains']['deTermsDescription2'] = "(se hela texten av .de villkoren: http://www.denic.de/en/bedingungen.html.)";
 $_LANG['directDebitPageTitle'] = "Direct Debit Payment";
 $_LANG['directDebitHeader'] = "Direct Debit Payment";
 $_LANG['directDebitErrorNoBankName'] = "You must enter your banks name";
@@ -1731,18 +1724,18 @@ $_LANG['directDebitErrorConfirmAccNumber'] = "You must confirm your bank account
 $_LANG['directDebitErrorAccNumberMismatch'] = "Your bank account number & confirmation don't match";
 $_LANG['directDebitThanks'] = "Thank you for submitting your details. We will attempt to process your payment using the supplied details within the next few days, and contact you in case of any problems.";
 $_LANG['directDebitPleaseSubmit'] = "Please submit your bank account details below to pay by Direct Debit.";
-$_LANG['directDebitBankName'] = "Bank Name";
-$_LANG['directDebitAccountType'] = "Bank Account Type";
-$_LANG['directDebitABA'] = "Bank ABA Code";
-$_LANG['directDebitAccNumber'] = "Bank Account Number";
-$_LANG['directDebitConfirmAccNumber'] = "Confirm Account Number";
-$_LANG['directDebitSubmit'] = "Submit";
-$_LANG['directDebitChecking'] = "Checking";
-$_LANG['directDebitSavings'] = "Savings";
+$_LANG['directDebitBankName'] = "Banknamn";
+$_LANG['directDebitAccountType'] = "Bankkontotyp";
+$_LANG['directDebitABA'] = "Bank ABA-kod";
+$_LANG['directDebitAccNumber'] = "Bankkontonummer";
+$_LANG['directDebitConfirmAccNumber'] = "Bekräfta kontonummer";
+$_LANG['directDebitSubmit'] = "Skicka";
+$_LANG['directDebitChecking'] = "Kontrollerar";
+$_LANG['directDebitSavings'] = "Sparande";
 
-$_LANG['outOfStockProductRemoved'] = "An out of stock product was automatically removed from the cart";
+$_LANG['outOfStockProductRemoved'] = "En slut på lager produkt togs automatiskt bort från kundvagnen";
 
-$_LANG['subaccountpermsquotes'] = "View & Accept Quotes";
+$_LANG['subaccountpermsquotes'] = "Visa och acceptera offerter";
 
 $_LANG['chooselanguage'] = "Välj språk";
 
@@ -1753,64 +1746,64 @@ $_LANG['invoicelineitems'] = "Fakturaposter";
 
 $_LANG['quotelineitems'] = "Delposter";
 
-$_LANG['quoteproposal'] = "Proposal";
-$_LANG['quoteacceptagreetos'] = "To accept the quote, please confirm your acceptance of our terms of service.";
-$_LANG['quoteacceptcontractwarning'] = "Please be aware that accepting a quote is considered entering into a contract and you will not be able to cancel once accepted.";
+$_LANG['quoteproposal'] = "Förslag";
+$_LANG['quoteacceptagreetos'] = "För att acceptera offerten behöver du bekärfta våra villkor.";
+$_LANG['quoteacceptcontractwarning'] = "Vänligen notera att genom att acceptera offerten binder du dig till avtalet och kan inte avbeställa detta.";
 
 // Client alerts
-$_LANG['clientAlerts']['creditCardExpiring'] = "Your credit card :creditCardType-:creditCardLastFourDigits expires within :days days. Please update it at your earliest convenience.";
-$_LANG['clientAlerts']['domainsExpiringSoon'] = "You have :numberOfDomains domain(s) expiring within the next :days days.";
-$_LANG['clientAlerts']['invoicesUnpaid'] = "You have :numberOfInvoices unpaid invoice(s). Pay them early for peace of mind.";
-$_LANG['clientAlerts']['invoicesOverdue'] = "You have :numberOfInvoices overdue invoice(s) with a total balance due of :balanceDue. Pay them now to avoid any interuptions in service.";
-$_LANG['clientAlerts']['creditBalance'] = "You have a credit balance of :creditBalance.";
+$_LANG['clientAlerts']['creditCardExpiring'] = "Ditt betalkort :creditCardType-:creditCardLastFourDigits löper ut om :days dagar. Vänligen uppdatera detta.";
+$_LANG['clientAlerts']['domainsExpiringSoon'] = "Du har :numberOfDomains domän(er) som löper ut om :days dagar.";
+$_LANG['clientAlerts']['invoicesUnpaid'] = "Du har :numberOfInvoices obetalda faktura(or). Betala dem snarast.";
+$_LANG['clientAlerts']['invoicesOverdue'] = "Du har :numberOfInvoices förfallna faktura(or) till ett värde av :balanceDue. Betala dem snarast för att slippa påverkande av tjänster.";
+$_LANG['clientAlerts']['creditBalance'] = "Du har krediter till ett värde av :creditBalance.";
 
 // Client homepage panels
-$_LANG['clientHomePanels']['unpaidInvoices'] = "Unpaid Invoices";
-$_LANG['clientHomePanels']['unpaidInvoicesMsg'] = "You have :numberOfInvoices unpaid invoice(s) with a total balance due of :balanceDue. Pay them early for peace of mind.";
-$_LANG['clientHomePanels']['overdueInvoices'] = "Overdue Invoices";
-$_LANG['clientHomePanels']['overdueInvoicesMsg'] = "You have :numberOfInvoices overdue invoice(s) with a total balance due of :balanceDue. Pay them now to avoid any interuptions in service.";
-$_LANG['clientHomePanels']['domainsExpiringSoon'] = "Domains Expiring Soon";
-$_LANG['clientHomePanels']['domainsExpiringSoonMsg'] = "You have :numberOfDomains domain(s) expiring within the next :days days. Renew them today for peace of mind.";
-$_LANG['clientHomePanels']['activeProductsServices'] = "Your Active Products/Services";
-$_LANG['clientHomePanels']['activeProductsServicesNone'] = "It appears you do not have any products/services with us yet. <a href=\"cart.php\">Place an order to get started</a>.";
-$_LANG['clientHomePanels']['recentNews'] = "Recent News";
-$_LANG['clientHomePanels']['affiliateProgram'] = "Affiliate Program";
-$_LANG['clientHomePanels']['recentSupportTickets'] = "Recent Support Tickets";
-$_LANG['clientHomePanels']['recentSupportTicketsNone'] = "No Recent Tickets Found. If you need any help, please <a href=\"submitticket.php\">open a ticket</a>.";
-$_LANG['clientHomePanels']['affiliateSummary'] = "Your current commission balance is :commissionBalance. You only need another :amountUntilWithdrawalLevel before you can withdraw your earnings.";
-$_LANG['clientHomePanels']['affiliateSummaryWithdrawalReady'] = "Your current commission balance is :commissionBalance. You may withdraw your earnings now.";
+$_LANG['clientHomePanels']['unpaidInvoices'] = "Obetalda fakturor";
+$_LANG['clientHomePanels']['unpaidInvoicesMsg'] = "Du har :numberOfInvoices obetald(a) på ett totalt värde av :balanceDue. Betala dem snarast.";
+$_LANG['clientHomePanels']['overdueInvoices'] = "Förfallna fakturor";
+$_LANG['clientHomePanels']['overdueInvoicesMsg'] = "Du har :numberOfInvoices förfallna faktura(or) på ett totalt värde av :balanceDue. Betala dem snarast för att slippa påverkande av tjänster.";
+$_LANG['clientHomePanels']['domainsExpiringSoon'] = "Domäner löper snart";
+$_LANG['clientHomePanels']['domainsExpiringSoonMsg'] = "Du har :numberOfDomains domaän(er) löper ut om :days dagar. Förnya dem snarast.";
+$_LANG['clientHomePanels']['activeProductsServices'] = "Dina aktiva produkter/tjänster";
+$_LANG['clientHomePanels']['activeProductsServicesNone'] = "Det ser ut som du inte har några produkter/tjänster hos oss ännu. <a href=\"cart.php\">Lägg en order för att komma igång</a>.";
+$_LANG['clientHomePanels']['recentNews'] = "Senaste nyheter";
+$_LANG['clientHomePanels']['affiliateProgram'] = "Partnerprogram";
+$_LANG['clientHomePanels']['recentSupportTickets'] = "Senaste ärenden";
+$_LANG['clientHomePanels']['recentSupportTicketsNone'] = "Inga senaste ärenden hittade. Om du behöver hjälp vänligen <a href=\"submitticket.php\">skapa ett ärende</a>.";
+$_LANG['clientHomePanels']['affiliateSummary'] = "Din nuvarande provision är :commissionBalance. Du behöver bara :amountUntilWithdrawalLevel innan du kan ta ut dina förtjänster.";
+$_LANG['clientHomePanels']['affiliateSummaryWithdrawalReady'] = "Din nuvarande provision är :commissionBalance. Du kan ta ut dina förtjänster nu.";
 
-$_LANG['upgradeNotPossible'] = "Upgrading this product is not possible.  If you believe you've reached this page in error, please notify our support department.  Otherwise, go back and double check your selection.";
+$_LANG['upgradeNotPossible'] = "Du kan inte uppgradera denna produkt. Om du anser att detta är felaktigt ber vi dig kontakta vår supportavdelning. I annat fall går du tillbaka och kontrollerar dina val.";
 
-$_LANG['hostingInfo'] = "Hosting Information";
-$_LANG['additionalInfo'] = "Additional Information";
-$_LANG['resourceUsage'] = "Resource Usage";
-$_LANG['primaryIP'] = "Primary IP";
-$_LANG['assignedIPs'] = "Assigned IPs";
-$_LANG['diskSpace'] = "Disk Space";
-$_LANG['bandwidth'] = "Bandwidth";
-$_LANG['registered'] = "Registered";
-$_LANG['upgrade'] = "Upgrade";
+$_LANG['hostingInfo'] = "Hostinginformation";
+$_LANG['additionalInfo'] = "Ytterligare information";
+$_LANG['resourceUsage'] = "Utnyttjade resurser";
+$_LANG['primaryIP'] = "Primärt IP";
+$_LANG['assignedIPs'] = "Assignade IPn";
+$_LANG['diskSpace'] = "Diskutrymme";
+$_LANG['bandwidth'] = "Bandbredd";
+$_LANG['registered'] = "Registrerad";
+$_LANG['upgrade'] = "Uppgradera";
 
-$_LANG['downdoadsdesc'] = "Manuals, programs, and other files";
+$_LANG['downdoadsdesc'] = "Manualer, program, och andra filer";
 
-$_LANG['doToday'] = "What would you like to do today?";
-$_LANG['changeDomainNS'] = "Change the nameservers your domain points to";
-$_LANG['updateWhoisContact'] = "Update the WHOIS contact information for your domain";
-$_LANG['changeRegLock'] = "Change the registrar lock status for your domain";
-$_LANG['renewYourDomain'] = "Renew Your Domain";
+$_LANG['doToday'] = "Vad vill du göra idag?";
+$_LANG['changeDomainNS'] = "Ändra namnservrarna din domän pekar till";
+$_LANG['updateWhoisContact'] = "Uppdatera WHOIS kontaktinformationen för din domän";
+$_LANG['changeRegLock'] = "Ändra registrarlås status för din domän";
+$_LANG['renewYourDomain'] = "Förnya din domän";
 
-$_LANG['oops'] = "Oops";
-$_LANG['goback'] = "Go Back";
-$_LANG['returnhome'] = "Return Home";
-$_LANG['blankCustomField'] = "(no value)";
+$_LANG['oops'] = "Hoppsan";
+$_LANG['goback'] = "Gå tillbaka";
+$_LANG['returnhome'] = "Tillbaka hem";
+$_LANG['blankCustomField'] = "(saknas)";
 
-$_LANG['viewAll'] = "View All";
-$_LANG['moreDetails'] = "More Details";
+$_LANG['viewAll'] = "Visa alla";
+$_LANG['moreDetails'] = "Mer info";
 
-$_LANG['clientHomeSearchKb'] = "Enter a question here to search our knowledgebase for answers...";
+$_LANG['clientHomeSearchKb'] = "Skriv en fråga för att söka i vår FAQ...";
 
-$_LANG['whoisContactWarning'] = "It is important to keep your domain WHOIS contact information up-to-date at all times to avoid losing control of your domain.";
+$_LANG['whoisContactWarning'] = "Det är viktigt att uppdatera din domäns WHOIS kontaktinformation för att undvika att tappa kontrollen över din domän.";
 
 $_LANG['paymentstodate'] = "Payments to Date";
 $_LANG['balancedue'] = "Balance Due";
@@ -1894,39 +1887,39 @@ $_LANG['cPanel']['statusSuspendedNotice'] = "You cannot continue to use or manag
 
 $_LANG['cPanel']['billingOverview'] = "Billing Overview";
 
-$_LANG['liveHelp']['chatNow'] = "Chat Now";
+$_LANG['liveHelp']['chatNow'] = "Kontakta oss";
 
-$_LANG['quotes'] = "Quotes";
+$_LANG['quotes'] = "Offerter";
 
-$_LANG['productMustBeActiveForModuleCmds'] = "Product must be active to perform this action";
-$_LANG['domainCannotBeManagedUnlessActive'] = "This domain is not currently active. Domains cannot be managed unless active.";
+$_LANG['productMustBeActiveForModuleCmds'] = "Produkten måste vara aktiv för att kunna genomföra detta";
+$_LANG['domainCannotBeManagedUnlessActive'] = "Denna domän är inte aktiv. Domäner kan inte administreras om de inte är aktiva.";
 
-$_LANG['actionRequiresAtLeastOneDomainSelected'] = "Please select at least one domain to perform the selected action on.";
+$_LANG['actionRequiresAtLeastOneDomainSelected'] = "Du måste välja minst en domän för att kunna utföra ditt val.";
 
-$_LANG['clientAreaProductDownloadsAvailable'] = "The following download items are available for your product/service";
-$_LANG['clientAreaProductAddonsAvailable'] = "Addons are available for your product/service. <a href=\"cart.php?gid=addons\">Click here to view &amp; order &raquo;</a>";
-$_LANG['clientAreaSecurityTwoFactorAuthRecommendation'] = "We strongly encourage you to enable Two-Factor Authentication for added security.";
-$_LANG['clientAreaSecurityNoSecurityQuestions'] = "Setting a security question and answer helps protect your account from unauthorized password resets and allows us to verify your identity when requesting account changes.";
-$_LANG['clientAreaSecuritySecurityQuestionOtherError'] = "The security question helps protect your account from unauthorized password resets and allows us to verify your identity when requesting account changes.";
+$_LANG['clientAreaProductDownloadsAvailable'] = "Följande nedladdningar finns tillgängliga för din produkt/tjänst";
+$_LANG['clientAreaProductAddonsAvailable'] = "Det finns addons tillgängliga öfr din produkt/tjänst. <a href=\"cart.php?gid=addons\">Klicka här för att visa &amp; order &raquo;</a>";
+$_LANG['clientAreaSecurityTwoFactorAuthRecommendation'] = "Vi rekommenderar starkt att du aktiverar 2-Faktor Autentisering för att höja säerheten.";
+$_LANG['clientAreaSecurityNoSecurityQuestions'] = "Att skapa en säkerhetsfråga och svar hjälper till att skydda ditt konto från otillåtna lösenordsåterställningar och låter oss verifiera din identitet när kontoändringar begärs.";
+$_LANG['clientAreaSecuritySecurityQuestionOtherError'] = "Säkerhetsfrågan hjälper till att skydda ditt konto från obehöriga lösenordsåterställningar och tillåter oss att verifiera din identitet när kontoändringar begärs.";
 
-$_LANG['billingAddress'] = "Billing Address";
+$_LANG['billingAddress'] = "Fakturaadress";
 
-$_LANG['noPasswordResetWhenLoggedIn'] = "You cannot request a password reset when logged in. Please logout to begin.";
+$_LANG['noPasswordResetWhenLoggedIn'] = "Du kan inte återställa lösenordet när du är inloggad. Vänligen logga ut först.";
 
-$_LANG['unableToLoadShoppingCart'] = "Unable to load your shopping cart. Please contact support.";
+$_LANG['unableToLoadShoppingCart'] = "Vi kunde inte ladda din kundvagn. Vänligen kontakta support.";
 
-$_LANG['showMenu'] = "Show Menu";
-$_LANG['hideMenu'] = "Hide Menu";
+$_LANG['showMenu'] = "Visa meny";
+$_LANG['hideMenu'] = "Göm meny";
 
-$_LANG['from'] = "From";
-$_LANG['featuredProduct'] = "Most Popular";
+$_LANG['from'] = "Från";
+$_LANG['featuredProduct'] = "Mest populära";
 $_LANG['shoppingCartProductPerMonth'] = "<span>:price</span>/:countmo";
 $_LANG['shoppingCartProductPerYear'] = "<span>:price</span>/:countyr";
 
 $_LANG['orderForm']['findNewDomain'] = "Find your new domain name. Enter your name or keywords below to check availability.";
 $_LANG['orderForm']['transferExistingDomain'] = "Transfer your existing domain names to us and save.";
 $_LANG['orderForm']['www'] = "www.";
-$_LANG['orderForm']['check'] = "Check";
+$_LANG['orderForm']['check'] = "Kontrollera";
 $_LANG['orderForm']['returnToClientArea'] = "Return to Client Area";
 $_LANG['orderForm']['checkout'] = "Checkout";
 $_LANG['orderForm']['alreadyRegistered'] = "Already Registered?";
@@ -1962,10 +1955,10 @@ $_LANG['orderForm']['addToCart'] = "Add to Cart";
 $_LANG['orderForm']['addedToCartRemove'] = "Added to Cart (Remove)";
 $_LANG['orderForm']['configureDesiredOptions'] = "Configure your desired options and continue to checkout.";
 $_LANG['orderForm']['haveQuestionsContact'] = "Have questions? Contact our sales team for assistance.";
-$_LANG['orderForm']['haveQuestionsClickHere'] = "Click here";
-$_LANG['orderForm']['use'] = "Use";
-$_LANG['orderForm']['check'] = "Check";
-$_LANG['orderForm']['transfer'] = "Transfer";
+$_LANG['orderForm']['haveQuestionsClickHere'] = "Klicka här";
+$_LANG['orderForm']['use'] = "Använd";
+$_LANG['orderForm']['check'] = "Kontrollera";
+$_LANG['orderForm']['transfer'] = "Flytta";
 $_LANG['orderForm']['domainAddedToCart'] = "This domain has been added to your cart.";
 $_LANG['orderForm']['registerLongerAndSave'] = "Register for longer and save!";
 $_LANG['orderForm']['tryRegisteringInstead'] = "Try registering this domain instead.";
@@ -2015,7 +2008,7 @@ $_LANG['insufficientstockmessage'] = "Vi har just nu lågt lager på dessa varor
 $_LANG['only'] = "Endast";
 $_LANG['startingat'] = "Startar på";
 
-$_LANG['yourdomainplaceholder'] = "example";
+$_LANG['yourdomainplaceholder'] = "exempel";
 $_LANG['yourtldplaceholder'] = "com";
 
 $_LANG['subaccountpermsproductsso'] = "Utför enkel inloggning";
@@ -2027,16 +2020,16 @@ $_LANG['sso']['enabled'] = "Single Sign-On is currently permitted for your accou
 $_LANG['sso']['disabled'] = "Single Sign-On is currently disabled for your account.";
 $_LANG['sso']['redirectafterlogin'] = "Du kommer att omdirigeras efter inloggningen";
 
-$_LANG['oauth']['badTwoFactorAuthModule'] = "Bad Two-Factor Auth Module. Please contact support.";
+$_LANG['oauth']['badTwoFactorAuthModule'] = "Felaktig 2-faktor Autentiseringsmodul. Vänligen kontakta support.";
 $_LANG['oauth']['permAccessNameAndEmail'] = "Kom åt ditt namn och e-postadress";
 
 $_LANG['errorButTryAgain'] = "Ett fel har uppstått. Vänligen försök igen.";
-$_LANG['emailSent'] = "Email Sent";
-$_LANG['verificationKeyExpired'] = "This email verification key has expired. Please login to request a new one.";
-$_LANG['emailAddressVerified'] = "Thank you for confirming your email address.";
-$_LANG['emailKeyExpired'] = "This email verification key has expired. Please request a new one.";
-$_LANG['verifyEmailAddress'] = "Please check your email and follow the link to verify your email address.";
-$_LANG['resendEmail'] = "Resend Verification Email";
+$_LANG['emailSent'] = "E-post skickad";
+$_LANG['verificationKeyExpired'] = "Denna e-postverifieringskod har gått ut. Logga in för att begära en ny.";
+$_LANG['emailAddressVerified'] = "Tack för att du verifierade din e-postadress.";
+$_LANG['emailKeyExpired'] = "Denna e-postverifieringskod har gått ut. Logga in för att begära en ny.";
+$_LANG['verifyEmailAddress'] = "Kontrollera din e-post och följ länken för att verifiera din e-postadress.";
+$_LANG['resendEmail'] = "Skicka om verifieringsmailet";
 
 // Markdown Editor Help
 $_LANG['markdown']['title'] = "Markdown Guide";
@@ -2052,37 +2045,222 @@ $_LANG['markdown']['tinyHeader'] = "Tiny header";
 $_LANG['markdown']['lists'] = "Lists";
 $_LANG['markdown']['genericListItem'] = "Generic list item";
 $_LANG['markdown']['numberedListItem'] = "Numbered list item";
-$_LANG['markdown']['links'] = "Links";
-$_LANG['markdown']['textToDisplay'] = "Text to display";
+$_LANG['markdown']['links'] = "Länkar";
+$_LANG['markdown']['textToDisplay'] = "Text att visa";
 $_LANG['markdown']['exampleLink'] = "http://www.example.com";
-$_LANG['markdown']['quotes'] = "Quotes";
-$_LANG['markdown']['thisIsAQuote'] = "This is a quote.";
+$_LANG['markdown']['quotes'] = "Offerter";
+$_LANG['markdown']['thisIsAQuote'] = "Detta är en offert.";
 $_LANG['markdown']['quoteMultipleLines'] = "It can span multiple lines!";
-$_LANG['markdown']['tables'] = "Tables";
-$_LANG['markdown']['columnOne'] = "Column 1";
-$_LANG['markdown']['columnTwo'] = "Column 2";
-$_LANG['markdown']['columnThree'] = "Column 3";
+$_LANG['markdown']['tables'] = "Tabeller";
+$_LANG['markdown']['columnOne'] = "Kolumn 1";
+$_LANG['markdown']['columnTwo'] = "Kolumn 2";
+$_LANG['markdown']['columnThree'] = "Kolumn 3";
 $_LANG['markdown']['withoutAligning'] = "Or without aligning the columns...";
-$_LANG['markdown']['john'] = "John";
-$_LANG['markdown']['doe'] = "Doe";
-$_LANG['markdown']['male'] = "Male";
-$_LANG['markdown']['mary'] = "Mary";
-$_LANG['markdown']['smith'] = "Smith";
-$_LANG['markdown']['female'] = "Female";
-$_LANG['markdown']['displayingCode'] = "Displaying code";
-$_LANG['markdown']['spanningMultipleLines'] = "Or spanning multiple lines...";
-$_LANG['markdown']['saved'] = "saved";
-$_LANG['markdown']['saving'] = "autosaving";
+$_LANG['markdown']['john'] = "Johan";
+$_LANG['markdown']['doe'] = "Svensson";
+$_LANG['markdown']['male'] = "Man";
+$_LANG['markdown']['mary'] = "Maria";
+$_LANG['markdown']['smith'] = "Svensson";
+$_LANG['markdown']['female'] = "Kvinna";
+$_LANG['markdown']['displayingCode'] = "Visa kod";
+$_LANG['markdown']['spanningMultipleLines'] = "Eller spänner över flera rader...";
+$_LANG['markdown']['saved'] = "sparad";
+$_LANG['markdown']['saving'] = "autosparar";
 
 $_LANG['oauth']['authoriseAppToAccess'] = "Authorise :appName<br />to access your account?";
 $_LANG['oauth']['willBeAbleTo'] = "This application will be able to";
 $_LANG['oauth']['authorise'] = "Authorise";
 $_LANG['oauth']['currentlyLoggedInAs'] = "You are currently logged in as :firstName :lastName";
-$_LANG['oauth']['notYou'] = "Not You?";
-$_LANG['oauth']['returnToApp'] = "Return to :appName";
+$_LANG['oauth']['notYou'] = "Inte du?";
+$_LANG['oauth']['returnToApp'] = "Tillbaka till :appName";
 $_LANG['oauth']['copyrightFooter'] = "Copyright &copy; :dateYear :companyName. All Rights Reserved.";
 $_LANG['oauth']['loginToGrantApp'] = "Login to grant :appName<br />access to your account";
 $_LANG['oauth']['redirectDescriptionOne'] = "Redirecting you back to the application. This may take a few moments.";
-$_LANG['oauth']['redirectDescriptionTwo'] = "If your browser doesn't redirect you, please";
-$_LANG['oauth']['redirectDescriptionThree'] = "click here to continue";
+$_LANG['oauth']['redirectDescriptionTwo'] = "Om din browser inte dirigerar om dig vänligen";
+$_LANG['oauth']['redirectDescriptionThree'] = "klicka här för att fortsätta";
+$_LANG['downloadLoginRequiredTagline'] = "Logga in för att få tillgång till önskad fil att ladda ner";
+
+$_LANG['orderForm']['year'] = "År";
+$_LANG['orderForm']['years'] = "År";
+$_LANG['orderForm']['domainOrKeyword'] = "Ange en domän eller sökord";
+$_LANG['orderForm']['searching'] = "Söker";
+$_LANG['orderForm']['domainIsUnavailable'] = "Beklagar, <strong>:domain</strong> är upptagen";
+$_LANG['orderForm']['add'] = "Lägg till";
+$_LANG['orderForm']['suggestedDomains'] = "Föreslagna domäner";
+$_LANG['orderForm']['generatingSuggestions'] = "Genererar förslag för dig";
+$_LANG['orderForm']['addHosting'] = "Lägg till en tjänst";
+$_LANG['orderForm']['chooseFromRange'] = "Välj bland våra tjänster";
+$_LANG['orderForm']['packagesForBudget'] = "Vi har tjänster för alla tillfällen";
+$_LANG['orderForm']['exploreNow'] = "Gå till våra tjänster";
+$_LANG['orderForm']['transferToUs'] = "Flytta din domän till oss";
+$_LANG['orderForm']['transferExtend'] = "Flytta nu och förläng din domän med 1 år!";
+$_LANG['orderForm']['transferDomain'] = "Flytta en domän";
+$_LANG['orderForm']['extendExclusions'] = "Gäller endast vissa TLDs och inte nyligen förlängda domäner";
+$_LANG['orderForm']['singleTransfer'] = "En ensam domänflytt";
+$_LANG['orderForm']['enterDomain'] = "Vänligen ange din domän";
+$_LANG['orderForm']['authCode'] = "Autentiseringskod";
+$_LANG['orderForm']['authCodePlaceholder'] = "Epp-kod / Auth-code";
+$_LANG['orderForm']['authCodeTooltip'] = "För att påbörja en flytt behöver du ha tillgång till autentiseringskoden från din nuvarande registrar. Dessa kallas oftast epp-kod eller auth-kod. De fungerar som ett lösenord och är unika för varje domännamn.";
+$_LANG['orderForm']['help'] = "Hjälp";
+$_LANG['orderForm']['required'] = "Krävs";
+
+$_LANG['orderForm']['checkingAvailability'] = "Kontrollerar tillgänglihet";
+$_LANG['orderForm']['verifyingTransferEligibility'] = "Verifierar flyttmöjlighet";
+$_LANG['orderForm']['verifyingDomain'] = "Verifierar ditt domänväl";
+$_LANG['orderForm']['transferEligible'] = "Din domän kan flyttas";
+$_LANG['orderForm']['transferUnlockBeforeContinuing'] = "Kontrollera att din domän är upplåst hos din nuvarande registrar innan du fortsätter.";
+$_LANG['orderForm']['transferNotEligible'] = "Inte redo för flytt";
+$_LANG['orderForm']['transferNotRegistered'] = "Domänen du angivit verkar inte vara registrerad.";
+$_LANG['orderForm']['trasnferRecentlyRegistered'] = "Om domänen registrerades nyligen kan du behöva försöka lite senare.";
+$_LANG['orderForm']['transferAlternativelyRegister'] = "Alternativt kan du söka och registrera denna domän.";
+$_LANG['orderForm']['domainInvalid'] = "Du har angivit ett ogiltligt domännamn";
+$_LANG['orderForm']['domainInvalidCheckEntry'] = "Vänligen kontrollera ditt sökning och försök igen.";
+$_LANG['orderForm']['domainPriceRegisterLabel'] = "Fortsätt för att registrera domänen för";
+$_LANG['orderForm']['domainPriceTransferLabel'] = "Flytta till oss och förläng med 1 år* för";
+
+$_LANG['change'] = "Ändra";
+
+$_LANG['filemanagement']['nofileuploaded'] = "Ingen fil laddades upp.";
+$_LANG['filemanagement']['invalidname'] = "Giltliga filnamn innehåller endast a-z, A-Z, 0-9, . (punkt), - (bindestreck) och _ (understreck).";
+$_LANG['filemanagement']['couldNotSaveFile'] = "Kunde inte spara uppladdad fil.";
+$_LANG['filemanagement']['checkPermissions'] = "Kontrollera rättigheter.";
+$_LANG['filemanagement']['checkAvailableDiskSpace'] = "Kontrollera utrymme.";
+$_LANG['filemanagement']['fileAlreadyExists'] = "Filen finns redan.";
+$_LANG['filemanagement']['noUniqueName'] = "Kunde inte hitta ett unikt filnamn.";
+
+$_LANG['cartSimpleCaptcha'] = "Vänligen ange koden nedan";
+
+$_LANG['clientHomePanels']['showingRecent100'] = "Visar de 100 senaste posterna";
+$_LANG['orderForm']['domainLetterOrNumber'] = "Domäner måste börja på en bokstav eller siffra";
+$_LANG['orderForm']['domainLengthRequirements'] = " och vara mellan <span class=\"min-length\"></span> och <span class=\"max-length\"></span> tecken långt";
+
+$_LANG['clientareatransferredaway'] = "Utflyttad";
+$_LANG['clientareacompleted'] = "Slutförd";
+$_LANG['domainContactUs'] = "Kontakta oss";
+
+$_LANG['orderForm']['shortPerYear'] = "/:yearsår";
+$_LANG['orderForm']['shortPerYears'] = "/:yearsår";
+
+$_LANG['domainCheckerSalesGroup']['sale'] = "Rea";
+$_LANG['domainCheckerSalesGroup']['hot'] = "Het";
+$_LANG['domainCheckerSalesGroup']['new'] = "Ny";
+
+$_LANG['pricing']['browseExtByCategory'] = "Domänpriser";
+$_LANG['pricing']['register'] = "Nytt pris";
+$_LANG['pricing']['transfer'] = "Flytta";
+$_LANG['pricing']['renewal'] = "Förnya";
+$_LANG['pricing']['selectExtCategory'] = "Please choose a category from above.";
+
+$_LANG['navStore'] = "Butik";
+$_LANG['navBrowseProductsServices'] = "Visa alla";
+
+$_LANG['navWebsiteSecurity'] = "Hemsida & säkerhet";
+$_LANG['navMarketConnectService']['symantec'] = "SSL Certifikat";
+$_LANG['navMarketConnectService']['weebly'] = "Sidbyggare";
+$_LANG['navMarketConnectService']['spamexperts'] = "E-posttjänster";
+
+$_LANG['store']['emailServices']['title'] = "E-posttjänster";
+$_LANG['store']['ssl']['title'] = "SSL Certifikat";
+$_LANG['store']['ssl']['dv']['title'] = "Domänvaliderade SSL";
+$_LANG['store']['ssl']['ov']['title'] = "Organisationsvaliderade SSL";
+$_LANG['store']['ssl']['ev']['title'] = "Extendedvaliderade SSL";
+$_LANG['store']['ssl']['wildcard']['title'] = "Wildcard SSL";
+$_LANG['store']['websiteBuilder']['title'] = "Sidbyggare";
+$_LANG['store']['configure']['configureProduct'] = "Konfigurera produkt";
+
+$_LANG['store']['ssl']['dv']['tagline'] = "Säkra upp din hemsida på några minuter!";
+$_LANG['store']['ssl']['dv']['descriptionTitle'] = "Vad är Standard DV SSL?";
+$_LANG['store']['ssl']['dv']['descriptionContent'] = "<p>Domain Validation certificates offer an economical and quick way to implement SSL to your website. Domain Validated certificates verify you own the domain, but do not perform any additional organization level validation.</p><p>Domain Validated certificates are ideal for personal websites, blogs and social media, or any sites that are not transmitting private and confidential information.  A Domain Validated certificate activates the browser padlock and enables the use of https to assure your website visitors and customers that you take their privacy seriously.</p>";
+
+$_LANG['store']['ssl']['ov']['tagline'] = "High assurance SSL shows website visitors your authenticated identity";
+$_LANG['store']['ssl']['ov']['descriptionTitle'] = "What is Organization Validation SSL?";
+$_LANG['store']['ssl']['ov']['descriptionContent'] = "<p>Organization Validated SSL Certificates provide instant identity confirmation and strong SSL protection for your website and business.</p><p>OV SSL is an organization validated certificate that gives your website a step up in credibility over domain validated SSL Certificates. It activates the browser padlock and https, shows your corporate identity, and assures your customers that you take security very seriously. Site visitors can verify that the website is operated by a legitimate company and is not an imposter site.</p>";
+
+$_LANG['store']['ssl']['ev']['tagline'] = "Activate the green address bar for the highest trust and conversions";
+$_LANG['store']['ssl']['ev']['descriptionTitle'] = "What is Extended Validation SSL?";
+$_LANG['store']['ssl']['ev']['descriptionContent'] = "<p>EV SSL is an Extended Validation Certificate, the highest class of SSL available today and gives more credibility and trust to your website compared to using an organization or domain validated SSL Certificate.</p><p>Extended Validation SSL activates the green address bar and displays your company or organization name in the browser address bar. These prominent visual security indicators let visitors know that extra steps were taken to confirm the site they're visiting, increasing user trust in your website and its credibility – this is why most large companies and organizations choose EV certificates.</p>";
+
+$_LANG['store']['ssl']['wildcard']['tagline'] = "Secure unlimited subdomains on a single certificate.";
+$_LANG['store']['ssl']['wildcard']['descriptionTitle'] = "What is a Wildcard SSL Certificate?";
+$_LANG['store']['ssl']['wildcard']['descriptionContent'] = "<p>Wildcard SSL allows you to secure an unlimited number of subdomains on a single certificate. It’s a great solution for anyone who hosts or manages multiple sites or pages that exist on the same domain. The one-time cost of the certificate covers you for additional subdomains you may add in the future.</p><p>Unlike a standard SSL Certificate that is issued to a single Fully Qualified Domain Name only, e.g. www.yourdomain.com, which means it can only be used to secure the exact domain to which it has been issued, a Wildcard SSL Certificate is issued to *.yourdomain.com, where the asterisk represents all possible subdomains.</p><p>Wildcard SSL is an option available for DV and OV SSL Certificates.</p>";
+
+$_LANG['store']['websiteBuilder']['headline'] = "Building a Website Has Never Been Easier";
+$_LANG['store']['websiteBuilder']['tagline'] = "Create the perfect site with powerful drag and drop tools";
+$_LANG['store']['websiteBuilder']['introduction'] = "Weebly’s drag and drop website builder makes it easy to create a powerful, professional website without any technical skills. Over 40 million entrepreneurs and small businesses have already used Weebly to build their online presence with a website, blog or store.";
+
+$_LANG['store']['emailServices']['headline'] = "Email Security, Built for You";
+$_LANG['store']['emailServices']['tagline'] = "Take back control of your inbox";
+$_LANG['store']['emailServices']['blockSpamHeadline'] = "Block nearly 100% of viruses, malware and spam before they ever reach your inbox";
+
+$_LANG['navManageSsl'] = "Hantera SSL Certifikat";
+
+$_LANG['invoicesPaymentPending'] = "Väntande betalning";
+
+$_LANG['ssl']['changeApproverEmail'] = "Ändra godkännande e-post";
+$_LANG['ssl']['reissueCertificate'] = "Skapa om certifikat";
+$_LANG['ssl']['retrieveCertificate'] = "Hämta certifikat";
+
+$_LANG['upgradeCredit'] = "Uppgradera krediter";
+$_LANG['upgradeCreditDescription'] = "Beräknat på :daysRemaining oanvända dagar av totalt :totalDays dagar i denna fakturaperiod.";
+
+$_LANG['orderForm']['domainExtensionTransferNotSupported'] = "Your domain is not supported for transfer to us at this time. Please try another domain.";
+$_LANG['orderForm']['domainExtensionTransferPricingNotConfigured'] = "Your domain is not eligible for transfer to us. Please try another domain.";
+
+$_LANG['remoteAuthn']['success'] = "Success!";
+$_LANG['remoteAuthn']['errorExclamation'] = "Error!";
+$_LANG['remoteAuthn']['error'] = "Error";
+$_LANG['remoteAuthn']['linkInitiated'] = "Link Initiated!";
+$_LANG['remoteAuthn']['areYouSure'] = "Are you sure?";
+$_LANG['remoteAuthn']['yesUnlinkIt'] = "Yes, unlink it!";
+$_LANG['remoteAuthn']['unlinked'] = "Unlinked!";
+$_LANG['remoteAuthn']['unavailable'] = "is unavailable at this time. Please try again later.";
+$_LANG['remoteAuthn']['connectError'] = "We were unable to connect your account. Please contact your system administrator.";
+$_LANG['remoteAuthn']['completeSignIn'] = "Please complete sign in with your chosen service provider.";
+$_LANG['remoteAuthn']['redirecting'] = "Automatic sign-in was successful! Redirecting..";
+$_LANG['remoteAuthn']['accountNowLinked'] = "Your account is now linked with your :displayName account.";
+$_LANG['remoteAuthn']['oneTimeAuthRequired'] = "One time sign in required to associate your existing account.";
+$_LANG['remoteAuthn']['completeRegistrationForm'] = "Please complete the registration form below.";
+$_LANG['remoteAuthn']['completeNewAccountForm'] = "Please complete your new account information.";
+$_LANG['remoteAuthn']['linkedToAnotherClient'] = "This account is already connected to an existing account with us. Please choose a different account at the third party authentication provider.";
+$_LANG['remoteAuthn']['alreadyLinkedToYou'] = "This account is already connected to your account with us. Please choose a different account at the third party authentication provider.";
+$_LANG['remoteAuthn']['saveTimeByLinking'] = "Save time by signing up using an existing account with any of the services below.";
+$_LANG['remoteAuthn']['unlinkDesc'] = "This permanently unlinks the authorized account.";
+$_LANG['remoteAuthn']['mayHaveMultipleLinks'] = "Connect your account with any of the services below to simplify your sign-in experience. We only use this information to verify your account and will never post on your behalf.";
+$_LANG['remoteAuthn']['titleSignUpVerb'] = "Sign Up";
+$_LANG['remoteAuthn']['titleOr'] = "Or";
+$_LANG['remoteAuthn']['titleLinkedAccounts'] = "Linked Accounts";
+$_LANG['remoteAuthn']['provider'] = "Provider";
+$_LANG['remoteAuthn']['name'] = "Name";
+$_LANG['remoteAuthn']['emailAddress'] = "Email Address";
+$_LANG['remoteAuthn']['actions'] = "Actions";
+$_LANG['remoteAuthn']['noLinkedAccounts'] = "No linked accounts found";
+$_LANG['remoteAuthn']['signInWith'] = "Sign in with :provider";
+$_LANG['remoteAuthn']['connectWith'] = "Connect with :provider";
+$_LANG['remoteAuthn']['signUpWith'] = "Sign Up with :provider";
+
+$_LANG['unlink'] = "Unlink";
+
+$_LANG['invoicePaymentSuccessAwaitingNotify'] = "Thank you for completing the payment process. We are awaiting notification to confirm the payment you just made. We will send you an email confirmation as soon as this has been received.";
+
+$_LANG['errorPage']['404']['title'] = "Oops!";
+$_LANG['errorPage']['404']['subtitle'] = "We couldn't find that page";
+$_LANG['errorPage']['404']['description'] = "Please try navigating using the options below.";
+$_LANG['errorPage']['404']['home'] = "Homepage";
+$_LANG['errorPage']['404']['submitTicket'] = "Contact Support";
+
+$_LANG['creditCard']['removeDescription'] = "Are you sure you wish to remove your credit card details?";
+
+$_LANG['marketConnect']['weebly']['ftpHost'] = "FTP Host";
+$_LANG['marketConnect']['weebly']['ftpUsername'] = "FTP Username";
+$_LANG['marketConnect']['weebly']['ftpPassword'] = "FTP Password";
+$_LANG['marketConnect']['weebly']['ftpPath'] = "FTP Path";
+$_LANG['marketConnect']['weebly']['updateFtp'] = "Update FTP Credentials";
+$_LANG['marketConnect']['weebly']['manage'] = "Login to Weebly";
+
+$_LANG['domainChecker']['contactSupport'] = "Contact Support to Purchase";
+
+$_LANG['cart']['availableCreditBalance'] = "Your available credit balance is :amount.";
+$_LANG['cart']['applyCreditAmount'] = "Apply <span>:amount</span> from my credit balance to this order and I will pay the remaining amount via the payment method selected below.";
+$_LANG['cart']['applyCreditAmountNoFurtherPayment'] = "Apply <span>:amount</span> from my credit balance to this order. No further payment will be due.";
+$_LANG['cart']['applyCreditSkip'] = "Do not apply any credit from my credit balance to this order. I will pay for it using the payment method selected below.";
 ////////// End of swedish language file.  Do not place any translation strings below this line!

@@ -105,14 +105,15 @@
             (<a href="clientscontacts.php?userid={$userid}&contactid={$contactid}"{if $clientgroupcolour} style="background-color:{$clientgroupcolour}"{/if} target="_blank">{$contactname}</a>)
         {/if}
     {else}
-        <a href="?email={$email|urlencode}">{$name}</a><br />
+        <a href="{$SCRIPT_NAME}?email={$email|urlencode}">{$name}</a><br />
         {$email}
     {/if}
 </div>
 
 <span class="ticketheader">{$_ADMINLANG.support.department}</span>
 <div class="ticketinfo">
-<select id="deptid" onchange="updateTicket('deptid')" class="form-control input-sm">
+<input type="hidden" id="currentdeptid" value="{$deptid}" />
+<select id="deptid" data-update-type="deptid" class="form-control input-sm sidebar-ticket-ajax">
 {foreach from=$departments item=department}
 <option value="{$department.id}"{if $department.id eq $deptid} selected{/if}>{$department.name}</option>
 {/foreach}
@@ -121,7 +122,8 @@
 
 <span class="ticketheader">{$_ADMINLANG.support.assignedto}</span>
 <div class="ticketinfo">
-<select id="flagto" onchange="updateTicket('flagto')" class="form-control input-sm select-assignto">
+<input type="hidden" id="currentflagto" value="{$flag}" />
+<select id="flagto" data-update-type="flagto" class="form-control input-sm select-assignto sidebar-ticket-ajax">
 <option value="0">{$_ADMINLANG.global.none}</option>
 {foreach from=$staff item=staffmember}
 <option value="{$staffmember.id}"{if $staffmember.id eq $flag} selected{/if}>{$staffmember.name}</option>
@@ -131,7 +133,8 @@
 
 <span class="ticketheader">{$_ADMINLANG.support.priority}</span>
 <div class="ticketinfo">
-<select id="priority" onchange="updateTicket('priority')" class="form-control input-sm">
+<input type="hidden" id="currentpriority" value="{$priority}" />
+<select id="priority" data-update-type="priority" class="form-control input-sm sidebar-ticket-ajax">
 <option value="High"{if $priority eq "High"} selected{/if}>{$_ADMINLANG.status.high}</option>
 <option value="Medium"{if $priority eq "Medium"} selected{/if}>{$_ADMINLANG.status.medium}</option>
 <option value="Low"{if $priority eq "Low"} selected{/if}>{$_ADMINLANG.status.low}</option>
@@ -149,7 +152,7 @@ No Replies Yet
 
 <span class="ticketheader">{$_ADMINLANG.support.tags}</span>
 <div class="ticketinfo">
-<textarea id="ticketTags" rows="1" style="width:175px;"></textarea>
+    <input id="ticketTags" value="{$tags|implode:','}" class="selectize-tags" placeholder="{lang key='support.addTag'}" />
 </div>
 
 <div class="watch-ticket">
@@ -241,36 +244,21 @@ No Replies Yet
 <span class="header"><img src="images/icons/reports.png" class="absmiddle" width="16" height="16" /> {$_ADMINLANG.reports.title}</span>
 <ul class="menu">
     {foreach from=$text_reports key=filename item=reporttitle}
-    <li><a href="reports.php?report={$filename}">{$reporttitle}</a></li>
+        {if !in_array($filename, $denied_reports)}
+            <li><a href="reports.php?report={$filename}">{$reporttitle}</a></li>
+        {/if}
     {/foreach}
 </ul>
-
-{elseif $sidebar eq "browser"}
-
-<span class="header"><img src="images/icons/browser.png" class="absmiddle" width="16" height="16" /> {$_ADMINLANG.browser.bookmarks}</span>
-<ul class="menu">
-    <li><a href="http://www.whmcs.com/" target="brwsrwnd">WHMCS Homepage</a></li>
-    <li><a href="https://www.whmcs.com/clients/" target="brwsrwnd">WHMCS Client Area</a></li>
-    {foreach from=$browserlinks item=link}
-    <li><a href="{$link.url}" target="brwsrwnd">{$link.name} <img src="images/delete.gif" width="10" border="0" onclick="doDelete('{$link.id}')"></a></li>
-    {/foreach}
-</ul>
-
-<form method="post" action="browser.php?action=add">
-<input type="hidden" name="token" value="{$csrfToken}" />
-<span class="header"><img src="images/icons/browseradd.png" class="absmiddle" width="16" height="16" /> {$_ADMINLANG.browser.addnew}</span>
-<ul class="menu">
-    <li>{$_ADMINLANG.browser.sitename}:<br><input type="text" name="sitename" size="25" style="font-size:9px;"><br>{$_ADMINLANG.browser.url}:<br><input type="text" name="siteurl" size="25" value="http://" style="font-size:9px;"><br><input type="submit" value="{$_ADMINLANG.browser.add}" style="font-size:9px;"></li>
-</ul>
-</form>
 
 {elseif $sidebar eq "utilities"}
 
 <span class="header"><img src="images/icons/utilities.png" class="absmiddle" width="16" height="16" /> {$_ADMINLANG.utilities.title}</span>
 <ul class="menu">
+    {if in_array("View Module Queue", $admin_perms)}
+        <li><a href="modulequeue.php">{$_ADMINLANG.utilities.moduleQueue}</a></li>
+    {/if}
     <li><a href="utilitiesemailmarketer.php">{$_ADMINLANG.utilities.emailmarketer}</a></li>
     <li><a href="utilitieslinktracking.php">{$_ADMINLANG.utilities.linktracking}</a></li>
-    <li><a href="browser.php">{$_ADMINLANG.utilities.browser}</a></li>
     <li><a href="calendar.php">{$_ADMINLANG.utilities.calendar}</a></li>
     <li><a href="todolist.php">{$_ADMINLANG.utilities.todolist}</a></li>
     <li><a href="whois.php">{$_ADMINLANG.utilities.whois}</a></li>
@@ -322,6 +310,7 @@ No Replies Yet
     <li><a href="configadmins.php">{$_ADMINLANG.setup.admins}</a></li>
     <li><a href="configadminroles.php">{$_ADMINLANG.setup.adminroles}</a></li>
     <li><a href="configtwofa.php">{$_ADMINLANG.setup.twofa}</a></li>
+    <li><a href="configapicredentials.php">{$_ADMINLANG.setup.apicredentials}</a></li>
 </ul>
 
 <span class="header"><img src="images/icons/income.png" class="absmiddle" width="16" height="16" /> {$_ADMINLANG.setup.payments}</span>

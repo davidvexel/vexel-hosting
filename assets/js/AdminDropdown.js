@@ -10,9 +10,10 @@
 jQuery(document).ready(
     function()
     {
-        var multiSelectize = jQuery('.selectize-multi-select');
-        var standardSelectize = jQuery('.selectize-select');
-        var currentValue = '';
+        var multiSelectize = jQuery('.selectize-multi-select'),
+            standardSelectize = jQuery('.selectize-select'),
+            tags = jQuery('.selectize-tags'),
+            currentValue = '';
 
         jQuery(multiSelectize).selectize(
             {
@@ -49,10 +50,18 @@ jQuery(document).ready(
                 maxItems: 1,
                 render: {
                     item: function(item, escape) {
-                        return '<div><span class="name">' + escape(item.name) + '</span></div>';
+                        var colour = '';
+                        if (typeof item.colour !== 'undefined' && item.colour !== '#FFF') {
+                            colour = ' style="background-color: ' + escape(item.colour) + ';"';
+                        }
+                        return '<div' + colour + '><span class="name">' + escape(item.name) + '</span></div>';
                     },
                     option: function(item, escape) {
-                        return '<div><span class="name">' + escape(item.name) + '</span></div>';
+                        var colour = '';
+                        if (typeof item.colour !== 'undefined' && item.colour !== '#FFF') {
+                            colour = ' style="background-color: ' + escape(item.colour) + ';"';
+                        }
+                        return '<div' + colour + '><span class="name">' + escape(item.name) + '</span></div>';
                     }
                 },
                 onFocus: function() {
@@ -64,6 +73,83 @@ jQuery(document).ready(
                     if (this.getValue() == '') {
                         this.setValue(currentValue);
                     }
+                    if (
+                        jQuery(standardSelectize).hasClass('selectize-auto-submit')
+                        && currentValue !== this.getValue()
+                    ) {
+                        this.setValue(this.getValue());
+                        jQuery(standardSelectize).parent('form').submit();
+                    }
+                }
+            }
+        );
+
+        jQuery(tags).selectize(
+            {
+                plugins: ['remove_button'],
+                valueField: 'text',
+                searchField: ['text'],
+                delimiter: ',',
+                persist: false,
+                create: function(input) {
+                    return {
+                        value: input,
+                        text: input
+                    }
+                },
+                render: {
+                    item: function(item, escape) {
+                        return '<div><span class="item">' + escape(item.text) + '</span></div>';
+                    },
+                    option: function(item, escape) {
+                        return '<div><span class="item">' + escape(item.text) + '</span></div>';
+                    }
+                },
+                load: function(query, callback) {
+                    if (!query.length) return callback();
+                    jQuery.ajax({
+                        url: window.location.href,
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {
+                            action: 'gettags',
+                            q: query,
+                            token: csrfToken
+                        },
+                        error: function() {
+                            callback();
+                        },
+                        success: function(res) {
+                            callback(res);
+                        }
+                    });
+                },
+                onItemAdd: function (value)
+                {
+                    jQuery.ajax({
+                        url: window.location.href,
+                        type: 'POST',
+                        data: {
+                            action: 'addTag',
+                            newTag: value,
+                            token: csrfToken
+                        }
+                    });
+
+                },
+                onItemRemove: function(value)
+                {
+                    jQuery.ajax(
+                        {
+                            url: window.location.href,
+                            type: 'POST',
+                            data: {
+                                action: 'removeTag',
+                                removeTag: value,
+                                token: csrfToken
+                            }
+                        }
+                    );
                 }
             }
         );

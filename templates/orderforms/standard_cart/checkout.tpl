@@ -75,7 +75,7 @@
                 <div class="clearfix"></div>
             {/if}
 
-            <form method="post" action="{$smarty.server.PHP_SELF}?a=checkout" name="orderfrm">
+            <form method="post" action="{$smarty.server.PHP_SELF}?a=checkout" name="orderfrm" id="frmCheckout">
                 <input type="hidden" name="submit" value="true" />
                 <input type="hidden" name="custtype" id="inputCustType" value="{$custtype}" />
 
@@ -104,9 +104,12 @@
                         </div>
                     </div>
 
+                    {include file="orderforms/standard_cart/linkedaccounts.tpl" linkContext="checkout-existing"}
                 </div>
 
-                <div id="containerNewUserSignup"{if !$loggedin && $custtype eq "existing"} class="hidden"{/if}>
+                <div id="containerNewUserSignup"{if $loggedin || $custtype eq "existing"} class="hidden"{/if}>
+
+                    {include file="orderforms/standard_cart/linkedaccounts.tpl" linkContext="checkout-new"}
 
                     <div class="sub-heading">
                         <span>{$LANG.orderForm.personalInformation}</span>
@@ -186,7 +189,10 @@
                         </div>
                         <div class="col-sm-5">
                             <div class="form-group prepend-icon">
-                                <label for="inputState" class="field-icon" id="inputStateIcon">
+                                <label for="state" class="field-icon" id="inputStateIcon">
+                                    <i class="fa fa-map-signs"></i>
+                                </label>
+                                <label for="stateinput" class="field-icon" id="inputStateIcon">
                                     <i class="fa fa-map-signs"></i>
                                 </label>
                                 <input type="text" name="state" id="inputState" class="field" placeholder="{$LANG.orderForm.state}" value="{$clientsdetails.state}"{if $loggedin} readonly="readonly"{/if}>
@@ -202,6 +208,9 @@
                         </div>
                         <div class="col-sm-12">
                             <div class="form-group prepend-icon">
+                                <label for="inputCountry" class="field-icon" id="inputCountryIcon">
+                                    <i class="fa fa-globe"></i>
+                                </label>
                                 <select name="country" id="inputCountry" class="field"{if $loggedin} disabled="disabled"{/if}>
                                     {foreach $countries as $countrycode => $countrylabel}
                                         <option value="{$countrycode}"{if (!$country && $countrycode == $defaultcountry) || $countrycode eq $country} selected{/if}>
@@ -360,19 +369,20 @@
 
                 {if !$loggedin}
 
-                    <div id="containerNewUserSecurity"{if !$loggedin && $custtype eq "existing"} class="hidden"{/if}>
+                    <div id="containerNewUserSecurity"{if (!$loggedin && $custtype eq "existing") || ($remote_auth_prelinked && !$securityquestions) } class="hidden"{/if}>
 
                         <div class="sub-heading">
                             <span>{$LANG.orderForm.accountSecurity}</span>
                         </div>
 
-                        <div class="row">
+                        <div id="containerPassword" class="row{if $remote_auth_prelinked && $securityquestions} hidden{/if}">
+                            <div id="passwdFeedback" style="display: none;" class="alert alert-info text-center col-sm-12"></div>
                             <div class="col-sm-6">
                                 <div class="form-group prepend-icon">
                                     <label for="inputNewPassword1" class="field-icon">
                                         <i class="fa fa-lock"></i>
                                     </label>
-                                    <input type="password" name="password" id="inputNewPassword1" class="field" placeholder="{$LANG.clientareapassword}">
+                                    <input type="password" name="password" id="inputNewPassword1" data-error-threshold="{$pwStrengthErrorThreshold}" data-warning-threshold="{$pwStrengthWarningThreshold}" class="field" placeholder="{$LANG.clientareapassword}"{if $remote_auth_prelinked} value="{$password}"{/if}>
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -380,7 +390,7 @@
                                     <label for="inputNewPassword2" class="field-icon">
                                         <i class="fa fa-lock"></i>
                                     </label>
-                                    <input type="password" name="password2" id="inputNewPassword2" class="field" placeholder="{$LANG.clientareaconfirmpassword}">
+                                    <input type="password" name="password2" id="inputNewPassword2" class="field" placeholder="{$LANG.clientareaconfirmpassword}"{if $remote_auth_prelinked} value="{$password}"{/if}>
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -420,6 +430,12 @@
 
                 {/if}
 
+                {foreach $hookOutput as $output}
+                    <div>
+                        {$output}
+                    </div>
+                {/foreach}
+
                 <div class="sub-heading">
                     <span>{$LANG.orderForm.paymentDetails}</span>
                 </div>
@@ -428,7 +444,29 @@
                     {$LANG.ordertotalduetoday}: &nbsp; <strong>{$total}</strong>
                 </div>
 
-                <div class="form-group">
+                {if $canUseCreditOnCheckout}
+                    <div id="applyCreditContainer" class="apply-credit-container" data-apply-credit="{$applyCredit}">
+                        <p>{lang key='cart.availableCreditBalance' amount=$creditBalance}</p>
+
+                        {if $creditBalance->toNumeric() >= $total->toNumeric()}
+                            <label class="radio">
+                                <input id="useFullCreditOnCheckout" type="radio" name="applycredit" value="1"{if $applyCredit} checked{/if}>
+                                {lang key='cart.applyCreditAmountNoFurtherPayment' amount=$total}
+                            </label>
+                        {else}
+                            <label class="radio">
+                                <input id="useCreditOnCheckout" type="radio" name="applycredit" value="1"{if $applyCredit} checked{/if}>
+                                {lang key='cart.applyCreditAmount' amount=$creditBalance}
+                            </label>
+                        {/if}
+
+                        <label class="radio">
+                            <input id="skipCreditOnCheckout" type="radio" name="applycredit" value="0"{if !$applyCredit} checked{/if}>
+                            {lang key='cart.applyCreditSkip' amount=$creditBalance}
+                        </label>
+                    </div>
+                {/if}
+                <div id="paymentGatewaysContainer" class="form-group">
                     <p class="small text-muted">{$LANG.orderForm.preferredPaymentMethod}</p>
 
                     <div class="text-center">
@@ -440,6 +478,8 @@
                         {/foreach}
                     </div>
                 </div>
+
+                <div class="alert alert-danger text-center gateway-errors hidden"></div>
 
                 <div class="clearfix"></div>
 
@@ -538,10 +578,10 @@
                     <div id="existingCardInfo" class="row{if !$clientsdetails.cclastfour || $ccinfo eq "new"} hidden{/if}">
                         <div class="col-sm-12">
                             <div class="form-group prepend-icon">
-                                <label for="inputCardCVV" class="field-icon">
+                                <label for="inputCardCvvExisting" class="field-icon">
                                     <i class="fa fa-barcode"></i>
                                 </label>
-                                <input type="tel" name="cccvvexisting" id="inputCardCVV" class="field" placeholder="{$LANG.orderForm.cvv}" autocomplete="cc-cvc">
+                                <input type="tel" name="cccvvexisting" id="inputCardCvvExisting" class="field" placeholder="{$LANG.orderForm.cvv}" autocomplete="cc-cvc">
                             </div>
                         </div>
                     </div>
@@ -582,10 +622,12 @@
                 </div>
             </form>
 
-            <div class="alert alert-warning checkout-security-msg">
-                <i class="fa fa-lock"></i>
-                {$LANG.ordersecure} (<strong>{$ipaddress}</strong>) {$LANG.ordersecure2}
-            </div>
+            {if $servedOverSsl}
+                <div class="alert alert-warning checkout-security-msg">
+                    <i class="fa fa-lock"></i>
+                    {$LANG.ordersecure} (<strong>{$ipaddress}</strong>) {$LANG.ordersecure2}
+                </div>
+            {/if}
 
         </div>
     </div>

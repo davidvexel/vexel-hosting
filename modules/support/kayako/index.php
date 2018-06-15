@@ -1,11 +1,11 @@
-<?php //00e57
+<?php //00ee8
 // *************************************************************************
 // *                                                                       *
 // * WHMCS - The Complete Client Management, Billing & Support Solution    *
 // * Copyright (c) WHMCS Ltd. All Rights Reserved,                         *
-// * Version: 6.3.0 (6.3.0-release.1)                                      *
-// * BuildId: be57cc6.107                                                  *
-// * Build Date: 29 Mar 2016                                               *
+// * Version: 7.4.2 (7.4.2-release.1)                                      *
+// * BuildId: 2795927.286                                                  *
+// * Build Date: 05 Jan 2018                                               *
 // *                                                                       *
 // *************************************************************************
 // *                                                                       *
@@ -32,12 +32,16 @@
 // * Please see the EULA file for the full End User License Agreement.     *
 // *                                                                       *
 // *************************************************************************
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo("Site error: the ".(php_sapi_name()=='cli'?'ionCube':'<a href="http://www.ioncube.com">ionCube</a>')." PHP Loader needs to be installed. This is a widely used PHP extension for running ionCube protected PHP code, website security and malware blocking.\n\nPlease visit ".(php_sapi_name()=='cli'?'get-loader.ioncube.com':'<a href="http://get-loader.ioncube.com">get-loader.ioncube.com</a>')." for install assistance.\n\n");exit(199);
 ?>
-HR+cPmWaBjGTkf8RtEYxzvgONjAThEgpEnNXrDyDLvEkDIvUGdK5EGhgT8kkHpuAbfC+MwHyi5/r
-Ze4MJeUrJG3zejtZFQNekpjLTS//R0+aOKY0f2IL3bLe78hFw/Qcpgq59XCdGhE+1csuL4veWQpy
-gvXtdKjfjMSD3HIVolk4ctVhuGw5mlu7kn3e7e3nwkjHjVMG7Du6NTwTkG/zlMbTDMwRz8G/McJV
-HShpvOTLS4GvatBzZQenP846vgM6/HWO+auP401TqY46JxpKUXPsr+JB2MN3++6fscpzOEW+MLnl
-bOJkU4SxJ56SJURrtY5ffSpvFlGUsW4Gis3hPys8XBxANCbUtQDTfnPUAY9sca0kv4Dr+dMCrS+O
-FqcENwJogQERbJzR2j6NvryWkT2z4Zri9FvhbkfuY9u5awVAHfzCm1YBQ8Kzt5ypUIim8msHHNp8
-h7xu0dvTl+9Nd+mvjYAtsRrQRizQ4/Tlt04mmBv9yv4jIfzciY8s1205j8YWnYPmoUlbgHfGKN4=
+HR+cP+xLy0ifYiaiH1XbA62mSyLeo4RB9QoQ4vx8XiftGL2bofqpszOYar/bmZ0K6WjQzh+ZKsis
+ue0Pb0gPFvpvKyfKqM11SC7uWYtby/CfRoUFUZ4PEdl/cjBEPPU1+/BaXh4EmdWe2QHwLMcxyqL9
+Wlvd1ILzCLJ+djzDFdG2pgQGnJl9c/k0wGpM7alCqx74OVn9gjo4MnfsNQsGpou0GyEv+SnZ7wk0
+JI85YFWfIvCsJNYm4jEKeL+mvKH3tV6ElpN8J7LxcvcIQme1kVAtqSdihfbisI45Li/YrMseCwXr
+chiPTKiGln9m25Okv3LSq4ZsAIJ//Ck2OVxcd52wgRPg7i9AtiXt6BxiSDD9FwgvKHQbgm8Oy9U9
+rHeS2XFiUegKp0an6WztcOzPtTifC3RtoEbCNL36qvg65hr1fmSYR90lJOE0DqOs5jLDZXa1yiD5
+ZjuV4TxDuXn/tN/iPpKFdvK1qPtncPpicHwxbDDYHsOuomPyjXAtVBtg+8+Mv3PjZ98bjwsRt8LV
+o793bwO+kfYDB28qkMn1PMIyZvvzGkRGz+/O28d5RH6DBRb8GqUBWCfzUigvRIfsMeBi7rCnP95g
+JqWnrize+Uf9s1q8mnYpJ13tBtstpr3eLYNsFTt8mvvp7/X0SvGACLAADhfP/K2YRBAZOuq32Q4H
+fteQxcZn0uCl0bRgy2MaTcJPdusT2qtQNuSQyycI8EqokOsRyXB6CCoolqi3PekAIIPE61oQzEvB
+H/WpslBhGnGfMDk187yEyoy57jJchfFCu/iGZI/k5BVRbhJLuCUf9xGnjYrB

@@ -38,7 +38,7 @@
             "group_id": "whmcs",
             "implements": "",
             "base64_png_image": "iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAz1BMVEUAAAAlMjw3R1E/UbXOzs7t7e0lMjw3R1E/UbXOzs7t7e0lMjw3R1E/UbXOzs4lMjw3R1Ht7e0lMjzt7e0lMjw/UbXOzs7t7e0lMjzOzs7t7e0lMjzOzs7l5eXt7e0lMjwlMjyFj8usr7Ht7e0lMjw/UbXOzs7t7e0lMjw3R1E/UbXOzs7l5eUlMjw3R1E/UbWCjcvOzs7t7e0lMjw3R1E/UbXt7e0lMjw3R1Gsr7HOzs7t7e0lMjw3R1E/UbV6gIWWn9Gkp6rOzs7l5eXt7e3yVtnBAAAAPHRSTlMAEBAQEBAgICAgIDAwMDBAQEBQUGBgYGBwcHCAgICAj5+fn5+vr6+vv7+/v7/Pz8/Pz8/f39/f7+/v7++T1js6AAABJUlEQVR4Ac3UXVOCQBTG8YcSK7AMtUKzsoCgyF4kJQupbL//Z8qd2EllzXMumvpfn9/Oc7X4P20H18EmyFnn+awAxMzTl7dcRj4XggGORkLQgdmR52RgyTF00AyFjAbMpqce14FKuzvfSTgQKi2oPEwX+hDiZ3A4ZYIuDxj+Kw/0Mx6wMwa43QDqHDC54oJJjQv2fxs8ggeeagBSBtjCLDuhA3x1wQVtLth5ZgLsXcbj96JxHN+M1gCZmxVFkDmdwRpQXQAySxk9QL8AKb5zvDIobzIwl+WtBLYCjeWveAVAUoAelrI8PTgrQGqgREIFtJtaKOfcy/s7aDclBjQdDPPhLrSbsmPQsjOVTRSpAj4R9BRIiaChgAvWJr8Oaq0o8t0q/rhP5iAmML/5edQAAAAASUVORK5CYII=",
-            "fallback_url": "announcements.php"
+            "fallback_url": "index.php?rp=/announcements"
         },
         "clientarea:downloads": {
             "label": "Download Resources",
@@ -48,7 +48,7 @@
             "group_id": "whmcs",
             "implements": "",
             "base64_png_image": "iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAQlBMVEUAAADOzs7Ozs7Ozs7t7e3Ozs7Ozs7t7e3t7e0Ym9glMjwyPkdNsN1XYWhbtd99hImip6uq0+bF3unOzs7c3Nzt7e2Y2TCUAAAACXRSTlMAQFBgj6/f3+/npsWFAAAAmUlEQVR4Ae3SsQ7CMAyE4QCBQoJbt8bv/6owoJMpIrpMINGb/2+w5PSy/cn883Ja72BmTgn0bTC8923gq54E6FmAngfoeYCeBOhJsLNOcOwFsb8xwOl9E0gpsoEWmESkPCYiEwVqwSoFtGDKgCCUPVrRMwBCnQAQtervvPdyDVsIMF7CRgLMEczdN/w12MDA9ucnyCzICYLv78X3mW+KzHVUAAAAAElFTkSuQmCC",
-            "fallback_url": "downloads.php"
+            "fallback_url": "index.php?rp=/download"
         },
         "clientarea:knowledgebase": {
             "label": "Search our Knowledgebase",
@@ -110,15 +110,15 @@
             "base64_png_image": "iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAaVBMVEUAAACEtVaZwW+EtVaEtVaZwW9cjiiEtVaZwW+EtVaEtVaZwW+ZwW+EtVaZwW+EtVaXwG2ZwW+EtVaZwW+EtVaZwW+EtVaZwW+EtVaZwW9cjihmmDRrmzprnTlzoUN4qUiEtVaGsVmZwW98tPsQAAAAGnRSTlMAEBAgMDBAQEBgcHCAj4+fn5+vr7+/z8/v70sG19AAAADsSURBVHja7ZPZDoIwFAUPdUFRcQcsKNL//0hNLTf2RCx9NHFeCLczLSSAJ+poPLTgz48KL3Lj0/R+Qwu5Cy407/qgo4WLCwxze/k3w0jAdI3WTWdCAfMPfisoF6W9LiDk34JSQdlCQVhRQD6g7Ld5FviR2Mc+8A4hnwP2d8Yyg7D2g3tPkeDJ1t1NIWRuJAH5Q3CwJD8YJL5fnYTPwQGYvO8/gbD8GGRZ4Z2fQthQEOYf/EbQ1lrX7fjgqi3XsUGrHXxGNRDUfVDTwmYg0II/PyQcZKllLqTvWJ1+0ZHE+oj1Eesj1kesj6KK8B8h7csXeqVdoAAAAABJRU5ErkJggg==",
             "fallback_url": "submitticket.php"
         },
-        "clientarea:shopping_cart_addons": {
-            "label": "View\/Order Addons",
-            "description": "View Available Hosting Package Addon Products & Services",
-            "app": "WHMCS_clientarea_shopping_cart_addons",
+        "clientarea:upgrade": {
+            "label": "Upgrade\/Downgrade",
+            "description": "Upgrade or Downgrade your Hosting Package",
+            "app": "WHMCS_clientarea_upgrade",
             "order": 1,
             "group_id": "whmcs",
-            "implements": "",
+            "implements": "upgrade",
             "base64_png_image": "iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAw1BMVEUAAAANhr8Ym9glMjwYm9glMjwNhr8Ym9glMjwNhr8Ym9glMjwNhr8Ym9gYm9glMjwNhr8XYocYm9gNhr8Ym9gfR10lMjwNhr8Ym9giO0slMjwNhr8Ym9gbVHAlMjwYm9glMjwNhr8Qi8UYm9glMjwYm9glMjwNhr8Ym9glMjwYm9glMjwNhr8PgbcQi8USdqYTcZ4TkcwVbJYWZ44WhrsYm9gZXH4ZfKsbV3UcUm0eTGUfR10fZ4ohQlUiPUwkN0QlMjwzhEifAAAALHRSTlMAEBAQICAwMDBAQEBQUGBgcHBwgICAgI+Pj4+fn5+fr6+/v7+/z8/f39/v76ecmrsAAAGnSURBVHjanZPrQoJAEIUPZiFbkimpmUWEJKHdwy528f2fKgZXWZotWb8/zuyZM7s7K9DQGIwWGaNBA1VoULVktIuNHC5UJodG9cQGx75sfN7tXkyW8b8X2bnOa7rLZJAnV/iDPcdxTqji+8iRnOWO4yzaY+Wt8TTjiwoep2tmlH9RNG6Vuwe5/kj6vKiXHe7yMCh2sTpSfiX5XjU80cpMJh0LOQfjlfwpD1BwQ4b3VTY+oPZBIZP6Ni0xL/cILPQUVd1fPaWS9/Cg8JHx/FDihdbUBaSGmBsSs/oEoZkhNDd4ZgbP3NA0MzQh9MMQQj8+AZsvxmnqAz4FDBv85YZwm8gQLoZMhMbgYo2rM4Rs1FTp++5fWsgnhz799oE2N5BYIvJqqC/DOmrtqFBkE3is/2rUQqPyi/m2arB9PhChmVKUH45py01tzcVqw+w5aoDPDZqH6GNNnz2DztAuDG2tIWL/jTRxATfJgl9EIMKUEwOx9nsjqA8jinSrQxCewffGb8bh8xDVDWI7A6obsKUhrlofS8PlbUUupaE3rcipNFhBtfrAAvADzXlsJf/WC3oAAAAASUVORK5CYII=",
-            "fallback_url": "cart.php?gid=addons"
+            "fallback_url": "clientarea.php?action=services"
         },
         "clientarea:shopping_cart_domain_register": {
             "label": "Register New Domain",
@@ -139,6 +139,18 @@
             "implements": "",
             "base64_png_image": "iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAY1BMVEUAAAAlMjzxxA4lMjzxxA4lMjzxxA4lMjzxxA4lMjzxxA4lMjzxxA4lMjzxxA4lMjzxxA4lMjzxxA4lMjzxxA4lMjzxxA4lMjzxxA4lMjzxxA4lMjzxxA4lMjzxxA4lMjzxxA4Q6TfkAAAAH3RSTlMAEBAgIDAwQEBQUGBgcHCAgI+Pn5+vr7+/z8/f3+/vdkdMmQAAAdxJREFUeAG9lu+SoyAQxBvEJcZjMWcUTVbh/Z/yBgPRzbI3tR/uflWpKYUOPYz8QQF1Cxs3CZa3E4BTSGwPb/ie0xTCb0CO08YogfcQphPKyDEQJDjSBeJa9HZeqemje2mTXXy9ngvu4/sOkZLkayaKzCoUURMJihP0Lb9e25QCi5SHfOOQDGoN56d2jTVioGqueYyR8gXLRPXYtQosKvuI0g48sehTqtgHWFKqKjriB9iHOEfhNX9bHHIcJf4D8iR/1nkKI3bawQ0N0DxC7Wzvek2/Opd4wqcq9z5SXbZgYX1mEblknwQ1tVg3VDEsJCTBMHvvnPe6KKAODQUdQ0ud6BmWoi4KWiuM9+YhaGE5AdmJXry7L9VCIfpmBWi3BKtH2EYBjVofBfu0NlYAlbWmomC2IGwDYVrAGCTB7WeFU+8K/4ZKay2Q4D/v9u4jc/tc0u/4C9XsM07wSxRi8Tuz4DcB548M7DbTpr82SaG5jWxOVnQS9NxWma3XSbAwm7F+pqqJuL6Y7X4TNIf14pkDZXOy1ICwhIsC5shakiInfT8KwtpJvND7hyILLtyxmzouQ4oVduS1cLDj4o+Yr1eH7nh1yKYyPX85IaxPLAZl8vVnSvlU23w6I0D8AUrZRbBfAxQ+AAAAAElFTkSuQmCC",
             "fallback_url": "cart.php?a=add&domain=transfer"
+        }
+    },
+    "disabledApplicationLinks": {
+        "clientarea:shopping_cart_addons": {
+            "label": "View\/Order Addons",
+            "description": "View Available Hosting Package Addon Products & Services",
+            "app": "WHMCS_clientarea_shopping_cart_addons",
+            "order": 1,
+            "group_id": "whmcs",
+            "implements": "",
+            "base64_png_image": "iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAw1BMVEUAAAANhr8Ym9glMjwYm9glMjwNhr8Ym9glMjwNhr8Ym9glMjwNhr8Ym9gYm9glMjwNhr8XYocYm9gNhr8Ym9gfR10lMjwNhr8Ym9giO0slMjwNhr8Ym9gbVHAlMjwYm9glMjwNhr8Qi8UYm9glMjwYm9glMjwNhr8Ym9glMjwYm9glMjwNhr8PgbcQi8USdqYTcZ4TkcwVbJYWZ44WhrsYm9gZXH4ZfKsbV3UcUm0eTGUfR10fZ4ohQlUiPUwkN0QlMjwzhEifAAAALHRSTlMAEBAQICAwMDBAQEBQUGBgcHBwgICAgI+Pj4+fn5+fr6+/v7+/z8/f39/v76ecmrsAAAGnSURBVHjanZPrQoJAEIUPZiFbkimpmUWEJKHdwy528f2fKgZXWZotWb8/zuyZM7s7K9DQGIwWGaNBA1VoULVktIuNHC5UJodG9cQGx75sfN7tXkyW8b8X2bnOa7rLZJAnV/iDPcdxTqji+8iRnOWO4yzaY+Wt8TTjiwoep2tmlH9RNG6Vuwe5/kj6vKiXHe7yMCh2sTpSfiX5XjU80cpMJh0LOQfjlfwpD1BwQ4b3VTY+oPZBIZP6Ni0xL/cILPQUVd1fPaWS9/Cg8JHx/FDihdbUBaSGmBsSs/oEoZkhNDd4ZgbP3NA0MzQh9MMQQj8+AZsvxmnqAz4FDBv85YZwm8gQLoZMhMbgYo2rM4Rs1FTp++5fWsgnhz799oE2N5BYIvJqqC/DOmrtqFBkE3is/2rUQqPyi/m2arB9PhChmVKUH45py01tzcVqw+w5aoDPDZqH6GNNnz2DztAuDG2tIWL/jTRxATfJgl9EIMKUEwOx9nsjqA8jinSrQxCewffGb8bh8xDVDWI7A6obsKUhrlofS8PlbUUupaE3rcipNFhBtfrAAvADzXlsJf/WC3oAAAAASUVORK5CYII=",
+            "fallback_url": "cart.php?gid=addons"
         }
     }
 }

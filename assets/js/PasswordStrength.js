@@ -14,11 +14,15 @@ jQuery(document).ready(function(){
         var pwstrength = getPasswordStrength(pwvalue);
         jQuery("#pwstrength").html(langPasswordStrong);
         jQuery("#pwstrengthpos").css("background-color","#33CC00");
-        if (pwstrength<75) {
+
+        var errorThreshold = !isNaN(parseInt(jQuery(this).data('error-threshold'))) ? jQuery(this).data('error-threshold') : 50;
+        var warningThreshold = !isNaN(parseInt(jQuery(this).data('warning-threshold'))) ? jQuery(this).data('warning-threshold') : 75;
+
+        if (pwstrength<warningThreshold) {
             jQuery("#pwstrength").html(langPasswordModerate);
             jQuery("#pwstrengthpos").css("background-color","#ff6600");
         }
-        if (pwstrength<30) {
+        if (pwstrength<errorThreshold) {
             jQuery("#pwstrength").html(langPasswordWeak);
             jQuery("#pwstrengthpos").css("background-color","#cc0000");
         }
@@ -26,6 +30,28 @@ jQuery(document).ready(function(){
         jQuery("#pwstrengthneg").css("width",100-pwstrength);
     });
 });
+
+function registerFormPasswordStrengthFeedback()
+{
+    passwordStrength = getPasswordStrength(jQuery(this).val());
+
+    var errorThreshold = !isNaN(parseInt(jQuery(this).data('error-threshold'))) ? jQuery(this).data('error-threshold') : 50;
+    var warningThreshold = !isNaN(parseInt(jQuery(this).data('warning-threshold'))) ? jQuery(this).data('warning-threshold') : 75;
+
+    if (passwordStrength >= warningThreshold) {
+        textLabel = langPasswordStrong;
+        cssClass = 'success';
+    } else if (passwordStrength >= errorThreshold) {
+        textLabel = langPasswordModerate;
+        cssClass = 'warning';
+    } else {
+        textLabel = langPasswordWeak;
+        cssClass = 'danger';
+    }
+    jQuery("#passwordStrengthTextLabel").html(langPasswordStrength + ': ' + passwordStrength + '% ' + textLabel);
+    jQuery("#passwordStrengthMeterBar").css('width', passwordStrength + '%').attr('aria-valuenow', passwordStrength);
+    jQuery("#passwordStrengthMeterBar").removeClass('progress-bar-success progress-bar-warning progress-bar-danger').addClass('progress-bar-' + cssClass);
+}
 
 function getPasswordStrength(pw){
     var pwlength=(pw.length);

@@ -15,11 +15,19 @@ jQuery(document).ready(function() {
         if (cc.toLowerCase().indexOf("american express") !== -1) {
             return true;
         }
-        return (ccInfo.toLowerCase() == 'useexisting');
+        if (typeof ccInfo != 'undefined') {
+            return (ccInfo.toLowerCase() == 'useexisting');
+        }
+        return false;
+    }
+
+    function isCardTypeVisible()
+    {
+        return jQuery("#ccTypeButton:visible").length > 0;
     }
 
     jQuery(cvvname).focus(function() {
-        if (isAmex()) {
+        if (isAmex() || !isCardTypeVisible()) {
             jQuery(cvvname).attr("maxlength", "4");
         } else {
             jQuery(cvvname).attr("maxlength", "3");

@@ -153,11 +153,11 @@ $altura = 50 ;
   $barcodes[7] = "00011" ;
   $barcodes[8] = "10010" ;
   $barcodes[9] = "01010" ;
-  for($f1=9;$f1>=0;$f1--){ 
-    for($f2=9;$f2>=0;$f2--){  
+  for($f1=9;$f1>=0;$f1--){
+    for($f2=9;$f2>=0;$f2--){
       $f = ($f1 * 10) + $f2 ;
       $texto = "" ;
-      for($i=1;$i<6;$i++){ 
+      for($i=1;$i<6;$i++){
         $texto .=  substr($barcodes[$f1],($i-1),1) . substr($barcodes[$f2],($i-1),1);
       }
       $barcodes[$f] = $texto;
@@ -221,7 +221,7 @@ function direita($entra,$comp){
 }
 
 function fator_vencimento($data) {
-    $data = split("/",$data);
+    $data = explode("/",$data);
     $ano = $data[2];
     $mes = $data[1];
     $dia = $data[0];
@@ -248,7 +248,7 @@ function _dateToDays($year,$month,$day) {
                 $day +  1721119);
 }
 
-function modulo_10($num) { 
+function modulo_10($num) {
         $numtotal10 = 0;
         $fator = 2;
 
@@ -258,7 +258,7 @@ function modulo_10($num) {
             $numeros[$i] = substr($num,$i-1,1);
             // Efetua multiplicacao do numero pelo (falor 10)
             // 2002-07-07 01:33:34 Macete para adequar ao Mod10 do Itaú
-            $temp = $numeros[$i] * $fator; 
+            $temp = $numeros[$i] * $fator;
             $temp0=0;
             foreach (preg_split('//',$temp,-1,PREG_SPLIT_NO_EMPTY) as $k=>$v){ $temp0+=$v; }
             $parcial10[$i] = $temp0; //$numeros[$i] * $fator;
@@ -270,7 +270,7 @@ function modulo_10($num) {
                 $fator = 2; // intercala fator de multiplicacao (modulo 10)
             }
         }
-        
+
         // várias linhas removidas, vide função original
         // Calculo do modulo 10
         $resto = $numtotal10 % 10;
@@ -278,9 +278,9 @@ function modulo_10($num) {
         if ($resto == 0) {
             $digito = 0;
         }
-        
+
         return $digito;
-        
+
 }
 
 function modulo_11($num, $base=9, $r=0)  {
@@ -289,9 +289,9 @@ function modulo_11($num, $base=9, $r=0)  {
      *           Pablo Costa <pablo@users.sourceforge.net>
      *
      *   Função:
-     *    Calculo do Modulo 11 para geracao do digito verificador 
-     *    de boletos bancarios conforme documentos obtidos 
-     *    da Febraban - www.febraban.org.br 
+     *    Calculo do Modulo 11 para geracao do digito verificador
+     *    de boletos bancarios conforme documentos obtidos
+     *    da Febraban - www.febraban.org.br
      *
      *   Entrada:
      *     $num: string numérica para a qual se deseja calcularo digito verificador;
@@ -304,7 +304,7 @@ function modulo_11($num, $base=9, $r=0)  {
      *   Observações:
      *     - Script desenvolvido sem nenhum reaproveitamento de código pré existente.
      *     - Assume-se que a verificação do formato das variáveis de entrada é feita antes da execução deste script.
-     */                                        
+     */
 
     $soma = 0;
     $fator = 2;
@@ -318,7 +318,7 @@ function modulo_11($num, $base=9, $r=0)  {
         // Soma dos digitos
         $soma += $parcial[$i];
         if ($fator == $base) {
-            // restaura fator de multiplicacao para 2 
+            // restaura fator de multiplicacao para 2
             $fator = 1;
         }
         $fator++;
@@ -343,15 +343,15 @@ function modulo_11_invertido($num)  { // Calculo de Modulo 11 "Invertido" (com p
         $ftfim = 9;
         $fator = $ftfim;
     $soma = 0;
-    
+
     for ($i = strlen($num); $i > 0; $i--) {
             $soma += substr($num,$i-1,1) * $fator;
             if(--$fator < $ftini) $fator = $ftfim;
     }
-    
+
     $digito = $soma % 11;
         if($digito > 9) $digito = 0;
-    
+
         return $digito;
 }
 
@@ -367,19 +367,19 @@ function monta_linha_digitavel($codigo) {
     // 27 a 39  Código do Documento
     // 40 a 43  Data de Vencimento em Juliano (mmmy)
     // 44       Código do aplicativo CNR = 2
-    
+
     // 1. Campo - composto pelo código do banco, código da moéda, as cinco primeiras posições
     // do campo livre e DV (modulo10) deste campo
     $campo1 = substr($codigo,0,4) . substr($codigo,19,5);
     $campo1 = $campo1 . modulo_10($campo1);
     $campo1 = substr($campo1,0,5) . '.' . substr($campo1,5,5);
-    
+
     // 2. Campo - composto pelas posiçoes 6 a 15 do campo livre
     // e livre e DV (modulo10) deste campo
     $campo2 = substr($codigo,24,2) . substr($codigo,26,8);
     $campo2 = $campo2 . modulo_10($campo2);
     $campo2 = substr($campo2,0,5) . '.' . substr($campo2,5,6);
-    
+
     // 3. Campo composto pelas posicoes 16 a 25 do campo livre
     // e livre e DV (modulo10) deste campo
     $campo3 = substr($codigo,34,5) . substr($codigo,39,4) . substr($codigo,43,1);
@@ -388,13 +388,13 @@ function monta_linha_digitavel($codigo) {
 
     // 4. Campo - digito verificador do codigo de barras
     $campo4 = substr($codigo, 4, 1);
-    
+
     // 5. Campo composto pelo fator vencimento e valor nominal do documento, sem
     // indicacao de zeros a esquerda e sem edicao (sem ponto e virgula). Quando se
     // tratar de valor zerado, a representacao deve ser 000 (tres zeros).
     $campo5 = substr($codigo, 5, 4) . substr($codigo, 9, 10);
-    
-    return "$campo1 $campo2 $campo3 $campo4 $campo5"; 
+
+    return "$campo1 $campo2 $campo3 $campo4 $campo5";
 }
 
 function geraCodigoBanco($numero) {

@@ -22,6 +22,15 @@ if ($aff = $whmcs->get_req_var('aff')) {
     Cookie::set('AffiliateID',$aff,'3m');
 }
 
+/**
+ * Executes when a user has clicked an affiliate referral link.
+ *
+ * @param int $affiliateId The unique id of the affiliate that the link belongs to
+ */
+run_hook("AffiliateClickthru", array(
+    'affiliateId' => $aff,
+));
+
 // if product id passed in, redirect to order form
 if ($pid = $whmcs->get_req_var('pid')) redir("a=add&pid=".(int)$pid,"cart.php");
 

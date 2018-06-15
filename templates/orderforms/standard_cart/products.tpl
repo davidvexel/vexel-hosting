@@ -33,9 +33,15 @@
 
             {include file="orderforms/standard_cart/sidebar-categories-collapsed.tpl"}
 
+            {foreach $hookAboveProductsOutput as $output}
+                <div>
+                    {$output}
+                </div>
+            {/foreach}
+
             <div class="products" id="products">
                 <div class="row row-eq-height">
-                    {foreach $products as $product}
+                    {foreach $products as $key => $product}
                         <div class="col-md-6">
                             <div class="product clearfix" id="product{$product@iteration}">
                                 <header>
@@ -88,6 +94,10 @@
                                             {elseif $product.pricing.minprice.cycle eq "triennially"}
                                                 {$LANG.orderpaymenttermtriennially}
                                             {/if}
+                                            <br>
+                                            {if $product.pricing.minprice.setupFee}
+                                                <small>{$product.pricing.minprice.setupFee->toPrefixed()} {$LANG.ordersetupfee}</small>
+                                            {/if}
                                         {/if}
                                     </div>
                                     <a href="cart.php?a=add&{if $product.bid}bid={$product.bid}{else}pid={$product.pid}{/if}" class="btn btn-success btn-sm" id="product{$product@iteration}-order-button">
@@ -104,6 +114,13 @@
                     {/foreach}
                 </div>
             </div>
+
+            {foreach $hookBelowProductsOutput as $output}
+                <div>
+                    {$output}
+                </div>
+            {/foreach}
+
         </div>
     </div>
 </div>

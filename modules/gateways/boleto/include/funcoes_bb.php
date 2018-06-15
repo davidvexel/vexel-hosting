@@ -74,9 +74,9 @@ if ($dadosboleto["formatacao_convenio"] == "7") {
 // Carteira 18 com Convênio de 6 dígitos
 if ($dadosboleto["formatacao_convenio"] == "6") {
     $convenio = formata_numero($dadosboleto["convenio"],6,0,"convenio");
-    
+
     if ($dadosboleto["formatacao_nosso_numero"] == "1") {
-        
+
         // Nosso número de até 5 dígitos
         $nossonumero = formata_numero($dadosboleto["nosso_numero"],5,0);
         $dv = modulo_11("$codigobanco$nummoeda$fator_vencimento$valor$convenio$nossonumero$agencia$conta$carteira");
@@ -84,9 +84,9 @@ if ($dadosboleto["formatacao_convenio"] == "6") {
         //montando o nosso numero que aparecerá no boleto
         $nossonumero = $convenio . $nossonumero ."-". modulo_11("$convenio$nossonumero");
     }
-    
+
     if ($dadosboleto["formatacao_nosso_numero"] == "2") {
-        
+
         // Nosso número de até 17 dígitos
         $nservico = "21";
         $nossonumero = formata_numero($dadosboleto["nosso_numero"],17,0);
@@ -148,11 +148,11 @@ $altura = 50 ;
   $barcodes[7] = "00011" ;
   $barcodes[8] = "10010" ;
   $barcodes[9] = "01010" ;
-  for($f1=9;$f1>=0;$f1--){ 
-    for($f2=9;$f2>=0;$f2--){  
+  for($f1=9;$f1>=0;$f1--){
+    for($f2=9;$f2>=0;$f2--){
       $f = ($f1 * 10) + $f2 ;
       $texto = "" ;
-      for($i=1;$i<6;$i++){ 
+      for($i=1;$i<6;$i++){
         $texto .=  substr($barcodes[$f1],($i-1),1) . substr($barcodes[$f2],($i-1),1);
       }
       $barcodes[$f] = $texto;
@@ -216,7 +216,7 @@ function direita($entra,$comp){
 }
 
 function fator_vencimento($data) {
-    $data = split("/",$data);
+    $data = explode("/",$data);
     $ano = $data[2];
     $mes = $data[1];
     $dia = $data[0];
@@ -252,10 +252,10 @@ ESTA FUNÇÃO PEGA O DÍGITO VERIFICADOR DO PRIMEIRO, SEGUNDO
 E TERCEIRO CAMPOS DA LINHA DIGITÁVEL
 #################################################
 */
-function modulo_10($num) { 
+function modulo_10($num) {
     $numtotal10 = 0;
     $fator = 2;
- 
+
     for ($i = strlen($num); $i > 0; $i--) {
         $numeros[$i] = substr($num,$i-1,1);
         $parcial10[$i] = $numeros[$i] * $fator;
@@ -264,14 +264,14 @@ function modulo_10($num) {
             $fator = 1;
         }
         else {
-            $fator = 2; 
+            $fator = 2;
         }
     }
-    
+
     $soma = 0;
     for ($i = strlen($numtotal10); $i > 0; $i--) {
         $numeros[$i] = substr($numtotal10,$i-1,1);
-        $soma += $numeros[$i]; 
+        $soma += $numeros[$i];
     }
     $resto = $soma % 10;
     $digito = 10 - $resto;
@@ -299,7 +299,7 @@ CAMPO 4 DA LINHA DIGITÁVEL
 
 function modulo_11($num, $base=9, $r=0) {
     $soma = 0;
-    $fator = 2; 
+    $fator = 2;
     for ($i = strlen($num); $i > 0; $i--) {
         $numeros[$i] = substr($num,$i-1,1);
         $parcial[$i] = $numeros[$i] * $fator;
@@ -312,7 +312,7 @@ function modulo_11($num, $base=9, $r=0) {
     if ($r == 0) {
         $soma *= 10;
         $digito = $soma % 11;
-        
+
         //corrigido
         if ($digito == 10) {
             $digito = "X";
@@ -326,7 +326,7 @@ function modulo_11($num, $base=9, $r=0) {
         O módulo 11 só gera os digitos verificadores do nossonumero,
         agencia, conta e digito verificador com codigo de barras (aquele que fica sozinho e triste na linha digitável)
         só que é foi um rolo...pq ele nao podia resultar em 0, e o pessoal do phpboleto se esqueceu disso...
-        
+
         No BB, os dígitos verificadores podem ser X ou 0 (zero) para agencia, conta e nosso numero,
         mas nunca pode ser X ou 0 (zero) para a linha digitável, justamente por ser totalmente numérica.
 
@@ -342,7 +342,7 @@ function modulo_11($num, $base=9, $r=0) {
 
         se (strlen($num) == 43) { não deixar dar digito X ou 0 }
         */
-        
+
         if (strlen($num) == "43") {
             //então estamos checando a linha digitável
             if ($digito == "0" or $digito == "X" or $digito > 9) {
@@ -350,7 +350,7 @@ function modulo_11($num, $base=9, $r=0) {
             }
         }
         return $digito;
-    } 
+    }
     elseif ($r == 1){
         $resto = $soma % 11;
         return $resto;
@@ -405,7 +405,7 @@ function monta_linha_digitavel($linha) {
     // tratar de valor zerado, a representacao deve ser 000 (tres zeros).
     $campo5 = substr($linha, 5, 14);
 
-    return "$campo1 $campo2 $campo3 $campo4 $campo5"; 
+    return "$campo1 $campo2 $campo3 $campo4 $campo5";
 }
 
 function geraCodigoBanco($numero) {

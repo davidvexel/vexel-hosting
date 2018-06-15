@@ -23,7 +23,7 @@ else $reportdata["headertext"] = "<form method=\"post\" action=\"?report=$report
 $reportdata["tableheadings"][] = "Referral Location";
 $reportdata["tableheadings"][] = "Count";
 
-$result = select_query("tblcustomfieldsvalues","value,COUNT(*) AS rows","fieldid=".(int)$customfieldid." AND datecreated>='".db_make_safe_human_date($fromdate)."' AND datecreated<='".db_make_safe_human_date($todate)."' GROUP BY `value`","value","ASC","","tblclients ON tblclients.id=tblcustomfieldsvalues.relid");
+$result = select_query("tblcustomfieldsvalues","value,COUNT(*) AS `rows`","fieldid=".(int)$customfieldid." AND datecreated>='".db_make_safe_human_date($fromdate)."' AND datecreated<='".db_make_safe_human_date($todate)."' GROUP BY `value`","value","ASC","","tblclients ON tblclients.id=tblcustomfieldsvalues.relid");
 while ($data = mysql_fetch_array($result)) {
 
     $reportdata["tablevalues"][] = array($data[0],$data[1]);

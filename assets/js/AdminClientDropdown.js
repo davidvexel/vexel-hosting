@@ -15,36 +15,35 @@ $(document).ready(function(){
         searchField: ['name', 'email', 'companyname'],
         create: false,
         maxItems: 1,
+        preload: 'focus',
         render: {
             item: function(item, escape) {
                 if (typeof dropdownSelectClient == "function") {
                     dropdownSelectClient(
                         escape(item.id),
-                        escape(item.name) + (item.companyname ? ' (' + escape(item.companyname) + ')' : ''),
+                        escape(item.name) + (item.companyname ? ' (' + escape(item.companyname) + ')' : '') + ' - #' + item.id,
                         escape(item.email)
                     );
                 }
-                return '<div>' +
-        '<span class="name">' + escape(item.name) +
-        (item.companyname ? ' (' + escape(item.companyname) + ')' : '') +
-        '</span>' +
-    '</div>';
+                return '<div><span class="name">' + escape(item.name) +
+                    (item.companyname ? ' (' + escape(item.companyname) + ')' : '')  +
+                    ' - #' + escape(item.id) + '</span></div>';
             },
             option: function(item, escape) {
-                return '<div>' +
-        '<span class="name">' + escape(item.name) + (item.companyname ? ' (' + escape(item.companyname) + ')' : '') + '</span>' +
-        (item.email ? '<span class="email">' + escape(item.email) + '</span>' : '') +
-    '</div>';
+                return '<div><span class="name">'
+                    + escape(item.name) + (item.companyname ? ' (' + escape(item.companyname) + ')' : '') + ' - #' +
+                    escape(item.id) + '</span>' +
+                    (item.email ? '<span class="email">' + escape(item.email) + '</span>' : '') + '</div>';
             }
         },
         load: function(query, callback) {
-            if (!query.length) return callback();
             jQuery.ajax({
                 url: getClientSearchPostUrl(),
                 type: 'POST',
                 dataType: 'json',
                 data: {
-                    dropdownsearchq: query
+                    dropdownsearchq: query,
+                    clientId: currentValue
                 },
                 error: function() {
                     callback();

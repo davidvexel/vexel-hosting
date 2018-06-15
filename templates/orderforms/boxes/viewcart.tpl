@@ -144,7 +144,7 @@ var removeItemText = '{$LANG.cartremoveitemconfirm|escape:"quotes"}';
                     </tr>
                     <tr class="carttableconfig">
                         <td>
-                            <a href="#" onclick="removeItem('d','{$num}');return false" class="textred">[{$LANG.cartremove}]</a>
+                            <a href="#" onclick="removeItem('r','{$num}');return false" class="textred">[{$LANG.cartremove}]</a>
                         </td>
                         <td>&nbsp;</td>
                     </tr>
@@ -247,7 +247,7 @@ var removeItemText = '{$LANG.cartremoveitemconfirm|escape:"quotes"}';
             </div>
         {/if}
 
-        <form method="post" action="{$smarty.server.PHP_SELF}?a=checkout" name="orderfrm">
+        <form method="post" action="{$smarty.server.PHP_SELF}?a=checkout" name="orderfrm" id="frmCheckout">
             <input type="hidden" name="submit" value="true" />
             <input type="hidden" name="custtype" id="inputCustType" value="{$custtype}" />
 
@@ -371,7 +371,7 @@ var removeItemText = '{$LANG.cartremoveitemconfirm|escape:"quotes"}';
                     <div id="newPassword1" class="form-group has-feedback">
                         <label for="inputNewPassword1" class="col-sm-5 control-label">{$LANG.clientareapassword}</label>
                         <div class="col-sm-6 col-md-5">
-                            <input type="password" name="password" id="inputNewPassword1" value="{$password}" class="form-control" />
+                            <input type="password" name="password" id="inputNewPassword1" data-error-threshold="{$pwStrengthErrorThreshold}" data-warning-threshold="{$pwStrengthWarningThreshold}" value="{$password}" class="form-control" />
                             <span class="form-control-feedback glyphicon"></span>
                             {if file_exists("templates/$template/includes/pwstrength.tpl")}
                                 {include file="$template/includes/pwstrength.tpl"}
@@ -545,6 +545,8 @@ var removeItemText = '{$LANG.cartremoveitemconfirm|escape:"quotes"}';
                     </div>
                 </div>
             </div>
+
+            <div class="alert alert-danger text-center gateway-errors hidden"></div>
 
             <div class="line-padded text-center">
                 {foreach key=num item=gateway from=$gateways}

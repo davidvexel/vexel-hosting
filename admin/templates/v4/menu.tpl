@@ -108,18 +108,20 @@
 </li>{/if}
 <li><a id="Menu-Utilities" title="Utilities" href="">{$_ADMINLANG.utilities.title}</a>
   <ul>
+    {if in_array("Update WHMCS",$admin_perms)}<li><a id="Menu-Utilities-Update" href="update.php">{$_ADMINLANG.update.title}</a></li>{/if}
     {if in_array("WHMCSConnect",$admin_perms)}<li><a id="Menu-Utilities-WHMCS_Connect" href="whmcsconnect.php">{$_ADMINLANG.whmcsConnect.whmcsConnectName}</a></li>{/if}
+    {if in_array("View Module Queue", $admin_perms)}<li><a id="Menu-Utilities-Module_Queue" href="modulequeue.php">{$_ADMINLANG.utilities.moduleQueue}</a></li>{/if}
     {if in_array("Email Marketer",$admin_perms)}<li><a id="Menu-Utilities-Email_Marketer" href="utilitiesemailmarketer.php">{$_ADMINLANG.utilities.emailmarketer}</a></li>{/if}
     {if in_array("Link Tracking",$admin_perms)}<li><a id="Menu-Utilities-Link_Tracking" href="utilitieslinktracking.php">{$_ADMINLANG.utilities.linktracking}</a></li>{/if}
-    {if in_array("Browser",$admin_perms)}<li><a id="Menu-Utilities-Browser" href="browser.php">{$_ADMINLANG.utilities.browser}</a></li>{/if}
     {if in_array("Calendar",$admin_perms)}<li><a id="Menu-Utilities-Calendar" href="calendar.php">{$_ADMINLANG.utilities.calendar}</a></li>{/if}
     {if in_array("To-Do List",$admin_perms)}<li><a id="Menu-Utilities-To-Do_List" href="todolist.php">{$_ADMINLANG.utilities.todolist}</a></li>{/if}
     {if in_array("WHOIS Lookups",$admin_perms)}<li><a id="Menu-Utilities-WHOIS_Lookups" href="whois.php">{$_ADMINLANG.utilities.whois}</a></li>{/if}
     {if in_array("Domain Resolver Checker",$admin_perms)}<li><a id="Menu-Utilities-Domain_Resolver" href="utilitiesresolvercheck.php">{$_ADMINLANG.utilities.domainresolver}</a></li>{/if}
     {if in_array("View Integration Code",$admin_perms)}<li><a id="Menu-Utilities-Integration_Code" href="systemintegrationcode.php">{$_ADMINLANG.utilities.integrationcode}</a></li>{/if}
     {if in_array("WHM Import Script",$admin_perms)}<li><a id="Menu-Utilities-cPanel_WHM_Import" href="whmimport.php">{$_ADMINLANG.utilities.cpanelimport}</a></li>{/if}
-    {if in_array("Database Status",$admin_perms) || in_array("System Cleanup Operations",$admin_perms) || in_array("View PHP Info",$admin_perms)}<li class="expand"><a id="Menu-Utilities-System" href="#">{$_ADMINLANG.utilities.system}</a>
+    {if in_array("Automation Status", $admin_perms) || in_array("Database Status", $admin_perms) || in_array("System Cleanup Operations", $admin_perms) || in_array("View PHP Info", $admin_perms)}<li class="expand"><a id="Menu-Utilities-System" href="#">{$_ADMINLANG.utilities.system}</a>
         <ul>
+        {if in_array("Automation Status", $admin_perms)}<li><a id="Menu-Utilities-System-Automation_Status" href="automationstatus.php">{$_ADMINLANG.utilities.automationStatus}</a></li>{/if}
         {if in_array("Database Status",$admin_perms)}<li><a id="Menu-Utilities-System-Database_Status" href="systemdatabase.php">{$_ADMINLANG.utilities.dbstatus}</a></li>{/if}
         {if in_array("System Cleanup Operations",$admin_perms)}<li><a id="Menu-Utilities-System-System_Cleanup" href="systemcleanup.php">{$_ADMINLANG.utilities.syscleanup}</a></li>{/if}
         {if in_array("View PHP Info",$admin_perms)}<li><a id="Menu-Utilities-System-PHP_Info" href="systemphpinfo.php">{$_ADMINLANG.utilities.phpinfo}</a></li>{/if}
@@ -138,24 +140,28 @@
   </ul>
 </li>
 <li><a id="Menu-Addons" title="Addons" href="addonmodules.php">{$_ADMINLANG.utilities.addonmodules}</a>
-  <ul>
-    {foreach from=$addon_modules key=module item=displayname}
-    <li><a id="Menu-Addons-{$displayname}" href="addonmodules.php?module={$module}">{$displayname}</a></li>
-    {foreachelse}
-    <li><a id="Menu-Addons-Addons_Directory" href="addonmodules.php">{$_ADMINLANG.utilities.addonsdirectory}</a></li>
-    {/foreach}
-  </ul>
+    <ul>
+        {foreach from=$addon_modules key=module item=displayname}
+            <li><a id="Menu-Addons-{$displayname}" href="addonmodules.php?module={$module}">{$displayname}</a></li>
+            {foreachelse}
+            <li><a id="Menu-Addons-Marketplace-Link" class="autoLinked" href="https://marketplace.whmcs.com">Visit WHMCS Marketplace</a></li>
+        {/foreach}
+    </ul>
 </li>
 <li><a id="Menu-Setup" title="Setup" href="">{$_ADMINLANG.setup.title}</a>
   <ul>
     {if in_array("Configure General Settings",$admin_perms)}<li><a id="Menu-Setup-General_Settings" href="configgeneral.php">{$_ADMINLANG.setup.general}</a></li>{/if}
+    {if in_array("Configure Sign-In Integration",$admin_perms)}<li><a id="Menu-Setup-Sign-In_Integrations" href="{routePath('admin-setup-authn-view')}">{$_ADMINLANG.setup.signInIntegrations}</a></li>{/if}
     {if in_array("Configure Automation Settings",$admin_perms)}<li><a id="Menu-Setup-Automation_Settings" href="configauto.php">{$_ADMINLANG.setup.automation}</a></li>{/if}
-{if in_array("Configure Administrators",$admin_perms) || in_array("Configure Admin Roles",$admin_perms) || in_array("Configure Two-Factor Authentication",$admin_perms)}
+    {if in_array("Manage MarketConnect",$admin_perms)}<li><a id="Menu-Setup-Manage_MarketConnect" href="marketconnect.php">{$_ADMINLANG.setup.marketconnect}</a></li>{/if}
+    {if in_array("Manage Notifications",$admin_perms)}<li><a id="Menu-Setup-Notifications" href="{routePath('admin-setup-notifications-overview')}">{$_ADMINLANG.notifications.title}</a></li>{/if}
+{if in_array("Configure Administrators",$admin_perms) || in_array("Configure Admin Roles",$admin_perms) || in_array("Configure Two-Factor Authentication",$admin_perms) || in_array("Manage API Credentials",$admin_perms)}
     <li class="expand"><a id="Menu-Setup-Staff_Management" href="#">{$_ADMINLANG.setup.staff}</a>
         <ul>
         {if in_array("Configure Administrators",$admin_perms)}<li><a id="Menu-Setup-Staff_Management-Administrator_Users" href="configadmins.php">{$_ADMINLANG.setup.admins}</a></li>{/if}
         {if in_array("Configure Admin Roles",$admin_perms)}<li><a id="Menu-Setup-Staff_Management-Administrator_Roles" href="configadminroles.php">{$_ADMINLANG.setup.adminroles}</a></li>{/if}
         {if in_array("Configure Two-Factor Authentication",$admin_perms)}<li><a id="Menu-Setup-Staff_Management-Two-Factor_Authentication" href="configtwofa.php">{$_ADMINLANG.setup.twofa}</a></li>{/if}
+        {if in_array("Manage API Credentials",$admin_perms)}<li><a id="Menu-Setup-Staff_Management-API_Credentials" href="configapicredentials.php">{$_ADMINLANG.setup.apicredentials}</a></li>{/if}
         </ul>
     </li>{else}
     <li><a id="Menu-Setup-Staff_Management-My_Account" href="myaccount.php">{$_ADMINLANG.global.myaccount}</a></li>{/if}
@@ -211,7 +217,7 @@
 <li><a id="Menu-Help" title="Help" href="">{$_ADMINLANG.help.title}</a>
   <ul>
     <li><a id="Menu-Help-Documentation" href="http://docs.whmcs.com/" target="_blank">{$_ADMINLANG.help.docs}</a></li>
-    {if in_array("Main Homepage",$admin_perms)}<li><a id="Menu-Help-License_Information" href="systemlicense.php">{$_ADMINLANG.help.licenseinfo}</a></li>{/if}
+    {if in_array("Main Homepage",$admin_perms)}<li><a id="Menu-Help-License_Information" href="{routePath('admin-help-license')}">{$_ADMINLANG.help.licenseinfo}</a></li>{/if}
     {if in_array("Configure Administrators",$admin_perms)}<li><a id="Menu-Help-Change_License_Key" href="licenseerror.php?licenseerror=change">{$_ADMINLANG.help.changelicense}</a></li>{/if}
     {if in_array("Health and Updates", $admin_perms)}
         <li>
@@ -220,7 +226,17 @@
             </a>
         </li>
     {/if}
-    {if in_array("Configure General Settings",$admin_perms)}<li><a id="Menu-Help-Get_Help" href="systemsupportrequest.php">{$_ADMINLANG.help.support}</a></li>{/if}
-    <li><a id="Menu-Help-Community_Forums" href="http://forum.whmcs.com/" target="_blank">{$_ADMINLANG.help.forums}</a></li>
+    {if in_array("View What's New",$admin_perms)}
+        <li>
+            <a id="Menu-Help-Whats_New" href="javascript:openFeatureHighlights()">
+                {$_ADMINLANG.whatsNew.menuTitle}
+            </a>
+        </li>
+    {/if}
+    {if in_array("Configure General Settings",$admin_perms)}
+        <li><a id="Menu-Help-Setup_Wizard" href="#" onclick="openSetupWizard();return false;">{$_ADMINLANG.help.setupWizard}</a></li>
+        <li><a id="Menu-Help-Get_Help" href="systemsupportrequest.php">{$_ADMINLANG.help.support}</a></li>
+    {/if}
+    <li><a id="Menu-Help-Community_Forums" href="https://whmcs.community/?utm_source=InApp&utm_medium=Help_Menu" target="_blank">{$_ADMINLANG.help.forums}</a></li>
   </ul>
 </li>

@@ -25,6 +25,25 @@ function emptyCart(type,num) {
         window.location = 'cart.php?a=empty';
     }
 }
+
+jQuery(document).ready(function() {
+    var preparePromoCode = function(ctx) {
+        jQuery(ctx).parents('form').attr('novalidate', 'novalidate');
+        jQuery('#validatepromo').val('1');
+    };
+
+    jQuery('#validatePromoCode').click(function() {
+        preparePromoCode(this);
+        jQuery('#btnCompleteOrder').click();
+    });
+
+    jQuery('#inputPromoCode').keydown(function(evt) {
+        if (evt.keyCode == 13) {
+            preparePromoCode(this);
+            // Enter in a form will submit the form
+        }
+    });
+});
 </script>{/literal}
 <script>
 window.langPasswordStrength = "{$LANG.pwstrength}";
@@ -216,7 +235,7 @@ window.langPasswordStrong = "{$LANG.pwstrengthstrong}";
 
     {if $cartitems!=0}
 
-        <form method="post" action="{$smarty.server.PHP_SELF}?a=checkout" id="mainfrm">
+        <form method="post" action="{$smarty.server.PHP_SELF}?a=checkout" id="frmCheckout">
             <input type="hidden" name="submit" value="true" />
             <input type="hidden" name="custtype" id="custtype" value="{$custtype}" />
 
@@ -311,7 +330,7 @@ window.langPasswordStrong = "{$LANG.pwstrengthstrong}";
                         {if !$loggedin}
                             <div id="newPassword1" class="form-group has-feedback">
                                 <label for="inputNewPassword1" class="control-label">{$LANG.clientareapassword}</label>
-                                <input type="password" class="form-control" id="inputNewPassword1" name="password" value="{$password}" required/>
+                                <input type="password" class="form-control" id="inputNewPassword1" data-error-threshold="{$pwStrengthErrorThreshold}" data-warning-threshold="{$pwStrengthWarningThreshold}" name="password" value="{$password}" required/>
                                 <span class="form-control-feedback glyphicon glyphicon-password"></span>
                                 {include file="$template/includes/pwstrength.tpl"}
                             </div>
@@ -474,7 +493,7 @@ window.langPasswordStrong = "{$LANG.pwstrengthstrong}";
             {if $taxenabled && !$loggedin}
                 <div class="carttaxwarning">
                     {$LANG.carttaxupdateselections}
-                    <input type="submit" value="{$LANG.carttaxupdateselectionsupdate}" name="updateonly" class="btn btn-info btn-sm" />
+                    <input type="submit" value="{$LANG.carttaxupdateselectionsupdate}" name="updateonly" id="btnUpdateOnly" class="btn btn-info btn-sm" />
                 </div>
             {/if}
 
@@ -559,7 +578,8 @@ window.langPasswordStrong = "{$LANG.pwstrengthstrong}";
                                 <div class="input-group">
                                     <input type="text" name="promocode" id="inputPromoCode" class="form-control" placeholder="{lang key="orderPromoCodePlaceholder"}">
                                     <span class="input-group-btn">
-                                        <button type="submit" name="validatepromo" formnovalidate class="btn btn-warning" value="{$LANG.orderpromovalidatebutton}">
+                                        <input type="hidden" name="validatepromo" id="validatepromo" value="0" />
+                                        <button type="button" id="validatePromoCode" class="btn btn-warning">
                                             {$LANG.orderpromovalidatebutton}
                                         </button>
                                     </span>
@@ -589,6 +609,7 @@ window.langPasswordStrong = "{$LANG.pwstrengthstrong}";
                         {/foreach}
 
                         <br /><br />
+                        <div class="alert alert-danger text-center gateway-errors hidden"></div>
 
                         <div id="ccinputform" class="signupfields{if $selectedgatewaytype neq "CC"} hidden{/if}">
                             <table width="100%" cellspacing="0" cellpadding="0" class="configtable textleft">

@@ -130,13 +130,13 @@
         <div id="exportButtons" class="panel">
             <div class="row">
                 <div class="col-xs-6">
-                    <a href="?export=json" class="btn btn-default btn-block">
+                    <a href="systemhealthandupdates.php?export=json" class="btn btn-default btn-block">
                         <i class="fa fa-code"></i>
                         {lang key="healthCheck.exportAsJson"}
                     </a>
                 </div>
                 <div class="col-xs-6">
-                    <a href="?export=text" class="btn btn-default btn-block">
+                    <a href="systemhealthandupdates.php?export=text" class="btn btn-default btn-block">
                         <i class="fa fa-file-text-o"></i>
                         {lang key="healthCheck.exportAsText"}
                     </a>

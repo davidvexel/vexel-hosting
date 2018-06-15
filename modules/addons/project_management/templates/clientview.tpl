@@ -215,7 +215,7 @@
 <script>
 function showFileUpload() {
     if (!jQuery("#containerUploadFile").is(":visible")) {
-        jQuery("#containerUploadFile").hide().removeClass('hidden');
+        jQuery('#containerUploadFile').hide().removeClass('hidden');
     }
     jQuery('#containerUploadFile').slideToggle();
 }

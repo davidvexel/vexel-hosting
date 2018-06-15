@@ -12,7 +12,7 @@
             </tr>
         </thead>
         <tbody>
-            {foreach from=$projects item=project}
+            {foreach $projects as $project}
                 <tr onclick="window.location='?m=project_management&a=view&id={$project.id}'">
                     <td><strong>{$project.title}</strong></td>
                     <td><span class="hidden">{$project.normalisedCreated}</span>{$project.created}</td>

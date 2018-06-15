@@ -59,23 +59,25 @@ class CliPrompt
                 $exe = $tmpExe;
             }
 
-            $answer = self::trimAnswer(shell_exec($exe));
+            $output = shell_exec($exe);
 
             // clean up
             if (isset($tmpExe)) {
                 unlink($tmpExe);
             }
 
-            // output a newline to be on par with the regular prompt()
-            echo PHP_EOL;
+            if ($output !== null) {
+                // output a newline to be on par with the regular prompt()
+                echo PHP_EOL;
 
-            return $answer;
+                return self::trimAnswer($output);
+            }
         }
 
         if (file_exists('/usr/bin/env')) {
             // handle other OSs with bash/zsh/ksh/csh if available to hide the answer
             $test = "/usr/bin/env %s -c 'echo OK' 2> /dev/null";
-            foreach (array('bash', 'zsh', 'ksh', 'csh') as $sh) {
+            foreach (array('bash', 'zsh', 'ksh', 'csh', 'sh') as $sh) {
                 if ('OK' === rtrim(shell_exec(sprintf($test, $sh)))) {
                     $shell = $sh;
                     break;
@@ -85,12 +87,14 @@ class CliPrompt
             if (isset($shell)) {
                 $readCmd = ($shell === 'csh') ? 'set mypassword = $<' : 'read -r mypassword';
                 $command = sprintf("/usr/bin/env %s -c 'stty -echo; %s; stty echo; echo \$mypassword'", $shell, $readCmd);
-                $value = self::trimAnswer(shell_exec($command));
+                $output = shell_exec($command);
 
-                // output a newline to be on par with the regular prompt()
-                echo PHP_EOL;
+                if ($output !== null) {
+                    // output a newline to be on par with the regular prompt()
+                    echo PHP_EOL;
 
-                return $value;
+                    return self::trimAnswer($output);
+                }
             }
         }
 

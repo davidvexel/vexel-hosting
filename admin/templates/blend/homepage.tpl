@@ -1,17 +1,6 @@
-{if $viewincometotals}
-    <div id="incometotals" class="home-income-stats">
-        <a href="transactions.php">
-            <img src="images/icons/transactions.png" align="absmiddle" border="0">
-            <strong>{$_ADMINLANG.billing.income}</strong>
-        </a>
-        <img src="images/loading.gif" align="absmiddle" />
-        {$_ADMINLANG.global.loading}
-    </div>
-{/if}
-
 <div class="clearfix"></div>
 
-{if $maintenancemode}
+{if !empty($maintenancemode)}
     <div class="errorbox" style="font-size:14px;">
         {$_ADMINLANG.home.maintenancemode}
     </div>
@@ -20,56 +9,65 @@
 
 {$infobox}
 
-<p>{$_ADMINLANG.global.welcomeback} {$admin_username}!</p>
-
 {foreach from=$addons_html item=addon_html}
     <div class="addon-html-output-container">
         {$addon_html}
     </div>
 {/foreach}
 
-<div class="row">
-    <div class="col-sm-6">
-        <div class="homecolumn left" id="homecol1">
-            <div class="homewidget" id="sysinfo">
-                <div class="widget-header">{$_ADMINLANG.global.systeminfo}</div>
-                <div class="widget-content">
-                    <table width="100%">
-                        <tr>
-                            <td width="20%" style="text-align:right;padding-right:5px;">{$_ADMINLANG.license.regto}</td>
-                            <td width="35%">{$licenseinfo.registeredname}</td>
-                            <td width="10%" style="text-align:right;padding-right:5px;">{$_ADMINLANG.license.expires}</td>
-                            <td width="35%">{$licenseinfo.expires}</td>
-                        </tr>
-                        <tr>
-                            <td style="text-align:right;padding-right:5px;">{$_ADMINLANG.license.type}</td>
-                            <td>{$licenseinfo.productname}</td>
-                            <td style="text-align:right;padding-right:5px;">{$_ADMINLANG.global.version}</td>
-                            <td>{$licenseinfo.currentversion}{if $licenseinfo.updateavailable} <span class="textred"><strong>{$_ADMINLANG.license.updateavailable}</strong></span>{/if}</td>
-                        </tr>
-                        <tr>
-                            <td style="text-align:right;padding-right:5px;">{$_ADMINLANG.global.staffonline}</td>
-                            <td colspan="3">{$adminsonline}</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
+<style>
+.contentarea {
+    background-color: #f8f8f8;
+    overflow: hidden;
+}
+</style>
 
-            {foreach from=$widgets item=widget}
-                <div class="homewidget" id="{$widget.name}">
-                    <div class="widget-header">{$widget.title}</div>
-                    <div class="widget-content">
-                        {$widget.content}
+<div id="widgetSettingsDropdown" class="btn-group widget-settings pull-right">
+    <button type="button" class="btn btn-link" id="widgetSettings" data-toggle="dropdown" data-placement="bottom" aria-haspopup="true" aria-expanded="false">
+        <i class="fa fa-cog" aria-hidden="true"></i>
+        <span class="sr-only">{lang key='global.settings'}</span>
+    </button>
+    <ul id="widgetSettingsDropdownMenu" class="dropdown-menu pull-right" aria-labelledby="widgetSettings">
+        <li>
+            <h4>{lang key='home.configureWidgetDisplayTitle'}</h4>
+        </li>
+        {foreach $widgets as $widget}
+            <li{if !in_array($widget->getId(), $hiddenWidgets)} class="active"{/if}>
+                <label class="checkbox-inline">
+                    <input type="checkbox" class="display-widget"{if !in_array($widget->getId(), $hiddenWidgets)} checked="checked"{/if} data-widget="{$widget->getId()}" value="1">
+                    {$widget->getTitle()}
+                </label>
+            </li>
+        {/foreach}
+    </ul>
+</div>
+
+<div class="home-widgets-container" data-masonry='{ "itemSelector": ".dashboard-panel-item", "columnWidth": ".dashboard-panel-sizer", "percentPosition": "true" }'>
+    <div class="dashboard-panel-sizer"></div>
+
+    {foreach $widgets as $widget}
+        <div id="panel{$widget->getId()}" class="dashboard-panel-item dashboard-panel-item-columns-{$widget->getColumnSize()}{if in_array($widget->getId(), $hiddenWidgets)} hidden{/if}">
+            {if $widget->showWrapper()}
+                <div class="panel panel-default widget-{$widget->getId()|strtolower}" data-widget="{$widget->getId()}">
+                    <div class="panel-heading">
+                        <div class="widget-tools">
+                            <a href="#" class="widget-refresh"><i class="fa fa-refresh"></i></a>
+                            <a href="#" class="widget-minimise"><i class="fa fa-chevron-up"></i></a>
+                            <a href="#" class="widget-hide"><i class="fa fa-times"></i></a>
+                        </div>
+                        <h3 class="panel-title">{$widget->getTitle()}</h3>
+                    </div>
+                    <div class="panel-body">
+            {/if}
+
+            {$widget->render()}
+
+            {if $widget->showWrapper()}
                     </div>
                 </div>
-            {/foreach}
-
+            {/if}
         </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="homecolumn right" id="homecol2">
-        </div>
-    </div>
+    {/foreach}
 </div>
 
 {$generateInvoices}

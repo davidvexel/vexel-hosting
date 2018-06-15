@@ -12,7 +12,7 @@
         </tr>
     </thead>
     <tbody>
-{foreach from=$projects item=project}
+{foreach $projects as $project}
         <tr>
             <td><strong>{$project.title}</strong></td>
             <td>{$project.created}</td>

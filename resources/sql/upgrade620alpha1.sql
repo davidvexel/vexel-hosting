@@ -1,8 +1,8 @@
 -- Add the Configure Application Links permission to Full Admin role
-INSERT INTO `tbladminperms` VALUES (1, 133);
+INSERT INTO `tbladminperms` (`roleid`, `permid`) VALUES (1, 133);
 
 -- Add the Configure OpenID Connect permission to Full Admin role
-INSERT INTO `tbladminperms` VALUES (1, 134);
+INSERT INTO `tbladminperms` (`roleid`, `permid`) VALUES (1, 134);
 
 -- Remove the Disable Client Dropdown setting
 DELETE FROM `tblconfiguration` WHERE `setting` = 'DisableClientDropdown';
@@ -133,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `tbloauthserver_scopes` (
   UNIQUE KEY `tbloauthserver_scopes_scope_unique` (`scope`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-INSERT INTO `tbloauthserver_scopes` VALUES
+INSERT INTO `tbloauthserver_scopes` (`id`,`scope`,`description`,`is_default`,`created_at`,`updated_at`) VALUES
   (1, 'clientarea:sso', 'Single Sign-on for Client Area', 1, '0000-00-00 00:00:00','0000-00-00 00:00:00'),
   (2, 'clientarea:profile', 'Account Profile', 0, '0000-00-00 00:00:00','0000-00-00 00:00:00'),
   (3, 'clientarea:billing_info', 'Manage Billing Information', 0, '0000-00-00 00:00:00','0000-00-00 00:00:00'),

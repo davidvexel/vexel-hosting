@@ -7,6 +7,11 @@
 </select> <a href="#" onclick="$('#ticketstatus').val('Closed');$('#ticketstatus').trigger('change');return false">{$_ADMINLANG.global.close}</a></h2>
 
 <div class="ticketlastreply">{$_ADMINLANG.support.lastreply}: {$lastreply}</div>
+<input type="hidden" id="lastReplyId" value="{$lastReplyId}" />
+<input type="hidden" id="currentSubject" value="{$subject}" />
+<input type="hidden" id="currentCc" value="{$cc}" />
+<input type="hidden" id="currentUserId" value="{$userid}" />
+<input type="hidden" id="currentStatus" value="{$status}" />
 
 {if $clientnotes}
 <div id="clientsimportantnotes">
@@ -299,7 +304,7 @@
   </div>
   <div class="tab-pane" id="tab5">
 
-<form method="post" action="{$smarty.server.PHP_SELF}?action=viewticket&id={$ticketid}">
+<form method="post" action="{$smarty.server.PHP_SELF}?action=viewticket&id={$ticketid}" id="frmTicketOptions">
     <table class="form" width="100%" border="0" cellspacing="2" cellpadding="3">
         <tr>
             <td width="15%" class="fieldlabel">
@@ -313,7 +318,7 @@
                 </select>
             </td>
             <td width="15%" class="fieldlabel">
-                {$_ADMINLANG.fields.clientid}
+                {$_ADMINLANG.fields.clientname}
             </td>
             <td class="fieldarea">
                 {$userSearchDropdown}
@@ -376,7 +381,10 @@
         </tr>
     </table>
     <div class="btn-container">
-        <input type="submit" value="{$_ADMINLANG.global.savechanges}" class="btn btn-primary" />
+        <button id="btnSaveChanges" type="submit" class="btn btn-primary" value="save">
+            <i class="fa fa-save"></i>
+            {lang key='global.savechanges'}
+        </button>
         <input type="reset" value="{$_ADMINLANG.global.cancelchanges}" class="btn btn-default" />
     </div>
 </form>
@@ -455,10 +463,12 @@
 <div class="tools">
 
 <div class="editbtns{if $reply.id}r{$reply.id}{else}t{$ticketid}{/if}">
+<img src="../assets/img/spinner.gif" width="16" height="16" class="saveSpinner" style="display: none" />
 {if !$reply.note}<input type="button" value="{$_ADMINLANG.global.edit}" onclick="editTicket('{if $reply.id}r{$reply.id}{else}t{$ticketid}{/if}')" class="btn btn-xs btn-small btn-default" />{/if}
 {if $deleteperm}<input type="button" value="{$_ADMINLANG.global.delete}" onclick="{if $reply.id}{if $reply.note}doDeleteNote('{$reply.id}');{else}doDeleteReply('{$reply.id}');{/if}{else}doDeleteTicket();{/if}" class="btn btn-xs btn-small btn-danger" />{/if}
 </div>
 <div class="editbtns{if $reply.id}r{$reply.id}{else}t{$ticketid}{/if}" style="display:none">
+<img src="../assets/img/spinner.gif" width="16" height="16" class="saveSpinner" style="display: none" />
 <input type="button" value="{$_ADMINLANG.global.save}" onclick="editTicketSave('{if $reply.id}r{$reply.id}{else}t{$ticketid}{/if}')" class="btn btn-xs btn-small btn-success" />
 <input type="button" value="{$_ADMINLANG.global.cancel}" onclick="editTicketCancel('{if $reply.id}r{$reply.id}{else}t{$ticketid}{/if}')" class="btn btn-xs btn-small btn-inverse" />
 </div>
@@ -468,7 +478,7 @@
 </div>
 <div class="rightcol">
 {if !$reply.note}
-<div class="quoteicon"><a href="#" onClick="quoteTicket('{if !$reply.id}{$ticketid}{/if}','{if $reply.id}{$reply.id}{/if}')"><img src="images/icons/quote.png" border="0" /></a>{if $reply.id} <input type="checkbox" name="rids[]" value="{$reply.id}" />{/if}</div>
+<div class="quoteicon"><a href="#" onClick="quoteTicket('{if !$reply.id}{$ticketid}{/if}','{if $reply.id}{$reply.id}{/if}'); return false;"><img src="images/icons/quote.png" border="0" /></a>{if $reply.id} <input type="checkbox" name="rids[]" value="{$reply.id}" />{/if}</div>
 {/if}
 <div class="postedon">{if $reply.note}{$reply.admin} posted a note{else}Posted{/if} {if $reply.friendlydate}on {$reply.friendlydate}{else}today{/if} at {$reply.friendlytime}</div>
 
@@ -485,8 +495,21 @@
 {foreach from=$reply.attachments key=num item=attachment}
 {if $thumbnails}
 <div class="ticketattachmentcontainer">
-<a href="../{$attachment.dllink}"{if $attachment.isImage} data-lightbox="image-{if $reply.id}{if $reply.note}n{else}r{/if}{$reply.id}{else}t{$ticketid}{/if}"{/if}><img src="../includes/thumbnail.php?{if $reply.id}{if $reply.note}nid={else}rid={/if}{$reply.id}{else}tid={$ticketid}{/if}&i={$num}" class="ticketattachmentthumb" /><br />
-<img src="images/icons/attachment.png" align="top" /> {$attachment.filename}</a><br /><small>{if $attachment.isImage}<a href="../{$attachment.dllink}">{lang key='support.download'}</a> | {/if}<a href="{$attachment.deletelink}" onclick="return confirm('{$_ADMINLANG.support.delattachment|escape:'javascript'}')" style="color:#cc0000">{$_ADMINLANG.support.remove}</a></small>
+    <a href="../{$attachment.dllink}"{if $attachment.isImage} data-lightbox="image-{if $reply.id}{if $reply.note}n{else}r{/if}{$reply.id}{else}t{$ticketid}{/if}"{/if}>
+        <span class="ticketattachmentthumbcontainer">
+            <img src="../includes/thumbnail.php?{if $reply.id}{if $reply.note}nid={else}rid={/if}{$reply.id}{else}tid={$ticketid}{/if}&i={$num}" class="ticketattachmentthumb" />
+        </span>
+        <span class="ticketattachmentinfo">
+            <img src="images/icons/attachment.png" align="top" />
+            {$attachment.filename}
+        </span>
+    </a>
+    <div class="ticketattachmentlinks">
+        <small>
+            {if $attachment.isImage}<a href="../{$attachment.dllink}">{lang key='support.download'}</a> | {/if}
+            <a href="{$attachment.deletelink}" onclick="return confirm('{$_ADMINLANG.support.delattachment|escape:'javascript'}')" style="color:#cc0000">{$_ADMINLANG.support.remove}</a>
+        </small>
+    </div>
 </div>
 {else}
 <a href="../{$attachment.dllink}"><img src="images/icons/attachment.png" align="absmiddle" /> {$attachment.filename}</a> <small>{if $attachment.isImage}<a href="../{$attachment.dllink}">{lang key='support.download'}</a> | {/if}<a href="{$attachment.deletelink}" onclick="return confirm('{$_ADMINLANG.support.delattachment|escape:'javascript'}')" style="color:#cc0000">{$_ADMINLANG.support.remove}</a></small><br />
@@ -521,4 +544,4 @@
 <input type="hidden" name="splitnotifyclient" id="splitnotifyclient" />
 </form>
 
-{$statusChangedModal}
+<script src="../assets/js/lightbox.js"></script>

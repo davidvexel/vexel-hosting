@@ -43,7 +43,7 @@ $agencia = formata_numero($dadosboleto["agencia"],4,0);
 $conta_cedente = formata_numero($dadosboleto["conta_cedente"],6,0);
 //dv da conta cedente
 $conta_cedente_dv = formata_numero($dadosboleto["conta_cedente_dv"],1,0);
-//carteira 
+//carteira
 $carteira = $dadosboleto["carteira"];
 //modalidade da conta
 $modalidade = formata_numero($dadosboleto["modalidade_conta"],2,0);
@@ -105,7 +105,7 @@ $dadosboleto["codigo_banco_com_dv"] = $codigo_banco_com_dv;
 
 function digitoVerificador_nossonumero($numero, $conta, $dv, $agencia, $modalidade) {
     $numext = $agencia.$modalidade."0".$conta.$dv.$numero;
-    
+
     for ($i = strlen($numext); $i > 0; $i--) {
         $numeros[$i] = substr($numext,$i-1,1);
         if ($i == 14){
@@ -125,10 +125,10 @@ function digitoVerificador_nossonumero($numero, $conta, $dv, $agencia, $modalida
         }
         $resul += $numeros[$i]*$n;
     }
-        
+
     $resto = $resul % 10;
     $dv = 10 - $resto;
-  if ($resto == 0) $dv=0;   
+  if ($resto == 0) $dv=0;
      return $dv;
 }
 
@@ -190,11 +190,11 @@ $altura = 50 ;
   $barcodes[7] = "00011" ;
   $barcodes[8] = "10010" ;
   $barcodes[9] = "01010" ;
-  for($f1=9;$f1>=0;$f1--){ 
-    for($f2=9;$f2>=0;$f2--){  
+  for($f1=9;$f1>=0;$f1--){
+    for($f2=9;$f2>=0;$f2--){
       $f = ($f1 * 10) + $f2 ;
       $texto = "" ;
-      for($i=1;$i<6;$i++){ 
+      for($i=1;$i<6;$i++){
         $texto .=  substr($barcodes[$f1],($i-1),1) . substr($barcodes[$f2],($i-1),1);
       }
       $barcodes[$f] = $texto;
@@ -258,7 +258,7 @@ function direita($entra,$comp){
 }
 
 function fator_vencimento($data) {
-    $data = split("/",$data);
+    $data = explode("/",$data);
     $ano = $data[2];
     $mes = $data[1];
     $dia = $data[0];
@@ -285,7 +285,7 @@ function _dateToDays($year,$month,$day) {
                 $day +  1721119);
 }
 
-function modulo_10($num) { 
+function modulo_10($num) {
         $numtotal10 = 0;
         $fator = 2;
 
@@ -295,7 +295,7 @@ function modulo_10($num) {
             $numeros[$i] = substr($num,$i-1,1);
             // Efetua multiplicacao do numero pelo (falor 10)
             // 2002-07-07 01:33:34 Macete para adequar ao Mod10 do Itaú
-            $temp = $numeros[$i] * $fator; 
+            $temp = $numeros[$i] * $fator;
             $temp0=0;
             foreach (preg_split('//',$temp,-1,PREG_SPLIT_NO_EMPTY) as $k=>$v){ $temp0+=$v; }
             $parcial10[$i] = $temp0; //$numeros[$i] * $fator;
@@ -307,7 +307,7 @@ function modulo_10($num) {
                 $fator = 2; // intercala fator de multiplicacao (modulo 10)
             }
         }
-        
+
         // várias linhas removidas, vide função original
         // Calculo do modulo 10
         $resto = $numtotal10 % 10;
@@ -315,9 +315,9 @@ function modulo_10($num) {
         if ($resto == 0) {
             $digito = 0;
         }
-        
+
         return $digito;
-        
+
 }
 
 function modulo_11($num, $base=9, $r=0)  {
@@ -326,9 +326,9 @@ function modulo_11($num, $base=9, $r=0)  {
      *           Pablo Costa <pablo@users.sourceforge.net>
      *
      *   Função:
-     *    Calculo do Modulo 11 para geracao do digito verificador 
-     *    de boletos bancarios conforme documentos obtidos 
-     *    da Febraban - www.febraban.org.br 
+     *    Calculo do Modulo 11 para geracao do digito verificador
+     *    de boletos bancarios conforme documentos obtidos
+     *    da Febraban - www.febraban.org.br
      *
      *   Entrada:
      *     $num: string numérica para a qual se deseja calcularo digito verificador;
@@ -341,7 +341,7 @@ function modulo_11($num, $base=9, $r=0)  {
      *   Observações:
      *     - Script desenvolvido sem nenhum reaproveitamento de código pré existente.
      *     - Assume-se que a verificação do formato das variáveis de entrada é feita antes da execução deste script.
-     */                                        
+     */
 
     $soma = 0;
     $fator = 2;
@@ -355,7 +355,7 @@ function modulo_11($num, $base=9, $r=0)  {
         // Soma dos digitos
         $soma += $parcial[$i];
         if ($fator == $base) {
-            // restaura fator de multiplicacao para 2 
+            // restaura fator de multiplicacao para 2
             $fator = 1;
         }
         $fator++;
@@ -376,7 +376,7 @@ function modulo_11($num, $base=9, $r=0)  {
 }
 
 function monta_linha_digitavel($codigo) {
-        
+
         // Posição    Conteúdo
         // 1 a 3    Número do banco
         // 4        Código da Moeda - 9 para Real
@@ -423,7 +423,7 @@ function monta_linha_digitavel($codigo) {
         $p2 = substr($codigo, 9, 10);
         $campo5 = "$p1$p2";
 
-        return "$campo1 $campo2 $campo3 $campo4 $campo5"; 
+        return "$campo1 $campo2 $campo3 $campo4 $campo5";
 }
 
 function geraCodigoBanco($numero) {
@@ -432,7 +432,7 @@ function geraCodigoBanco($numero) {
     return $parte1 . "-" . $parte2;
 }
 
-function geraDv43($num) { 
+function geraDv43($num) {
         $numtotal10 = 0;
         $fator = 2;
 
@@ -442,7 +442,7 @@ function geraDv43($num) {
             $numeros[$i] = substr($num,$i-1,1);
             // Efetua multiplicacao do numero pelo (falor 10)
             // 2002-07-07 01:33:34 Macete para adequar ao Mod10 do Itaú
-            $temp = $numeros[$i] * $fator; 
+            $temp = $numeros[$i] * $fator;
             if ($temp > 9) $temp=$temp-9; // Regra do banco NossaCaixa
             $temp0=0;
             foreach (preg_split('//',$temp,-1,PREG_SPLIT_NO_EMPTY) as $k=>$v){ $temp0+=$v; }
@@ -455,11 +455,11 @@ function geraDv43($num) {
                 $fator = 2; // intercala fator de multiplicacao (modulo 10)
             }
         }
-        
+
         // várias linhas removidas, vide função original
         // Calculo do modulo 10
         $resto = $numtotal10 % 10;
-        
+
         if ($resto == 0) {
             $dv = 0;
         } else {
@@ -467,7 +467,7 @@ function geraDv43($num) {
         }
 
         return $dv;
-        
+
 }
 
 function geraDv44($numero) {
@@ -486,6 +486,6 @@ function geraDv44($numero) {
       $dv44 = geraDv44($numero);
         $dv=$dv1.$dv44;
     }
-        
+
     return $dv;
 }

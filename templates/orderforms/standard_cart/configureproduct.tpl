@@ -29,7 +29,7 @@ var _localLang = {
 
             {include file="orderforms/standard_cart/sidebar-categories-collapsed.tpl"}
 
-            <form id="frmConfigureProduct" onsubmit="catchEnter(event);">
+            <form id="frmConfigureProduct">
                 <input type="hidden" name="configure" value="true" />
                 <input type="hidden" name="i" value="{$i}" />
 
@@ -194,12 +194,17 @@ var _localLang = {
                                                         <input type="text" name="configoption[{$configoption.id}]" value="{if $configoption.selectedqty}{$configoption.selectedqty}{else}{$configoption.qtyminimum}{/if}" id="inputConfigOption{$configoption.id}" class="form-control" />
                                                         <script>
                                                             var sliderTimeoutId = null;
+                                                            var sliderRangeDifference = {$configoption.qtymaximum} - {$configoption.qtyminimum};
+                                                            // The largest size that looks nice on most screens.
+                                                            var sliderStepThreshold = 25;
+                                                            // Check if there are too many to display individually.
+                                                            var setLargerMarkers = sliderRangeDifference > sliderStepThreshold;
 
                                                             jQuery("#inputConfigOption{$configoption.id}").ionRangeSlider({
                                                                 min: {$configoption.qtyminimum},
                                                                 max: {$configoption.qtymaximum},
                                                                 grid: true,
-                                                                grid_snap: true,
+                                                                grid_snap: setLargerMarkers ? false : true,
                                                                 onChange: function() {
                                                                     if (sliderTimeoutId) {
                                                                         clearTimeout(sliderTimeoutId);
@@ -255,11 +260,17 @@ var _localLang = {
 
                         {/if}
 
-                        {if $addons}
+                        {if $addons || count($addonsPromoOutput) > 0}
 
                             <div class="sub-heading">
                                 <span>{$LANG.cartavailableaddons}</span>
                             </div>
+
+                            {foreach $addonsPromoOutput as $output}
+                                <div>
+                                    {$output}
+                                </div>
+                            {/foreach}
 
                             <div class="row addon-products">
                                 {foreach $addons as $addon}
@@ -303,7 +314,7 @@ var _localLang = {
                                 <div class="summary-container" id="producttotal"></div>
                             </div>
                             <div class="text-center">
-                                <button type="button" id="btnCompleteProductConfig" class="btn btn-primary btn-lg" onclick="addtocart()">
+                                <button type="submit" id="btnCompleteProductConfig" class="btn btn-primary btn-lg">
                                     {$LANG.continue}
                                     <i class="fa fa-arrow-circle-right"></i>
                                 </button>
