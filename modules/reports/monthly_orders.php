@@ -1,69 +1,58 @@
 <?php
 
 if (!defined("WHMCS"))
-    die("This file cannot be accessed directly");
+	die("This file cannot be accessed directly");
 
-$reportdata["title"] = "Sales by Product for ".$months[(int)$month]." ".$year;
-$reportdata["description"] = "This report gives a breakdown of the number of units sold of each product per month";
+$months = array('January','February','March','April','May','June','July','August','September','October','November','December');
 
-$reportdata["currencyselections"] = true;
-
-$total = 0;
-
-$datefilter = $year.'-'.$month.'%';
-
-$reportdata["tableheadings"] = array("Product Name","Units Sold","Value");
-
-$result = select_query("tblproducts","tblproducts.id,tblproducts.name,tblproductgroups.name AS groupname","","tblproductgroups`.`order` ASC,`tblproducts`.`order` ASC,`name","ASC","","tblproductgroups ON tblproducts.gid=tblproductgroups.id");
-while($data = mysql_fetch_array($result)) {
-    $pid = $data["id"];
-    $group = $data["groupname"];
-    $prodname = $data["name"];
-
-    if ($group!=$prevgroup) $reportdata["tablevalues"][] = array("**<b>$group</b>");
-
-    $result2 = select_query("tblhosting","COUNT(*),SUM(tblhosting.firstpaymentamount)","tblhosting.packageid='$pid' AND tblhosting.domainstatus='Active' AND tblhosting.regdate LIKE '".$datefilter."' AND tblclients.currency='$currencyid'","","","","tblclients ON tblclients.id=tblhosting.userid");
-    $data = mysql_fetch_array($result2);
-    $number = $data[0];
-    $amount = $data[1];
-
-    $total += $amount;
-
-    $amount = formatCurrency($amount);
-
-    $reportdata["tablevalues"][] = array($prodname,$number,$amount);
-
-    $prevgroup = $group;
-
+if ($month=="") {
+	$month=date("m");
+	$year=date("Y");
 }
 
-$reportdata["tablevalues"][] = array("**<b>Addons</b>");
+$pmonth = str_pad($month, 2, "0", STR_PAD_LEFT);  
 
-$result = select_query("tbladdons","","","name","ASC");
-while($data = mysql_fetch_array($result)) {
+$reportdata["title"] = "New Orders for ".$months[$month-1]." ".$year;
+$reportdata["description"] = "This report shows all new orders for a given month";
 
-    $pid = $data["id"];
-    $prodname = $data["name"];
+$query = "SELECT tblorders.*,tblclients.firstname,tblclients.lastname,tblpaymentgateways.value FROM tblorders INNER JOIN tblclients ON tblclients.id=tblorders.userid INNER JOIN tblpaymentgateways ON tblpaymentgateways.gateway=tblorders.paymentmethod WHERE tblpaymentgateways.setting='name' AND date like '$year-$pmonth%' ORDER BY date ASC";
+$result = mysql_query($query);
+$num_rows = mysql_num_rows($result);
 
-    $result2 = select_query("tblhostingaddons","COUNT(*),SUM(tblhostingaddons.setupfee+tblhostingaddons.recurring)","tblhostingaddons.addonid='$pid' AND tblhostingaddons.status='Active' AND tblhostingaddons.regdate LIKE '$datefilter' AND tblclients.currency='$currencyid'","","","","tblhosting ON tblhosting.id=tblhostingaddons.hostingid INNER JOIN tblclients ON tblclients.id=tblhosting.userid");
-    $data = mysql_fetch_array($result2);
-    $number = $data[0];
-    $amount = $data[1];
+$reportdata["headertext"] = "Total New Orders: $num_rows";
 
-    $total += $amount;
+$reportdata["tableheadings"] = array("Order ID","Order #","Order Date","Client","Amount","Promo Code","Payment Method","Status");
 
-    $amount = formatCurrency($amount);
-
-    $reportdata["tablevalues"][] = array($prodname,$number,$amount);
-
-    $prevgroup = $group;
-
+while ($data = mysql_fetch_array($result)) {
+	$id = $data["id"];
+	$ordernum = $data["ordernum"];
+	$userid = $data["userid"];
+	$date = $data["date"];
+	$amount = $CONFIG["CurrencySymbol"].$data["amount"];
+	$promo = $data["promocode"];
+	$paymentmethod = $data["value"];
+	$status = $data["status"];
+	$date = fromMySQLDate($date);
+	$currency = getCurrency($userid);
+    $clientname = $data["firstname"]." ".$data["lastname"];
+	if ($promo=="") {
+		$promo="-";
+	}
+	$reportdata["tablevalues"][] = array($id,$ordernum,$date,$clientname,formatCurrency($amount),$promo,$paymentmethod,$status);
 }
 
-$total = formatCurrency($total);
-
-$reportdata["footertext"] = '<p align="center"><strong>Total: '.$total.'</strong></p>';
-
-$reportdata["monthspagination"] = true;
+$data["footertext"]="<table width=90% align=center><tr><td>";
+if ($month=="1") {
+	$data["footertext"].="<a href=\"$PHP_SELF?report=$report&month=12&year=".($year-1)."\"><< December ".($year-1)."</a>";
+} else {
+	$data["footertext"].="<a href=\"$PHP_SELF?report=$report&month=".($month-1)."&year=".$year."\"><< ".$months[($month-2)]." $year</a>";
+}
+$data["footertext"].="</td><td align=right>";
+if ($month=="12") {
+	$data["footertext"].="<a href=\"$PHP_SELF?report=$report&month=1&year=".($year+1)."\">January ".($year+1)." >></a>";
+} else {
+	$data["footertext"].="<a href=\"$PHP_SELF?report=$report&month=".($month+1)."&year=".$year."\">".$months[(($month+1)-1)]." $year >></a>";
+}
+$data["footertext"].="</td></tr></table>";
 
 ?>

@@ -1,7 +1,7 @@
 <?php
 
 if (!defined("WHMCS"))
-    die("This file cannot be accessed directly");
+	die("This file cannot be accessed directly");
 
 $months = array('January','February','March','April','May','June','July','August','September','October','November','December');
 
@@ -14,7 +14,7 @@ $reportdata["tableheadings"] = array("Month","Monthly","Quarterly","Semi-Annual"
 
 $totals = array();
 
-$result = select_query("tblhosting","",array("domainstatus"=>"Active","currency"=>(int)$currencyid),"","","","tblclients ON tblclients.id=tblhosting.userid");
+$result = select_query("tblhosting","",array("domainstatus"=>"Active","currency"=>$currencyid),"","","","tblclients ON tblclients.id=tblhosting.userid");
 while ($data = mysql_fetch_array($result)) {
     $recurringamount = $data["amount"];
     $nextduedate = $data["nextduedate"];
@@ -42,7 +42,7 @@ while ($data = mysql_fetch_array($result)) {
     }
 }
 
-$result = select_query("tbldomains","",array("tbldomains.status"=>"Active","currency"=>(int)$currencyid),"","","","tblclients ON tblclients.id=tbldomains.userid");
+$result = select_query("tbldomains","",array("tbldomains.status"=>"Active","currency"=>$currencyid),"","","","tblclients ON tblclients.id=tbldomains.userid");
 while ($data = mysql_fetch_array($result)) {
     $recurringamount = $data["recurringamount"];
     $nextduedate = $data["nextduedate"];
@@ -70,19 +70,11 @@ foreach ($months_array AS $year=>$month) {
     foreach ($month AS $mon=>$x) {
         $monthlyincome = $totals[$year][$mon][1]+$totals[$year][$mon][3]+$totals[$year][$mon][6]+$totals[$year][$mon][12]+$totals[$year][$mon][24];
         $overallincome += $monthlyincome;
-        $chartdata['rows'][] = array('c'=>array(array('v'=>$months[$mon-1]." ".$year),array('v'=>$overallincome,'f'=>formatCurrency($overallincome))));
         $reportdata["tablevalues"][] = array($months[$mon-1]." ".$year,formatCurrency($totals[$year][$mon][1]),formatCurrency($totals[$year][$mon][3]),formatCurrency($totals[$year][$mon][6]),formatCurrency($totals[$year][$mon][12]),formatCurrency($totals[$year][$mon][24]),formatCurrency($monthlyincome));
 
     }
 }
 
-$reportdata["footertext"] = "<p align=\"center\"><b>Total Projected Income: ".formatCurrency($overallincome)."</b></p>";
-
-$chartdata['cols'][] = array('label'=>'Month','type'=>'string');
-$chartdata['cols'][] = array('label'=>'Cumulative Income Forecast Total','type'=>'number');
-
-#$args['colors'] = '#80D044,#F9D88C,#CC0000';
-
-$reportdata["headertext"] = $chart->drawChart('Area',$chartdata,$args,'450px');
+$data["footertext"] = "<p align=\"center\"><b>Total Projected Income: ".formatCurrency($overallincome)."</b></p>";
 
 ?>

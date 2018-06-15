@@ -1,564 +1,439 @@
+<script language="javascript">
+var ticketid = '{$ticketid}';
+var pagefilename = '{$smarty.server.PHP_SELF}';
+var ticketcontent = "";
+var selectedTab;
+{literal}
+function doDeleteReply(id) {
+    if (confirm("{/literal}{$_ADMINLANG.support.delreplysure}{literal}")) {
+        window.location=pagefilename+'?action=viewticket&id='+ticketid+'&sub=del&idsd='+id;
+    }
+}
+function doDeleteTicket() {
+    if (confirm("{/literal}{$_ADMINLANG.support.delticketsure}{literal}")) {
+        window.location=pagefilename+'?sub=deleteticket&id='+ticketid;
+    }
+}
+function doDeleteNote(id) {
+    if (confirm("{/literal}{$_ADMINLANG.support.delnotesure}{literal}")) {
+        window.location=pagefilename+'?action=viewticket&id='+ticketid+'&sub=delnote&idsd='+id;
+    }
+}
+function quoteTicket(id,ids) {
+    $(".tab").removeClass("tabselected");
+    $("#tab0").addClass("tabselected");
+    $(".tabbox").hide();
+    $("#tab0box").show();
+    $.post("supporttickets.php", { action: "getquotedtext", id: id, ids: ids },
+    function(data){
+        $("#replymessage").val(data+"\n\n"+$("#replymessage").val());
+    });
+    return false;
+}
+function selectpredefcat(catid) {
+    $.post("supporttickets.php", { action: "loadpredefinedreplies", cat: catid },
+    function(data){
+        $("#prerepliescontent").html(data);
+    });
+}
+function selectpredefreply(artid) {
+    $.post("supporttickets.php", { action: "getpredefinedreply", id: artid },
+    function(data){
+        $("#replymessage").addToReply(data);
+    });
+    $("#prerepliescontainer").slideToggle();
+}
+function searchselectclient(userid) {
+    $("#clientsearchval").val(userid);
+	$("#ticketclientsearchresults").slideUp("slow");
+    $("#clientsearchcancel").fadeOut();
+}
+
+$(document).ready(function(){
+
+$(".tabbox").css("display","none");
+$(".tab").click(function(){
+    var elid = $(this).attr("id");
+    if (elid != selectedTab) {
+        $(".tab").removeClass("tabselected");
+        $("#"+elid).addClass("tabselected");
+        $(".tabbox").slideUp();
+        $("#"+elid+"box").slideDown();
+        $("#tab").val(elid.substr(3));
+        selectedTab = elid;
+    }
+});
+selectedTab = "tab0";
+$("#tab0").addClass("tabselected");
+$("#tab0box").css("display","");
+$(".editbutton").click(function () {
+    var butid = $(this).attr("id");
+    ticketcontent = $("#"+butid+"_box").html();
+    var browsername = navigator.appName;
+    if (browsername == "Microsoft Internet Explorer") {
+        var ticketcontentpassback = ticketcontent.replace(/<br>/gi, '\n');
+    } else {
+        var ticketcontentpassback = ticketcontent.replace(/<br>/gi, '');
+    }
+    $("#"+butid+"_box").html("<textarea rows=\"10\" style=\"width:99%\" id=\""+butid+"_box_text\">"+ticketcontentpassback+"</textarea>");
+    $(".editticketbuttons"+butid).toggle();
+});
+$(".savebutton").click(function () {
+    var butid = $(this).attr("id");
+    var newticketcontent = $("#"+butid+"_box_text").val();
+    var ticketcontentpassback = newticketcontent.replace(/\n/gi, '<br>');
+    $("#"+butid+"_box").html(ticketcontentpassback);
+    $.post("supporttickets.php", { action: "updatereply", text: newticketcontent, id: butid });
+    $(".editticketbuttons"+butid).toggle();
+});
+$(".cancelbutton").click(function () {
+    var butid = $(this).attr("id");
+    $("#"+butid+"_box").html(ticketcontent);
+    $(".editticketbuttons"+butid).toggle();
+});
+$("#replymessage").focus(function () {
+	$.post("supporttickets.php", { action: "makingreply", id: ticketid },
+	function(data){
+        $("#replyingadmin").html(data);
+    });
+    return false;
+});
+$("#replyfrm").submit(function () {
+	var status = $("#ticketstatus").val();
+	var response = $.ajax({
+		type: "POST",
+		url: "supporttickets.php?action=checkstatus",
+		data: "id="+ticketid+"&ticketstatus="+status,
+		async: false
+	}).responseText;
+	if (response == "true") {
+    	return true;
+	} else {
+		if (confirm("{/literal}{$_ADMINLANG.support.statuschanged}{literal}\n\n{/literal}{$_ADMINLANG.support.stillsubmit}{literal}")) {
+	        return true;
+	    }
+	    return false;
+	}
+});
+
+$(window).unload( function () {
+    $.post("supporttickets.php", { action: "endreply", id: ticketid });
+});
+$("#insertpredef").click(function () {
+    $("#prerepliescontainer").slideToggle();
+    return false;
+});
+$("#addfileupload").click(function () {
+    $("#fileuploads").append("<input type=\"file\" name=\"attachments[]\" size=\"85\"><br />");
+    return false;
+});
+$("#ticketstatus").change(function () {
+    $.post("supporttickets.php", { action: "changestatus", id: ticketid, status: this.options[this.selectedIndex].text });
+});
+$("#predefq").keyup(function () {
+    var intellisearchlength = $("#predefq").val().length;
+    if (intellisearchlength>2) {
+    $.post("supporttickets.php", { action: "loadpredefinedreplies", predefq: $("#predefq").val() },
+        function(data){
+            $("#prerepliescontent").html(data);
+        });
+    }
+});
+
+$("#clientsearchval").keyup(function () {
+	var ticketuseridsearchlength = $("#clientsearchval").val().length;
+	if (ticketuseridsearchlength>2) {
+	$.post("search.php", { ticketclientsearch: 1, value: $("#clientsearchval").val() },
+	    function(data){
+            if (data) {
+                $("#ticketclientsearchresults").html(data);
+                $("#ticketclientsearchresults").slideDown("slow");
+                $("#clientsearchcancel").fadeIn();
+            }
+        });
+	}
+});
+$("#clientsearchcancel").click(function () {
+    $("#ticketclientsearchresults").slideUp("slow");
+    $("#clientsearchcancel").fadeOut();
+});
+
+});
+{/literal}
+</script>
+
 {$infobox}
 
-<h2 class="pull-left">
-    #{$tid} - {$subject}
-    <select name="ticketstatus" id="ticketstatus" class="form-control select-inline">
-        {foreach $statuses as $statusitem}
-            <option value="{$statusitem.title}"{if $statusitem.title eq $status} selected{/if} style="color:{$statusitem.color}">{$statusitem.title}</option>
-        {/foreach}
-    </select>
-    <a href="supporttickets.php#" onclick="$('#ticketstatus').val('Closed');$('#ticketstatus').trigger('change');return false">{$_ADMINLANG.global.close}</a>
-</h2>
-
-<span class="ticketlastreply">{$_ADMINLANG.support.lastreply}: {$lastreply}</span>
-<input type="hidden" id="lastReplyId" value="{$lastReplyId}" />
-<input type="hidden" id="currentSubject" value="{$subject}" />
-<input type="hidden" id="currentCc" value="{$cc}" />
-<input type="hidden" id="currentUserId" value="{$userid}" />
-<input type="hidden" id="currentStatus" value="{$status}" />
-
-<div class="clearfix"></div>
-
-<div class="client-notes">
-    {foreach $clientnotes as $note}
-        <div class="panel panel-warning">
-            <div class="panel-heading">
-                {$note.adminuser}
-                <div class="pull-right">
-                    {$note.modified}
-                    &nbsp;
-                    <a href="clientsnotes.php?userid={$note.userid}&action=edit&id={$note.id}" class="btn btn-default btn-xs">
-                        <i class="fa fa-pencil"></i>
-                        {$_ADMINLANG.global.edit}
-                    </a>
-                </div>
-            </div>
-            <div class="panel-body">
-                {$note.note}
-            </div>
-        </div>
-    {/foreach}
+<div id="replyingadmin">
+{if $replyingadmin}<div class="errorbox">{$replyingadmin.name} {$_ADMINLANG.support.viewedandstarted} @ {$replyingadmin.time}</div>{/if}
 </div>
 
-{foreach $addons_html as $addon_html}
-    <div class="addon-html-output-container">
-        {$addon_html}
-    </div>
+<h2>#{$tid} - {$subject} <select name="ticketstatus" id="ticketstatus" style="font-size:18px;">
+{foreach from=$statuses item=statusitem}
+<option{if $statusitem.title eq $status} selected{/if} style="color:{$statusitem.color}">{$statusitem.title}</option>
+{/foreach}
+</select></h2>
+
+<p>{$_ADMINLANG.fields.client}: {if $userid}<a href="clientssummary.php?userid={$userid}"{if $clientgroupcolour} style="background-color:{$clientgroupcolour}"{/if} target="_blank">{$clientname}</a>{if $contactid} (<a href="clientscontacts.php?userid={$userid}&contactid={$contactid}"{if $clientgroupcolour} style="background-color:{$clientgroupcolour}"{/if} target="_blank">{$contactname}</a>){/if}{else}{$_ADMINLANG.support.notregclient}{/if} | {$_ADMINLANG.support.lastreply}: {$lastreply}</p>
+
+{foreach from=$addons_html item=addon_html}
+<div style="margin-bottom:15px;">{$addon_html}</div>
 {/foreach}
 
-<div class="alert alert-info text-center{if !$replyingadmin} hidden{/if}" role="alert" id="replyingAdminMsg">
-    {$replyingadmin.name} {$_ADMINLANG.support.viewedandstarted} @ {$replyingadmin.time}
+<div id="tabs">
+    <ul>
+        <li id="tab0" class="tab"><a href="javascript:;">{$_ADMINLANG.support.addreply}</a></li>
+        <li id="tab1" class="tab"><a href="javascript:;">{$_ADMINLANG.support.addnote}</a></li>
+        <li id="tab2" class="tab"><a href="javascript:;">{$_ADMINLANG.setup.customfields}</a></li>
+        <li id="tab3" class="tab"><a href="javascript:;">{$_ADMINLANG.fields.options}</a></li>
+        <li id="tab4" class="tab"><a href="javascript:;">{$_ADMINLANG.clientsummary.log}</a></li>
+    </ul>
 </div>
 
-<ul class="nav nav-tabs admin-tabs" role="tablist">
-    <li class="active"><a href="#tab0" role="tab" data-toggle="tab">{$_ADMINLANG.support.addreply}</a></li>
-    <li><a href="#tab1" role="tab" data-toggle="tab">{$_ADMINLANG.support.addnote}</a></li>
-    <li><a href="#tab2" role="tab" data-toggle="tab" onclick="loadTab(2, 'customfields', 0)">{$_ADMINLANG.setup.customfields}</a></li>
-    <li><a href="#tab3" role="tab" data-toggle="tab" onclick="loadTab(3, 'tickets', 0)">{$_ADMINLANG.support.clienttickets}</a></li>
-    <li><a href="#tab4" role="tab" data-toggle="tab" onclick="loadTab(4, 'clientlog', 0)">{$_ADMINLANG.support.clientlog}</a></li>
-    <li><a href="#tab5" role="tab" data-toggle="tab">{$_ADMINLANG.fields.options}</a></li>
-    <li><a href="#tab6" role="tab" data-toggle="tab" onclick="loadTab(6, 'ticketlog', 0)">{$_ADMINLANG.support.ticketlog}</a></li>
-</ul>
-<div class="tab-content admin-tabs">
-  <div class="tab-pane active" id="tab0">
+<div id="tab0box" class="tabbox">
+    <div id="tab_content">
 
-    <form method="post" action="{$smarty.server.PHP_SELF}?action=viewticket&id={$ticketid}" enctype="multipart/form-data" name="replyfrm" id="frmAddTicketReply" data-no-clear="true">
-        <input type="hidden" name="postreply" value="1" />
+<form method="post" action="{$smarty.server.PHP_SELF}?action=viewticket&id={$ticketid}" enctype="multipart/form-data" name="replyfrm" id="replyfrm">
 
-        <textarea name="message" id="replymessage" rows="14" class="form-control bottom-margin-10">{if $signature}
+<textarea name="message" id="replymessage" rows="14" style="width:100%">
 
 
+{$signature}</textarea>
 
-{$signature}{/if}</textarea>
+<br /><img src="images/spacer.gif" height="8" width="1" /><br />
 
-        <div class="row ticket-reply-edit-options">
-            <div class="col-sm-3">
-                <select name="deptid" class="form-control selectize-select" data-value-field="id">
-                    <option value="nochange" selected>- {$_ADMINLANG.support.setDepartment} -</option>
-                    {foreach $departments as $department}
-                        <option value="{$department.id}">{$department.name}</option>
-                    {/foreach}
-                </select>
-            </div>
-            <div class="col-sm-3">
-                <select name="flagto" class="form-control selectize-select" data-value-field="id">
-                    <option value="nochange" selected>- {$_ADMINLANG.support.setAssignment} -</option>
-                    <option value="0">{$_ADMINLANG.global.none}</option>
-                    {foreach $staff as $staffmember}
-                        <option value="{$staffmember.id}">{$staffmember.name}</option>
-                    {/foreach}
-                </select>
-            </div>
-            <div class="col-sm-3">
-                <select name="priority" class="form-control selectize-select" data-value-field="id">
-                    <option value="nochange" selected>- {$_ADMINLANG.support.setPriority} -</option>
-                    <option value="High">{$_ADMINLANG.status.high}</option>
-                    <option value="Medium">{$_ADMINLANG.status.medium}</option>
-                    <option value="Low">{$_ADMINLANG.status.low}</option>
-                </select>
-            </div>
-            <div class="col-sm-3">
-                <select name="status" class="form-control selectize-select" data-value-field="id">
-                    {foreach $statuses as $statusitem}
-                        <option value="{$statusitem.title}" style="color:{$statusitem.color}"{if $statusitem.title eq "Answered"} selected{/if}>{$statusitem.title}</option>
-                    {/foreach}
-                </select>
-            </div>
-        </div>
-        <div class="ticket-reply-submit-options clearfix">
-            <div class="pull-left">
-                <button type="button" class="btn btn-default btns-padded" id="btnAttachFiles">
-                    <i class="fa fa-file-o"></i>
-                    &nbsp;
-                    {$_ADMINLANG.support.attachFiles}
-                </button>
-                <button type="button" class="btn btn-default btns-padded" id="insertpredef">
-                    <i class="fa fa-pencil"></i>
-                    &nbsp;
-                    {$_ADMINLANG.support.insertpredef}
-                </button>
-                <div class="dropdown btns-padded">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMoreOptions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        <i class="fa fa-cog"></i>
-                        {$_ADMINLANG.support.moreOptions}
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMoreOptions">
-                        <li><a href="#" id="btnInsertKbArticle">{$_ADMINLANG.support.insertkblink}</a></li>
-                        <li><a href="#" id="btnAddBillingEntry">{$_ADMINLANG.support.addbilling}</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="pull-right">
-                <button type="submit" class="btn btn-primary pull-right" name="postreply" id="btnPostReply" value="true">
-                    <i class="fa fa-reply"></i>
-                    {$_ADMINLANG.support.reply}
-                </button>
-                <div class="return-to-ticket-list">
-                    <label class="checkbox-inline">
-                        <input type="checkbox" name="returntolist" value="1"{if $returnToList == true} checked{/if} />
-                        {$_ADMINLANG.support.returnToTicketList}
-                    </label>
-                </div>
-            </div>
-            <div class="clearfix"></div>
-            <div id="ticketPredefinedReplies" class="inner-container">
-                <div class="predefined-replies-search">
-                    <input type="text" id="predefq" size="25" value="{$_ADMINLANG.global.search}" onfocus="this.value=(this.value=='{$_ADMINLANG.global.search}') ? '' : this.value;" onblur="this.value=(this.value=='') ? '{$_ADMINLANG.global.search}' : this.value;" />
-                </div>
-                <div id="prerepliescontent">
-                    {$predefinedreplies}
-                </div>
-            </div>
-            <div id="ticketReplyAttachments" class="inner-container">
-                <div class="row">
-                    <div class="col-sm-9">
-                        <input type="file" name="attachments[]" class="form-control" />
-                        <div id="fileuploads"></div>
-                    </div>
-                    <div class="col-sm-3">
-                        <a href="#" id="add-file-upload" class="btn btn-success btn-block add-file-upload" data-more-id="fileuploads"><i class="fa fa-plus"></i> {$_ADMINLANG.support.addmore}</a>
-                    </div>
-                </div>
-            </div>
-            <div id="ticketReplyBillingEntry" class="inner-container">
-                <table class="form" width="100%" border="0" cellspacing="2" cellpadding="3">
-                    <tr>
-                        <td class="fieldlabel">
-                            {$_ADMINLANG.support.addbilling}
-                        </td>
-                        <td class="fieldarea">
-                            <div class="form-inline">
-                                <input type="text" name="billingdescription" size="50" placeholder="{$_ADMINLANG.support.toinvoicedes}" class="form-control" /> @ <input type="text" name="billingamount" size="10" placeholder="{$_ADMINLANG.fields.amount}" class="form-control" />
-                                <select name="billingaction" class="form-control select-inline">
-                                    <option value="3" /> {$_ADMINLANG.billableitems.invoiceimmediately}</option>
-                                    <option value="0" /> {$_ADMINLANG.billableitems.dontinvoicefornow}</option>
-                                    <option value="1" /> {$_ADMINLANG.billableitems.invoicenextcronrun}</option>
-                                    <option value="2" /> {$_ADMINLANG.billableitems.addnextinvoice}</option>
-                                </select>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
+<table class="form" width="100%" border="0" cellspacing="2" cellpadding="3">
+<tr><td width="15%" class="fieldlabel">{$_ADMINLANG.support.postreply}</td><td class="fieldarea"><select name="postaction">
+<option value="return">{$_ADMINLANG.support.setansweredreturn}
+<option value="answered">{$_ADMINLANG.support.setansweredremain}
+{foreach from=$statuses item=statusitem}
+{if $statusitem.id > 4}<option value="setstatus{$statusitem.id}">{$_ADMINLANG.support.setto} {$statusitem.title} {$_ADMINLANG.support.andremain}</option>{/if}
+{/foreach}
+<option value="close">{$_ADMINLANG.support.closereturn}
+<option value="note">{$_ADMINLANG.support.addprivatenote}
+</select>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#" onClick="window.open('supportticketskbarticle.php','kbartwnd','width=500,height=400,scrollbars=yes');return false">{$_ADMINLANG.support.insertkblink}</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#" id="insertpredef">{$_ADMINLANG.support.insertpredef}</a>
+</td></tr>
+<tr><td class="fieldlabel">{$_ADMINLANG.support.attachments}</td><td class="fieldarea"><input type="file" name="attachments[]" size="85"> <a href="#" id="addfileupload"><img src="images/icons/add.png" align="absmiddle" border="0" /> {$_ADMINLANG.support.addmore}</a><br /><div id="fileuploads"></div></td></tr>
+{if $userid}<tr><td class="fieldlabel">{$_ADMINLANG.support.addbilling}</td><td class="fieldarea"><input type="text" name="billingdescription" size="60" value="{$_ADMINLANG.support.toinvoicedes}" onfocus="if(this.value=='{$_ADMINLANG.support.toinvoicedes}')this.value=''" /> @ <input type="text" name="billingamount" size="10" value="{$_ADMINLANG.fields.amount}" /> <select name="billingaction">
+<option value="3" /> {$_ADMINLANG.billableitems.invoiceimmediately}</option>
+<option value="0" /> {$_ADMINLANG.billableitems.dontinvoicefornow}</option>
+<option value="1" /> {$_ADMINLANG.billableitems.invoicenextcronrun}</option>
+<option value="2" /> {$_ADMINLANG.billableitems.addnextinvoice}</option>
+</select></td></tr>{/if}
+</table>
 
-    </form>
-
-  </div>
-  <div class="tab-pane" id="tab1">
-
-    <form method="post" action="{$smarty.server.PHP_SELF}?action=viewticket&id={$ticketid}" enctype="multipart/form-data" id="frmAddTicketNote" data-no-clear="false">
-        <input type="hidden" name="postaction" value="note" />
-
-        <textarea name="message" id="replynote" rows="14" class="form-control"></textarea>
-
-        <div class="row ticket-reply-edit-options">
-            <div class="col-sm-3">
-                <select name="deptid" class="form-control selectize-select" data-value-field="id">
-                    <option value="nochange" selected>- {$_ADMINLANG.support.setDepartment} -</option>
-                    {foreach $departments as $department}
-                        <option value="{$department.id}">{$department.name}</option>
-                    {/foreach}
-                </select>
-            </div>
-            <div class="col-sm-3">
-                <select name="flagto" class="form-control selectize-select" data-value-field="id">
-                    <option value="nochange" selected>- {$_ADMINLANG.support.setAssignment} -</option>
-                    <option value="0">{$_ADMINLANG.global.none}</option>
-                    {foreach $staff as $staffmember}
-                        <option value="{$staffmember.id}">{$staffmember.name}</option>
-                    {/foreach}
-                </select>
-            </div>
-            <div class="col-sm-3">
-                <select name="priority" class="form-control selectize-select" data-value-field="id">
-                    <option value="nochange" selected>- {$_ADMINLANG.support.setPriority} -</option>
-                    <option value="High">{$_ADMINLANG.status.high}</option>
-                    <option value="Medium">{$_ADMINLANG.status.medium}</option>
-                    <option value="Low">{$_ADMINLANG.status.low}</option>
-                </select>
-            </div>
-            <div class="col-sm-3">
-                <select name="status" class="form-control selectize-select" data-value-field="id">
-                    <option value="nochange" selected>- {$_ADMINLANG.support.setStatus} -</option>
-                    {foreach $statuses as $statusitem}
-                        <option value="{$statusitem.title}" style="color:{$statusitem.color}">{$statusitem.title}</option>
-                    {/foreach}
-                </select>
-            </div>
-        </div>
-        <div class="ticket-reply-submit-options clearfix">
-            <div class="pull-left">
-                <button type="button" class="btn btn-default btns-padded" id="btnNoteAttachFiles">
-                    <i class="fa fa-file-o"></i>
-                    &nbsp;
-                    {$_ADMINLANG.support.attachFiles}
-                </button>
-            </div>
-            <div class="pull-right">
-                <button type="submit" class="btn btn-primary pull-right" name="postreply" id="btnAddNote">
-                    <i class="fa fa-reply"></i>
-                    {$_ADMINLANG.support.addnote}
-                </button>
-                <div class="return-to-ticket-list">
-                    <label class="checkbox-inline">
-                        <input type="checkbox" name="returntolist" value="1"{if $returnToList == true} checked{/if} />
-                        {$_ADMINLANG.support.returnToTicketList}
-                    </label>
-                </div>
-            </div>
-            <div class="clearfix"></div>
-            <div id="ticketNoteAttachments" class="inner-container">
-                <div class="row">
-                    <div class="col-sm-9">
-                        <input type="file" name="attachments[]" class="form-control" />
-                        <div id="note-file-uploads"></div>
-                    </div>
-                    <div class="col-sm-3">
-                        <a href="#" id="add-note-file-upload" class="btn btn-success btn-block add-file-upload" data-more-id="note-file-uploads">
-                            <i class="fa fa-plus"></i>
-                            {$_ADMINLANG.support.addmore}
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
-
-  </div>
-  <div class="tab-pane" id="tab2">
-
-    <img src="images/loading.gif" align="top" /> {$_ADMINLANG.global.loading}
-
-  </div>
-  <div class="tab-pane" id="tab3">
-
-    <img src="images/loading.gif" align="top" /> {$_ADMINLANG.global.loading}
-
-  </div>
-  <div class="tab-pane" id="tab4">
-
-    <img src="images/loading.gif" align="top" /> {$_ADMINLANG.global.loading}
-
-  </div>
-  <div class="tab-pane" id="tab5">
-    <form method="post" action="{$smarty.server.PHP_SELF}?action=viewticket&id={$ticketid}" id="frmTicketOptions">
-        <table class="form" width="100%" border="0" cellspacing="2" cellpadding="3">
-            <tr>
-                <td width="15%" class="fieldlabel">
-                    {$_ADMINLANG.support.department}
-                </td>
-                <td class="fieldarea">
-                    <select name="deptid" class="form-control select-inline">
-                        {foreach $departments as $department}
-                            <option value="{$department.id}"{if $department.id eq $deptid} selected{/if}>{$department.name}</option>
-                        {/foreach}
-                    </select>
-                </td>
-                <td width="15%" class="fieldlabel">
-                    {$_ADMINLANG.fields.clientname}
-                </td>
-                <td class="fieldarea">
-                    {$userSearchDropdown}
-                </td>
-            </tr>
-            <tr>
-                <td class="fieldlabel">
-                    {$_ADMINLANG.fields.subject}
-                </td>
-                <td class="fieldarea">
-                    <input type="text" name="subject" value="{$subject}" class="form-control input-400">
-                </td>
-                <td class="fieldlabel">
-                    {$_ADMINLANG.support.flag}
-                </td>
-                <td class="fieldarea">
-                    <select name="flagto" class="form-control select-inline">
-                        <option value="0">{$_ADMINLANG.global.none}</option>
-                            {foreach $staff as $staffmember}
-                                <option value="{$staffmember.id}"{if $staffmember.id eq $flag} selected{/if}>{$staffmember.name}</option>
-                            {/foreach}
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td class="fieldlabel">
-                    {$_ADMINLANG.fields.status}
-                </td>
-                <td class="fieldarea">
-                    <select name="status" class="form-control select-inline">
-                        {foreach from=$statuses item=statusitem}
-                            <option{if $statusitem.title eq $status} selected{/if} style="color:{$statusitem.color}">{$statusitem.title}</option>
-                        {/foreach}
-                    </select>
-                </td>
-                <td class="fieldlabel">
-                    {$_ADMINLANG.support.priority}
-                </td>
-                <td class="fieldarea">
-                    <select name="priority" class="form-control select-inline">
-                        <option value="High"{if $priority eq "High"} selected{/if}>{$_ADMINLANG.status.high}</option>
-                        <option value="Medium"{if $priority eq "Medium"} selected{/if}>{$_ADMINLANG.status.medium}</option>
-                        <option value="Low"{if $priority eq "Low"} selected{/if}>{$_ADMINLANG.status.low}</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td class="fieldlabel">
-                    {$_ADMINLANG.support.ccrecipients}
-                </td>
-                <td class="fieldarea">
-                    <input type="text" name="cc" value="{$cc}"  class="form-control input-300 input-inline"> ({$_ADMINLANG.transactions.commaseparated})
-                </td>
-                <td class="fieldlabel">
-                    {$_ADMINLANG.support.mergeticket}
-                </td>
-                <td class="fieldarea">
-                    <input type="text" name="mergetid"  class="form-control input-150 input-inline"> ({$_ADMINLANG.support.notocombine})
-                </td>
-            </tr>
-        </table>
-        <div class="btn-container">
-            <button id="btnSaveChanges" type="submit" class="btn btn-primary" value="save">
-                <i class="fa fa-save"></i>
-                {lang key='global.savechanges'}
-            </button>
-            <input type="reset" value="{$_ADMINLANG.global.cancelchanges}" class="btn btn-default" />
-        </div>
-    </form>
-  </div>
-  <div class="tab-pane" id="tab6">
-
-    <img src="images/loading.gif" align="top" /> {$_ADMINLANG.global.loading}
-
-  </div>
-</div>
-
-{if $relatedservices}
-    <div class="tablebg">
-        <table class="datatable" id="relatedservicestbl" width="100%" border="0" cellspacing="1" cellpadding="3">
-            <tr>
-                <th>{$_ADMINLANG.fields.product}</th>
-                <th>{$_ADMINLANG.fields.amount}</th>
-                <th>{$_ADMINLANG.fields.billingcycle}</th>
-                <th>{$_ADMINLANG.fields.signupdate}</th>
-                <th>{$_ADMINLANG.fields.nextduedate}</th>
-                <th>{$_ADMINLANG.fields.status}</th>
-            </tr>
-            {foreach $relatedservices as $relatedservice}
-                <tr{if $relatedservice.selected} class="rowhighlight"{/if}>
-                    <td>{$relatedservice.name}</td>
-                    <td>{$relatedservice.amount}</td>
-                    <td>{$relatedservice.billingcycle}</td>
-                    <td>{$relatedservice.regdate}</td>
-                    <td>{$relatedservice.nextduedate}</td>
-                    <td>{$relatedservice.status}</td>
-                </tr>
-            {/foreach}
-        </table>
-    </div>
-    {if $relatedservicesexpand}
-        <div id="relatedservicesexpand">
-            <a href="#" onclick="expandRelServices();return false" class="btn btn-default btn-xs">
-                <i class="fa fa-plus"></i>
-                {$_ADMINLANG.support.expand}
-            </a>
-        </div>
-    {/if}
-{else}
+<div id="prerepliescontainer" style="display:none;">
+    <img src="images/spacer.gif" height="8" width="1" />
     <br />
-{/if}
-
-<form method="post" action="supporttickets.php" id="ticketreplies">
-    <input type="hidden" name="id" value="{$ticketid}" />
-    <input type="hidden" name="action" value="split" />
-
-    <div id="ticketreplies">
-
-        {foreach $replies as $reply}
-            <div class="reply {if $reply.note} note{elseif $reply.admin} staff{/if}">
-                <div class="leftcol">
-                    <div class="submitter">
-                        {if $reply.admin}
-                            <div class="name">{$reply.admin}</div>
-                            <div class="title">
-                                {if $reply.note}
-                                    {$_ADMINLANG.support.privateNote}
-                                {else}
-                                    {$_ADMINLANG.support.staff}
-                                {/if}
-                            </div>
-                            {if $reply.rating}
-                                <br />{$reply.rating}<br /><br />
-                            {/if}
-                        {else}
-                            <div class="name">{$reply.clientname}</div>
-                            <div class="title">
-                                {if $reply.contactid}
-                                    {$_ADMINLANG.fields.contact}
-                                {elseif $reply.userid}
-                                    {$_ADMINLANG.fields.client}
-                                {else}
-                                    <a href="mailto:{$reply.clientemail}">{$reply.clientemail}</a>
-                                {/if}
-                            </div>
-                            {if !$reply.userid && !$reply.contactid}
-                                <a href="supporttickets.php?action=viewticket&amp;id={$ticketid}&amp;blocksender=true&amp;token={$csrfToken}" class="btn btn-xs btn-small">{$_ADMINLANG.support.blocksender}</a>
-                            {/if}
-                        {/if}
-                    </div>
-                    <div class="tools">
-                        <div class="editbtns{if $reply.id}r{$reply.id}{else}t{$ticketid}{/if}">
-                            <img src="../assets/img/spinner.gif" width="16" height="16" class="saveSpinner" style="display: none" />
-                            {if !$reply.note}
-                                <input type="button" value="{$_ADMINLANG.global.edit}" onclick="editTicket('{if $reply.id}r{$reply.id}{else}t{$ticketid}{/if}')" class="btn btn-xs btn-small btn-default" />
-                            {/if}
-                            {if $deleteperm}
-                                <input type="button" value="{$_ADMINLANG.global.delete}" onclick="{if $reply.id}{if $reply.note}doDeleteNote('{$reply.id}');{else}doDeleteReply('{$reply.id}');{/if}{else}doDeleteTicket();{/if}" class="btn btn-xs btn-small btn-danger" />
-                            {/if}
-                        </div>
-                        <div class="editbtns{if $reply.id}r{$reply.id}{else}t{$ticketid}{/if}" style="display:none">
-                            <img src="../assets/img/spinner.gif" width="16" height="16" class="saveSpinner" style="display: none" />
-                            <input type="button" value="{$_ADMINLANG.global.save}" onclick="editTicketSave('{if $reply.id}r{$reply.id}{else}t{$ticketid}{/if}')" class="btn btn-xs btn-small btn-success" />
-                            <input type="button" value="{$_ADMINLANG.global.cancel}" onclick="editTicketCancel('{if $reply.id}r{$reply.id}{else}t{$ticketid}{/if}')" class="btn btn-xs btn-small btn-default" />
-                        </div>
-                    </div>
-                </div>
-                <div class="rightcol">
-                    {if !$reply.note}
-                        <div class="quoteicon">
-                            <a href="#" onClick="quoteTicket('{if !$reply.id}{$ticketid}{/if}','{if $reply.id}{$reply.id}{/if}'); return false;"><img src="images/icons/quote.png" border="0" /></a>
-                            {if $reply.id}
-                                <input type="checkbox" name="rids[]" value="{$reply.id}" />
-                            {/if}
-                        </div>
-                    {/if}
-                    <div class="postedon">
-                        {if $reply.note}
-                            {$reply.admin} {$_ADMINLANG.support.postedANote}
-                        {else}
-                            {$_ADMINLANG.support.posted}
-                        {/if}
-                        {if $reply.friendlydate}
-                            {$_ADMINLANG.support.on} {$reply.friendlydate}
-                        {else}
-                            {$_ADMINLANG.support.today}
-                        {/if}
-                        {$_ADMINLANG.support.at} {$reply.friendlytime}
-                    </div>
-                    <div class="msgwrap" id="content{if $reply.id}r{$reply.id}{else}t{$ticketid}{/if}">
-                        <div class="message markdown-content">
-                            {$reply.message}
-                        </div>
-                        {if $reply.numattachments}
-                            <br />
-                            <strong>{$_ADMINLANG.support.attachments}</strong>
-                            <br /><br />
-                            {foreach $reply.attachments as $num => $attachment}
-                                {if $thumbnails}
-                                    <div class="ticketattachmentcontainer">
-                                        <a href="../{$attachment.dllink}"{if $attachment.isImage} data-lightbox="image-{if $reply.id}{if $reply.note}n{else}r{/if}{$reply.id}{else}t{$ticketid}{/if}"{/if}>
-                                            <span class="ticketattachmentthumbcontainer">
-                                                <img src="../includes/thumbnail.php?{if $reply.id}{if $reply.note}nid={else}rid={/if}{$reply.id}{else}tid={$ticketid}{/if}&amp;i={$num}" class="ticketattachmentthumb" />
-                                            </span>
-                                            <span class="ticketattachmentinfo">
-                                                <img src="images/icons/attachment.png" align="top" />
-                                                {$attachment.filename}
-                                            </span>
-                                        </a>
-                                        <div class="ticketattachmentlinks">
-                                            <small>
-                                                {if $attachment.isImage}
-                                                    <a href="../{$attachment.dllink}">{lang key='support.download'}</a> |
-                                                {/if}
-                                                <a href="{$attachment.deletelink}" onclick="return confirm('{$_ADMINLANG.support.delattachment|escape:'javascript'}')" style="color:#cc0000">
-                                                    {$_ADMINLANG.support.remove}
-                                                </a>
-                                            </small>
-                                        </div>
-                                    </div>
-                                {else}
-                                    <a href="../{$attachment.dllink}"{if $attachment.isImage} data-lightbox="image-{if $reply.id}r{$reply.id}{else}t{$ticketid}{/if}"{/if}>
-                                        <img src="images/icons/attachment.png" align="absmiddle" />
-                                        {$attachment.filename}
-                                    </a>
-                                    <small>
-                                        {if $attachment.isImage}
-                                            <a href="../{$attachment.dllink}">{lang key='support.download'}</a> |
-                                        {/if}
-                                        <a href="{$attachment.deletelink}" onclick="return confirm('{$_ADMINLANG.support.delattachment|escape:'javascript'}')" style="color:#cc0000">
-                                            {$_ADMINLANG.support.remove}
-                                        </a>
-                                    </small>
-                                    <br />
-                                {/if}
-                            {/foreach}
-                            <div class="clear"></div>
-                        {/if}
-                    </div>
-                </div>
-                <div class="clear"></div>
-            </div>
-        {/foreach}
+    <div style="border:1px solid #DFDCCE;background-color:#F7F7F2;padding:5px;text-align:left;">
+        <div style="float:right;">Search: <input type="text" id="predefq" size="25" /></div>
+        <div id="prerepliescontent">{$predefinedreplies}</div>
     </div>
+</div>
 
-    <a href="supportticketsprint.php?id={$ticketid}" target="_blank" class="btn btn-default btn-xs">
-        <i class="fa fa-print"></i>
-        {$_ADMINLANG.support.viewprintable}
-    </a>
-    {if $repliescount > 1}
-        <span style="float:right;">
-            <input type="button" value="{$_ADMINLANG.support.splitticketdialogbutton}" onclick="$('#modalsplitTicket').modal('show')" class="btn btn-xs" />
-        </span>
-    {/if}
+<img src="images/spacer.gif" height="8" width="1" />
+<br />
+<div align="center"><input type="submit" value="{$_ADMINLANG.support.addresponse}" name="postreply" class="button" id="postreplybutton" /></div>
 
-    {$splitticketdialog}
-
-    <input type="hidden" name="splitdeptid" id="splitdeptid" />
-    <input type="hidden" name="splitsubject" id="splitsubject" />
-    <input type="hidden" name="splitpriority" id="splitpriority" />
-    <input type="hidden" name="splitnotifyclient" id="splitnotifyclient" />
 </form>
 
-<script src="../assets/js/lightbox.js"></script>
+    </div>
+</div>
+<div id="tab1box" class="tabbox">
+    <div id="tab_content">
+
+<form method="post" action="{$smarty.server.PHP_SELF}?action=viewticket&id={$ticketid}">
+<input type="hidden" name="postaction" value="note" />
+
+<textarea name="message" id="replymessage" rows="14" style="width:100%"></textarea>
+
+<br />
+<img src="images/spacer.gif" height="8" width="1" />
+<br />
+
+<div align="center"><input type="submit" value="{$_ADMINLANG.support.addnote}" class="button" name="postreply" /></div>
+
+</form>
+
+    </div>
+</div>
+<div id="tab2box" class="tabbox">
+    <div id="tab_content">
+
+<form method="post" action="{$smarty.server.PHP_SELF}?action=viewticket&id={$ticketid}&sub=savecustomfields">
+
+{if !$numcustomfields}
+<div align="center">{$_ADMINLANG.support.nocustomfields}</div>
+{else}
+<table class="form" width="100%" border="0" cellspacing="2" cellpadding="3">
+{foreach from=$customfields item=customfield}
+<tr><td width="25%" class="fieldlabel">{$customfield.name}</td><td class="fieldarea">{$customfield.input}</td></tr>
+{/foreach}
+</table>
+<img src="images/spacer.gif" height="10" width="1" /><br />
+<div align="center"><input type="submit" value="{$_ADMINLANG.global.savechanges}" class="button"></div>
+</form>
+{/if}
+
+    </div>
+</div>
+<div id="tab3box" class="tabbox">
+    <div id="tab_content">
+
+<form method="post" action="{$smarty.server.PHP_SELF}?action=viewticket&id={$ticketid}">
+
+<table class="form" width="100%" border="0" cellspacing="2" cellpadding="3">
+<tr><td width="15%" class="fieldlabel">{$_ADMINLANG.support.department}</td><td class="fieldarea"><select name="deptid">
+{foreach from=$departments item=department}
+<option value="{$department.id}"{if $department.id eq $deptid} selected{/if}>{$department.name}</option>
+{/foreach}
+</select></td><td width="15%" class="fieldlabel">{$_ADMINLANG.fields.clientid}</td><td class="fieldarea"><input type="text" name="userid" size="15" id="clientsearchval" value="{$userid}" /> <img src="images/icons/delete.png" alt="Cancel" class="absmiddle" id="clientsearchcancel" height="16" width="16"><div id="ticketclientsearchresults"></div></td></tr>
+<tr><td class="fieldlabel">{$_ADMINLANG.fields.subject}</td><td class="fieldarea"><input type="text" name="subject" value="{$subject}" style="width:80%"></td><td class="fieldlabel">{$_ADMINLANG.support.flag}</td><td class="fieldarea"><select name="flagto">
+<option value="0">{$_ADMINLANG.global.none}</option>
+{foreach from=$staff item=staffmember}
+<option value="{$staffmember.id}"{if $staffmember.id eq $flag} selected{/if}>{$staffmember.name}</option>
+{/foreach}
+</select></td></tr>
+<tr><td class="fieldlabel">{$_ADMINLANG.fields.status}</td><td class="fieldarea"><select name="status">
+{foreach from=$statuses item=statusitem}
+<option{if $statusitem.title eq $status} selected{/if} style="color:{$statusitem.color}">{$statusitem.title}</option>
+{/foreach}
+</select></td><td class="fieldlabel">{$_ADMINLANG.support.priority}</td><td class="fieldarea"><select name="priority">
+<option value="High"{if $priority eq "High"} selected{/if}>{$_ADMINLANG.status.high}</option>
+<option value="Medium"{if $priority eq "Medium"} selected{/if}>{$_ADMINLANG.status.medium}</option>
+<option value="Low"{if $priority eq "Low"} selected{/if}>{$_ADMINLANG.status.low}</option>
+</select></td></tr>
+<tr><td class="fieldlabel">{$_ADMINLANG.support.ccrecepients}</td><td class="fieldarea"><input type="text" name="cc" value="{$cc}" size="40"> ({$_ADMINLANG.transactions.commaseparated})</td><td class="fieldlabel">{$_ADMINLANG.support.mergeticket}</td><td class="fieldarea"><input type="text" name="mergetid" size="10"> ({$_ADMINLANG.support.notocombine})</td></tr>
+</table>
+
+<img src="images/spacer.gif" height="10" width="1"><br>
+<div align="center"><input type="submit" value="{$_ADMINLANG.global.savechanges}" class="button"></div>
+</form>
+
+    </div>
+</div>
+<div id="tab4box" class="tabbox">
+    <div id="tab_content">
+
+<table cellspacing=1 bgcolor=#cccccc width=100%>
+<tr style="background-color:#f2f2f2;font-weight:bold;text-align:center;"><td>{$_ADMINLANG.fields.date}</td><td>{$_ADMINLANG.permissions.action}</td></tr>
+{foreach from=$ticketlog item=log}
+<tr bgcolor="#ffffff"><td align=center width=160>{$log.date}</td><td>{$log.action}</td></tr>
+{/foreach}
+</table>
+
+    </div>
+</div>
+
+<br />
+
+{if $numnotes}
+<h2>{$_ADMINLANG.support.privatestaffnote}</h2>
+{foreach from=$notes item=note}
+<div class="ticketstaffnotes">
+<table class="ticketstaffnotestable">
+<tr><td><strong>{$note.admin}</strong></td><td align="right"><strong>{$note.date}</strong></td><td width="16"><a href="#" onClick="doDeleteNote('{$note.id}');return false"><img src="images/delete.gif" alt="{$_ADMINLANG.support.deleteticketnote}" border="0" align="absmiddle"></a></td></tr>
+</table>
+{$note.message}
+</div><br />
+{/foreach}
+{/if}
+
+{if $relatedservices}
+<div class="tablebg">
+<table class="datatable" width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr><th>{$_ADMINLANG.fields.product}</th><th>{$_ADMINLANG.fields.amount}</th><th>{$_ADMINLANG.fields.billingcycle}</th><th>{$_ADMINLANG.fields.signupdate}</th><th>{$_ADMINLANG.fields.nextduedate}</th><th>{$_ADMINLANG.fields.status}</th></tr>
+{foreach from=$relatedservices item=relatedservice}
+<tr{if $relatedservice.selected} class="rowhighlight"{/if}><td>{$relatedservice.name}</td><td>{$relatedservice.amount}</td><td>{$relatedservice.billingcycle}</td><td>{$relatedservice.regdate}</td><td>{$relatedservice.nextduedate}</td><td>{$relatedservice.status}</td></tr>
+{/foreach}
+</table>
+</div>
+{/if}
+
+<br />
+
+<table width=100% cellpadding=5 cellspacing=1 bgcolor="#cccccc" align=center>
+{foreach from=$replies item=reply}
+<tr><td rowspan="2" bgcolor="{cycle values="#F4F4F4,#F8F8F8"}" width="200" valign="top">
+
+{if $reply.admin}
+
+<strong>{$reply.admin}</strong><br />
+{$_ADMINLANG.support.staff}<br />
+
+{if $reply.rating}
+<br />
+{$_ADMINLANG.support.rating}: {$reply.rating}
+<br />
+{/if}
+
+{else}
+
+<strong>{$reply.clientname}</strong><br />
+
+{if $reply.contactid}
+{$_ADMINLANG.fields.contact}<br />
+{elseif $reply.userid}
+{$_ADMINLANG.fields.client}<br />
+{else}
+<a href="mailto:{$reply.clientemail}">{$reply.clientemail}</a>
+<br />
+<input type="button" value="{$_ADMINLANG.support.blocksender}" style="font-size:9px;" onclick="window.location='{$smarty.server.PHP_SELF}?action=viewticket&id={$ticketid}&blocksender=true'"><br>
+{/if}
+
+{/if}
+
+{if $reply.id}
+
+<br />
+<div class="editticketbuttons{$reply.id}"><input type="button" value="{$_ADMINLANG.global.edit}" class="editbutton" id="{$reply.id}" /></div><div class="editticketbuttons{$reply.id}" style="display:none"><input type="button" value="{$_ADMINLANG.global.savechanges}" class="savebutton" id="{$reply.id}" >&nbsp;<input type="button" value="{$_ADMINLANG.global.cancelchanges}" class="cancelbutton" id="{$reply.id}" /></div>
+
+{/if}
+
+</td><td bgcolor="#F4F4F4">
+
+{if $reply.id}
+<a href="#" onClick="doDeleteReply('{$reply.id}');return false">
+{else}
+<a href="#" onClick="doDeleteTicket();return false">
+{/if}
+<img src="images/icons/delete.png" alt="{$_ADMINLANG.support.deleteticket}" align="right" border="0" hspace="5"></a>
+
+{if $reply.id}
+<a href="#" onClick="quoteTicket('','{$reply.id}')">
+{else}
+<a href="#" onClick="quoteTicket('{$ticketid}','')">
+{/if}
+<img src="images/icons/quote.png" align="right" border="0"></a> {$reply.date}
+
+</td></tr>
+<tr><td bgcolor="#F4F4F4"{if $reply.id} id="{$reply.id}_box"{/if}>
+
+{$reply.message}
+
+{if $reply.numattachments}
+<p>
+<b>{$_ADMINLANG.support.attachments}</b>
+<br />
+{foreach from=$reply.attachments key=num item=attachment}
+{if $thumbnails}
+<div class="ticketattachmentcontainer">
+<a href="../{$attachment.dllink}"><img src="../includes/thumbnail.php?{if $reply.id}rid={$reply.id}{else}tid={$ticketid}{/if}&i={$num}" class="ticketattachmentthumb" /><br />
+<img src="images/icons/attachment.png" align="absmiddle" /> {$attachment.filename}</a><br /><small><a href="{$attachment.deletelink}" onclick="return confirm('{$_ADMINLANG.support.delattachment|escape:'javascript'}')" style="color:#cc0000">{$_ADMINLANG.support.remove}</a></small>
+</div>
+{else}
+<a href="../{$attachment.dllink}"><img src="images/icons/attachment.png" align="absmiddle" /> {$attachment.filename}</a> <small><a href="{$attachment.deletelink}" onclick="return confirm('{$_ADMINLANG.support.delattachment|escape:'javascript'}')" style="color:#cc0000">{$_ADMINLANG.support.remove}</a></small><br />
+{/if}
+{/foreach}
+</p>
+{/if}
+
+</td></tr>
+{/foreach}
+</table>
+
+<p align="center"><a href="supportticketsprint.php?id={$ticketid}" target="_blank">{$_ADMINLANG.support.viewprintable}</a></p>

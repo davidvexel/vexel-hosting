@@ -1,44 +1,94 @@
 <?php
 
 if (!defined("WHMCS"))
-    die("This file cannot be accessed directly");
+	die("This file cannot be accessed directly");
 
-$reportdata['title'] = "Support Ticket Replies for " . $currentmonth . " " . $currentyear;
-$reportdata['description'] = "This report shows a breakdown of support tickets dealt with per admin for a given month";
-$reportdata['monthspagination'] = true;
+$months = array('January','February','March','April','May','June','July','August','September','October','November','December');
 
-$reportdata['tableheadings'][] = "Admin";
-for ($day = 1; $day <= 31; $day++) {
-    $reportdata['tableheadings'][] = $day;
+if ($month=="") {
+	$month=date("m");
+	$year=date("Y");
 }
+
+$pmonth = str_pad($month, 2, "0", STR_PAD_LEFT);  
+
+$reportdata["title"] = "Support Ticket Replies for ".$months[$month-1]." ".$year;
+$reportdata["description"] = "This report shows a breakdown of support tickets dealt with per admin for a given month";
+
+$reportdata["tableheadings"][] = "Admin";
+
+for ( $day = 1; $day <= 31; $day += 1) {
+	$reportdata["tableheadings"][] = $day;
+}
+
+$rowcount=0;
 
 $reportvalues = array();
-$query = "SELECT admin, date_format(date, '%e'), COUNT(tid) AS totalreplies, COUNT(DISTINCT tid) AS totaltickets FROM tblticketreplies WHERE date LIKE '" . $year . "-" . $month . "-%' AND admin!='' GROUP BY admin, date_format(date, '%e') ORDER BY admin ASC, date ASC";
-$result = full_query($query);
-while ($data = mysql_fetch_array($result)) {
-    $adminname = $data[0];
-    $day = $data[1];
-    $reportvalues[$adminname][$day] = array(
-        "totalreplies" => $data[2],
-        "totaltickets" => $data[3],
-    );
+
+for ( $day = 1; $day <= 31; $day += 1) {
+	
+	$date = $year."-".$pmonth."-".str_pad($day,2,"0",STR_PAD_LEFT);
+		
+	$query = "SELECT `admin`,COUNT(tid) AS totalreplies,COUNT(DISTINCT tid) AS totaltickets FROM `tblticketreplies` WHERE date LIKE '$date%' AND admin!='' GROUP BY `admin` ORDER BY `admin`";
+	$result = mysql_query($query);
+	while ($data = mysql_fetch_array($result)) {
+		$adminname = $data[0];
+		$totalreplies = $data[1];
+		$totaltickets = $data[2];	
+		$reportvalues[$adminname][$day] = array( "totalreplies" => $totalreplies, "totaltickets" => $totaltickets, );
+	}
 }
 
-$rc = 0;
-foreach ($reportvalues as $adminname => $values) {
+foreach ($reportvalues AS $adminname=>$values) {
+	
+	$reportdata["tablevalues"][$rowcount][] = "**$adminname";
+	
+	$rowcount++;
+	$nextrow=$rowcount+1;
+	
+	$reportdata["tablevalues"][$rowcount][] = "Tickets";
+	$reportdata["tablevalues"][$nextrow][] = "Replies";
+	
+	$i=1;
+	
+	foreach ($values AS $day=>$value) {
+		
+		while ($i < $day) {
+			$reportdata["tablevalues"][$rowcount][] = "";
+			$reportdata["tablevalues"][$nextrow][] = "";
+			$i++;
+		}
+		
+		if ($day==$i) {
+			$reportdata["tablevalues"][$rowcount][] = $value["totaltickets"];
+			$reportdata["tablevalues"][$nextrow][] = $value["totalreplies"];
+		}
+		$i++;
 
-    $reportdata['tablevalues'][$rc][] = "**$adminname";
-
-    $rc++;
-
-    $reportdata['tablevalues'][$rc][] = "Tickets";
-    $reportdata['tablevalues'][$rc+1][] = "Replies";
-
-    for ($day = 1; $day <= 31; $day++) {
-        $reportdata['tablevalues'][$rc][] = isset($reportvalues[$adminname][$day]['totaltickets']) ? $reportvalues[$adminname][$day]['totaltickets'] : '';
-        $reportdata['tablevalues'][$rc+1][] = isset($reportvalues[$adminname][$day]['totalreplies']) ? $reportvalues[$adminname][$day]['totalreplies'] : '';
-    }
-
-    $rc += 2;
+	}
+	
+	while ($day < 31) {
+		$reportdata["tablevalues"][$rowcount][] = "";
+		$reportdata["tablevalues"][$nextrow][] = "";
+		$day++;
+	}
+	
+	$rowcount=$nextrow+1;
 
 }
+
+$data["footertext"]="<table width=90% align=center><tr><td>";
+if ($month=="1") {
+	$data["footertext"].="<a href=\"$PHP_SELF?report=$report&month=12&year=".($year-1)."\"><< December ".($year-1)."</a>";
+} else {
+	$data["footertext"].="<a href=\"$PHP_SELF?report=$report&month=".($month-1)."&year=".$year."\"><< ".$months[($month-2)]." $year</a>";
+}
+$data["footertext"].="</td><td align=right>";
+if ($month=="12") {
+	$data["footertext"].="<a href=\"$PHP_SELF?report=$report&month=1&year=".($year+1)."\">January ".($year+1)." >></a>";
+} else {
+	$data["footertext"].="<a href=\"$PHP_SELF?report=$report&month=".($month+1)."&year=".$year."\">".$months[(($month+1)-1)]." $year >></a>";
+}
+$data["footertext"].="</td></tr></table>";
+
+?>

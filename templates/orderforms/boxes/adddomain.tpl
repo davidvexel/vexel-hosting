@@ -1,105 +1,68 @@
 <link rel="stylesheet" type="text/css" href="templates/orderforms/{$carttpl}/style.css" />
 
-<script type="text/javascript" src="templates/orderforms/{$carttpl}/checkout.js"></script>
-
 <div id="order-boxes">
 
-    <div class="pull-md-right col-md-9">
+{if !$loggedin && $currencies}
+<form method="post" action="cart.php?a=add&domain=register">
+<p align="right">{$LANG.choosecurrency}: <select name="currency" onchange="submit()">{foreach from=$currencies item=curr}
+<option value="{$curr.id}"{if $curr.id eq $currency.id} selected{/if}>{$curr.code}</option>
+{/foreach}</select> <input type="submit" value="Go" /></p>
+</form>
+{/if}
 
-        {if $domain eq "register"}
-            <div class="header-lined">
-                <h1>{$LANG.navregisterdomain}</h1>
-            </div>
-        {else}
-            <div class="header-lined">
-                <h1>{$LANG.transferinadomain}</h1>
-            </div>
-        {/if}
+{if $errormessage}<div class="errorbox">{$errormessage|replace:'<li>':' &nbsp;#&nbsp; '} &nbsp;#&nbsp; </div><br />{/if}
 
-    </div>
+<form method="post" action="{$smarty.server.PHP_SELF}?a=add">
 
-    <div class="col-md-3 pull-md-left sidebar hidden-xs hidden-sm">
+<table width="90%" align="center" cellspacing="1" cellpadding="5">
+<tr class="orderheadingrow"><td colspan="2"></td></tr>
 
-        {include file="orderforms/$carttpl/sidebar-categories.tpl"}
+{if $registerdomainenabled}
+<tr class="orderrow1"><td width="10"><input type="radio" name="domain" value="register"{if $domain eq "register"} checked{/if} /></td><td><label for="selregister">{$LANG.orderdomainoption1part1} {$companyname} {$LANG.orderdomainoption1part2}</label></td></tr>
+{/if}
 
-    </div>
+{if $transferdomainenabled}
+<tr class="orderrow2"><td width="10"><input type="radio" name="domain" value="transfer"{if $domain eq "transfer"} checked{/if} /></td><td><label for="seltransfer">{$LANG.orderdomainoption3} {$companyname}</label></td></tr>
+{/if}
 
-    <div class="col-md-9 pull-md-right">
+<tr class="orderheadingrow"><td colspan="2"></td></tr>
+</table>
 
-        <div class="line-padded visible-xs visible-sm clearfix">
+<br />
 
-            {include file="orderforms/$carttpl/sidebar-categories-collapsed.tpl"}
+<div class="textcenter">
+www. <input type="text" name="sld" size="40" value="{$sld}" /> <select name="tld">
+{foreach key=num item=listtld from=$tlds}
+<option value="{$listtld}"{if $listtld eq $tld} selected="selected"{/if}>{$listtld}</option>
+{/foreach}
+</select>
+</div>
 
-        </div>
+<br />
 
-        <form method="post" action="{$smarty.server.PHP_SELF}?a=add">
+<p align="center"><input type="submit" value="{$LANG.ordercontinuebutton}" /></p>
 
-            <div class="fields-container">
-                {if $registerdomainenabled}
-                    <div class="field-row clearfix">
-                        <div class="col-sm-12">
-                            <label class="radio-inline product-radio"><input type="radio" name="domain" value="register"{if $domain eq "register"} checked{/if} onclick="chooseDomainReg('register')" /> {$LANG.orderdomainoption1part1} {$companyname} {$LANG.orderdomainoption1part2}</label>
-                            <div class="domain-option line-padded{if $domain neq "register"} hidden{/if}" id="domopt-register">
-                                <div class="col-sm-1 col-sm-offset-2 col-xs-3"><p class="form-control-static text-right">www.</p></div>
-                                <div class="col-sm-5 col-xs-6"><input type="text" name="sld" value="{$sld}" class="form-control" autocapitalize="none" /></div>
-                                <div class="col-sm-2 col-xs-3"><select name="tld" class="form-control">
-                                    {foreach from=$registertlds item=listtld}
-                                        <option value="{$listtld}"{if $listtld eq $tld} selected="selected"{/if}>{$listtld}</option>
-                                    {/foreach}
-                                </select></div>
-                            </div>
-                        </div>
-                    </div>
-                {/if}
+</form>
 
-                {if $transferdomainenabled}
-                    <div class="field-row clearfix">
-                        <div class="col-sm-12">
-                            <label class="radio-inline product-radio"><input type="radio" name="domain" value="transfer"{if $domain eq "transfer"} checked{/if} onclick="chooseDomainReg('transfer')" /> {$LANG.orderdomainoption3} {$companyname}</label>
-                            <div class="domain-option line-padded{if $domain neq "transfer"} hidden{/if}" id="domopt-transfer">
-                                <div class="col-sm-1 col-sm-offset-2 col-xs-3"><p class="form-control-static text-right">www.</p></div>
-                                <div class="col-sm-5 col-xs-6"><input type="text" name="sld_transfer" value="{$sld}" class="form-control" autocapitalize="none" /></div>
-                                <div class="col-sm-2 col-xs-3"><select name="tld_transfer" class="form-control">
-                                    {foreach from=$transfertlds item=listtld}
-                                        <option value="{$listtld}"{if $listtld eq $tld} selected="selected"{/if}>{$listtld}</option>
-                                    {/foreach}
-                                </select></div>
-                            </div>
-                        </div>
-                    </div>
-                {/if}
+{if $availabilityresults}
 
-            </div>
+<form method="post" action="{$smarty.server.PHP_SELF}?a=add&domain={$domain}">
 
-            {if $availabilityresults}
+<div class="center90">
+<table class="styled">
+<tr><th>{$LANG.domainname}</th><th>{$LANG.domainstatus}</th><th>{$LANG.domainmoreinfo}</th></tr>
+{foreach key=num item=result from=$availabilityresults}
+<tr class="clientareatableactive"><td>{$result.domain}</td><td class="{if $result.status eq $searchvar}textgreen{else}textred{/if}">{if $result.status eq $searchvar}<input type="checkbox" name="domains[]" value="{$result.domain}"{if $result.domain|in_array:$domains} checked{/if} /> {$LANG.domainavailable}{else}{$LANG.domainunavailable}{/if}</td><td>{if $result.regoptions}<select name="domainsregperiod[{$result.domain}]">{foreach key=period item=regoption from=$result.regoptions}{if $regoption.$domain}<option value="{$period}">{$period} {$LANG.orderyears} @ {$regoption.$domain}</option>{/if}{/foreach}</select>{/if}</td></tr>
+{/foreach}
+</table>
+</div>
 
-                <h2>{$LANG.choosedomains}</h2>
+<p align="center"><input type="submit" value="{$LANG.addtocart}" /></p>
 
-                <table class="styled">
-                    <tr><th>{$LANG.domainname}</th><th>{$LANG.domainstatus}</th><th>{$LANG.domainmoreinfo}</th></tr>
-                    {foreach key=num item=result from=$availabilityresults}
-                        <tr class="text-center">
-                            <td>{$result.domain}</td>
-                            <td class="{if $result.status eq $searchvar}textgreen{else}textred{/if}"><label class="checkbox-inline">{if $result.status eq $searchvar}<input type="checkbox" name="domains[]" value="{$result.domain}"{if $result.domain|in_array:$domains} checked{/if} /> {$LANG.domainavailable}{else}{$LANG.domainunavailable}{/if}</label></td>
-                            <td>{if $result.regoptions}<select name="domainsregperiod[{$result.domain}]">{foreach key=period item=regoption from=$result.regoptions}{if $regoption.$domain}<option value="{$period}">{$period} {$LANG.orderyears} @ {$regoption.$domain}</option>{/if}{/foreach}</select>{/if}</td>
-                        </tr>
-                    {/foreach}
-                </table>
+</form>
 
-            {/if}
+{/if}
 
-            <div class="line-padded text-center">
-                <button type="submit" class="btn btn-primary btn-lg">{$LANG.continue} &nbsp;<i class="fa fa-arrow-circle-right"></i></button>
-            </div>
-
-        </form>
-
-    </div>
-
-    <div class="clearfix"></div>
-
-    <div class="secure-warning">
-        <img src="assets/img/padlock.gif" align="absmiddle" border="0" alt="Secure Transaction" /> &nbsp;{$LANG.ordersecure} (<strong>{$ipaddress}</strong>) {$LANG.ordersecure2}
-    </div>
+<p align="right"><input type="button" value="{$LANG.viewcart}" onclick="window.location='cart.php?a=view'" /></p>
 
 </div>

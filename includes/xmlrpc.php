@@ -1,7 +1,7 @@
 <?php
 // by Edd Dumbill (C) 1999-2002
 // <edd@usefulinc.com>
-// $Id: xmlrpc.inc,v 1.174 2009/03/16 19:36:38 ggiunta Exp $
+// $Id: xmlrpc.inc,v 1.158 2007/03/01 21:21:02 ggiunta Exp $
 
 // Copyright (c) 1999,2000,2002 Edd Dumbill.
 // All rights reserved.
@@ -34,6 +34,16 @@
 // STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
 // OF THE POSSIBILITY OF SUCH DAMAGE.
+
+	if(!function_exists('xml_parser_create'))
+	{
+		// For PHP 4 onward, XML functionality is always compiled-in on windows:
+		// no more need to dl-open it. It might have been compiled out on *nix...
+		if(strtoupper(substr(PHP_OS, 0, 3) != 'WIN'))
+		{
+			dl('xml.so');
+		}
+	}
 
 	// Try to be backward compat with php < 4.2 (are we not being nice ?)
 	$phpversion = phpversion();
@@ -135,80 +145,71 @@
 		$GLOBALS['xml_iso88591_Entities']['out'][] = '&#'.$i.';';
 	}
 
-	/// @todo add to iso table the characters from cp_1252 range, i.e. 128 to 159?
+	/// @todo add to iso table the characters from cp_1252 range, i.e. 128 to 159.
 	/// These will NOT be present in true ISO-8859-1, but will save the unwary
-	/// windows user from sending junk (though no luck when reciving them...)
-  /*
-	$GLOBALS['xml_cp1252_Entities']=array();
-	for ($i = 128; $i < 160; $i++)
-	{
-		$GLOBALS['xml_cp1252_Entities']['in'][] = chr($i);
-	}
-	$GLOBALS['xml_cp1252_Entities']['out'] = array(
-		'&#x20AC;', '?',        '&#x201A;', '&#x0192;',
-		'&#x201E;', '&#x2026;', '&#x2020;', '&#x2021;',
-		'&#x02C6;', '&#x2030;', '&#x0160;', '&#x2039;',
-		'&#x0152;', '?',        '&#x017D;', '?',
-		'?',        '&#x2018;', '&#x2019;', '&#x201C;',
-		'&#x201D;', '&#x2022;', '&#x2013;', '&#x2014;',
-		'&#x02DC;', '&#x2122;', '&#x0161;', '&#x203A;',
-		'&#x0153;', '?',        '&#x017E;', '&#x0178;'
-	);
-  */
+	/// windows user from sending junk.
+/*
+$cp1252_to_xmlent =
+  array(
+   '\x80'=>'&#x20AC;', '\x81'=>'?', '\x82'=>'&#x201A;', '\x83'=>'&#x0192;',
+   '\x84'=>'&#x201E;', '\x85'=>'&#x2026;', '\x86'=>'&#x2020;', \x87'=>'&#x2021;',
+   '\x88'=>'&#x02C6;', '\x89'=>'&#x2030;', '\x8A'=>'&#x0160;', '\x8B'=>'&#x2039;',
+   '\x8C'=>'&#x0152;', '\x8D'=>'?', '\x8E'=>'&#x017D;', '\x8F'=>'?',
+   '\x90'=>'?', '\x91'=>'&#x2018;', '\x92'=>'&#x2019;', '\x93'=>'&#x201C;',
+   '\x94'=>'&#x201D;', '\x95'=>'&#x2022;', '\x96'=>'&#x2013;', '\x97'=>'&#x2014;',
+   '\x98'=>'&#x02DC;', '\x99'=>'&#x2122;', '\x9A'=>'&#x0161;', '\x9B'=>'&#x203A;',
+   '\x9C'=>'&#x0153;', '\x9D'=>'?', '\x9E'=>'&#x017E;', '\x9F'=>'&#x0178;'
+  );
+*/
 
-	$GLOBALS['xmlrpcerr'] = array(
-	'unknown_method'=>1,
-	'invalid_return'=>2,
-	'incorrect_params'=>3,
-	'introspect_unknown'=>4,
-	'http_error'=>5,
-	'no_data'=>6,
-	'no_ssl'=>7,
-	'curl_fail'=>8,
-	'invalid_request'=>15,
-	'no_curl'=>16,
-	'server_error'=>17,
-	'multicall_error'=>18,
-	'multicall_notstruct'=>9,
-	'multicall_nomethod'=>10,
-	'multicall_notstring'=>11,
-	'multicall_recursion'=>12,
-	'multicall_noparams'=>13,
-	'multicall_notarray'=>14,
+	$GLOBALS['xmlrpcerr']['unknown_method']=1;
+	$GLOBALS['xmlrpcstr']['unknown_method']='Unknown method';
+	$GLOBALS['xmlrpcerr']['invalid_return']=2;
+	$GLOBALS['xmlrpcstr']['invalid_return']='Invalid return payload: enable debugging to examine incoming payload';
+	$GLOBALS['xmlrpcerr']['incorrect_params']=3;
+	$GLOBALS['xmlrpcstr']['incorrect_params']='Incorrect parameters passed to method';
+	$GLOBALS['xmlrpcerr']['introspect_unknown']=4;
+	$GLOBALS['xmlrpcstr']['introspect_unknown']="Can't introspect: method unknown";
+	$GLOBALS['xmlrpcerr']['http_error']=5;
+	$GLOBALS['xmlrpcstr']['http_error']="Didn't receive 200 OK from remote server.";
+	$GLOBALS['xmlrpcerr']['no_data']=6;
+	$GLOBALS['xmlrpcstr']['no_data']='No data received from server.';
+	$GLOBALS['xmlrpcerr']['no_ssl']=7;
+	$GLOBALS['xmlrpcstr']['no_ssl']='No SSL support compiled in.';
+	$GLOBALS['xmlrpcerr']['curl_fail']=8;
+	$GLOBALS['xmlrpcstr']['curl_fail']='CURL error';
+	$GLOBALS['xmlrpcerr']['invalid_request']=15;
+	$GLOBALS['xmlrpcstr']['invalid_request']='Invalid request payload';
+	$GLOBALS['xmlrpcerr']['no_curl']=16;
+	$GLOBALS['xmlrpcstr']['no_curl']='No CURL support compiled in.';
+	$GLOBALS['xmlrpcerr']['server_error']=17;
+	$GLOBALS['xmlrpcstr']['server_error']='Internal server error';
+	$GLOBALS['xmlrpcerr']['multicall_error']=18;
+	$GLOBALS['xmlrpcstr']['multicall_error']='Received from server invalid multicall response';
 
-	'cannot_decompress'=>103,
-	'decompress_fail'=>104,
-	'dechunk_fail'=>105,
-	'server_cannot_decompress'=>106,
-	'server_decompress_fail'=>107
-	);
+	$GLOBALS['xmlrpcerr']['multicall_notstruct'] = 9;
+	$GLOBALS['xmlrpcstr']['multicall_notstruct'] = 'system.multicall expected struct';
+	$GLOBALS['xmlrpcerr']['multicall_nomethod']  = 10;
+	$GLOBALS['xmlrpcstr']['multicall_nomethod']  = 'missing methodName';
+	$GLOBALS['xmlrpcerr']['multicall_notstring'] = 11;
+	$GLOBALS['xmlrpcstr']['multicall_notstring'] = 'methodName is not a string';
+	$GLOBALS['xmlrpcerr']['multicall_recursion'] = 12;
+	$GLOBALS['xmlrpcstr']['multicall_recursion'] = 'recursive system.multicall forbidden';
+	$GLOBALS['xmlrpcerr']['multicall_noparams']  = 13;
+	$GLOBALS['xmlrpcstr']['multicall_noparams']  = 'missing params';
+	$GLOBALS['xmlrpcerr']['multicall_notarray']  = 14;
+	$GLOBALS['xmlrpcstr']['multicall_notarray']  = 'params is not an array';
 
-	$GLOBALS['xmlrpcstr'] = array(
-	'unknown_method'=>'Unknown method',
-	'invalid_return'=>'Invalid return payload: enable debugging to examine incoming payload',
-	'incorrect_params'=>'Incorrect parameters passed to method',
-	'introspect_unknown'=>"Can't introspect: method unknown",
-	'http_error'=>"Didn't receive 200 OK from remote server.",
-	'no_data'=>'No data received from server.',
-	'no_ssl'=>'No SSL support compiled in.',
-	'curl_fail'=>'CURL error',
-	'invalid_request'=>'Invalid request payload',
-	'no_curl'=>'No CURL support compiled in.',
-	'server_error'=>'Internal server error',
-	'multicall_error'=>'Received from server invalid multicall response',
-	'multicall_notstruct'=>'system.multicall expected struct',
-	'multicall_nomethod'=>'missing methodName',
-	'multicall_notstring'=>'methodName is not a string',
-	'multicall_recursion'=>'recursive system.multicall forbidden',
-	'multicall_noparams'=>'missing params',
-	'multicall_notarray'=>'params is not an array',
-
-	'cannot_decompress'=>'Received from server compressed HTTP and cannot decompress',
-	'decompress_fail'=>'Received from server invalid compressed HTTP',
-	'dechunk_fail'=>'Received from server invalid chunked HTTP',
-	'server_cannot_decompress'=>'Received from client compressed HTTP request and cannot decompress',
-	'server_decompress_fail'=>'Received from client invalid compressed HTTP request'
-	);
+	$GLOBALS['xmlrpcerr']['cannot_decompress']=103;
+	$GLOBALS['xmlrpcstr']['cannot_decompress']='Received from server compressed HTTP and cannot decompress';
+	$GLOBALS['xmlrpcerr']['decompress_fail']=104;
+	$GLOBALS['xmlrpcstr']['decompress_fail']='Received from server invalid compressed HTTP';
+	$GLOBALS['xmlrpcerr']['dechunk_fail']=105;
+	$GLOBALS['xmlrpcstr']['dechunk_fail']='Received from server invalid chunked HTTP';
+	$GLOBALS['xmlrpcerr']['server_cannot_decompress']=106;
+	$GLOBALS['xmlrpcstr']['server_cannot_decompress']='Received from client compressed HTTP request and cannot decompress';
+	$GLOBALS['xmlrpcerr']['server_decompress_fail']=107;
+	$GLOBALS['xmlrpcstr']['server_decompress_fail']='Received from client invalid compressed HTTP request';
 
 	// The charset encoding used by the server for received messages and
 	// by the client for received responses when received charset cannot be determined
@@ -221,7 +222,7 @@
 	$GLOBALS['xmlrpc_internalencoding']='ISO-8859-1';
 
 	$GLOBALS['xmlrpcName']='XML-RPC for PHP';
-	$GLOBALS['xmlrpcVersion']='2.2.2';
+	$GLOBALS['xmlrpcVersion']='2.2';
 
 	// let user errors start at 800
 	$GLOBALS['xmlrpcerruser']=800;
@@ -288,7 +289,6 @@
 			case 'US-ASCII_':
 			case 'US-ASCII_ISO-8859-1':
 			case 'UTF-8_UTF-8':
-			//case 'CP1252_CP1252':
 				$escaped_data = str_replace(array('&', '"', "'", '<', '>'), array('&amp;', '&quot;', '&apos;', '&lt;', '&gt;'), $data);
 				break;
 			case 'UTF-8_':
@@ -341,7 +341,7 @@
 		//3 16 1110bbbb 10bbbbbb 10bbbbbb
 		else if ($ii>>4 == 14)
 		{
-			$b1 = ($ii & 15);
+			$b1 = ($ii & 31);
 			$ii = ord($data[$nn+1]);
 			$b2 = ($ii & 63);
 			$ii = ord($data[$nn+2]);
@@ -354,7 +354,7 @@
 		//4 21 11110bbb 10bbbbbb 10bbbbbb 10bbbbbb
 		else if ($ii>>3 == 30)
 		{
-			$b1 = ($ii & 7);
+			$b1 = ($ii & 31);
 			$ii = ord($data[$nn+1]);
 			$b2 = ($ii & 63);
 			$ii = ord($data[$nn+2]);
@@ -368,25 +368,6 @@
 		}
 	}
 				break;
-/*
-			case 'CP1252_':
-			case 'CP1252_US-ASCII':
-				$escaped_data = str_replace(array('&', '"', "'", '<', '>'), array('&amp;', '&quot;', '&apos;', '&lt;', '&gt;'), $data);
-				$escaped_data = str_replace($GLOBALS['xml_iso88591_Entities']['in'], $GLOBALS['xml_iso88591_Entities']['out'], $escaped_data);
-				$escaped_data = str_replace($GLOBALS['xml_cp1252_Entities']['in'], $GLOBALS['xml_cp1252_Entities']['out'], $escaped_data);
-				break;
-			case 'CP1252_UTF-8':
-				$escaped_data = str_replace(array('&', '"', "'", '<', '>'), array('&amp;', '&quot;', '&apos;', '&lt;', '&gt;'), $data);
-				/// @todo we could use real UTF8 chars here instead of xml entities... (note that utf_8 encode all allone will NOT convert them)
-				$escaped_data = str_replace($GLOBALS['xml_cp1252_Entities']['in'], $GLOBALS['xml_cp1252_Entities']['out'], $escaped_data);
-				$escaped_data = utf8_encode($escaped_data);
-				break;
-			case 'CP1252_ISO-8859-1':
-				$escaped_data = str_replace(array('&', '"', "'", '<', '>'), array('&amp;', '&quot;', '&apos;', '&lt;', '&gt;'), $data);
-				// we might as well replave all funky chars with a '?' here, but we are kind and leave it to the receiving application layer to decide what to do with these weird entities...
-				$escaped_data = str_replace($GLOBALS['xml_cp1252_Entities']['in'], $GLOBALS['xml_cp1252_Entities']['out'], $escaped_data);
-				break;
-*/
 			default:
 				$escaped_data = '';
 				error_log("Converting from $src_encoding to $dest_encoding: not supported...");
@@ -613,8 +594,8 @@
 				case 'DATETIME.ISO8601':
 				case 'BASE64':
 					$GLOBALS['_xh']['vt']=strtolower($name);
-					/// @todo: optimization creep - remove the if/elseif cycle below
-					/// since the case() in which we are already did that
+        			/// @todo: optimization creep - remove the if/elseif cycle below
+                    /// since the case() in which we are already did that
 					if ($name=='STRING')
 					{
 						$GLOBALS['_xh']['value']=$GLOBALS['_xh']['ac'];
@@ -648,7 +629,7 @@
 						else
 						{
 							// log if receiveing something strange, even though we set the value to false anyway
-							if ($GLOBALS['_xh']['ac']!='0' && strcasecmp($GLOBALS['_xh']['ac'], 'false') != 0)
+							if ($GLOBALS['_xh']['ac']!='0' && strcasecmp($_xh[$parser]['ac'], 'false') != 0)
 								error_log('XML-RPC: invalid value received in BOOLEAN: '.$GLOBALS['_xh']['ac']);
 							$GLOBALS['_xh']['value']=false;
 						}
@@ -657,10 +638,10 @@
 					{
 						// we have a DOUBLE
 						// we must check that only 0123456789-.<space> are characters here
-						// NOTE: regexp could be much stricter than this...
-						if (!preg_match('/^[+-eE0123456789 \t.]+$/', $GLOBALS['_xh']['ac']))
+						if (!preg_match('/^[+-]?[eE0123456789 \t.]+$/', $GLOBALS['_xh']['ac']))
 						{
-							/// @todo: find a better way of throwing an error than this!
+							/// @todo: find a better way of throwing an error
+							// than this!
 							error_log('XML-RPC: non numeric value received in DOUBLE: '.$GLOBALS['_xh']['ac']);
 							$GLOBALS['_xh']['value']='ERROR_NON_NUMERIC_FOUND';
 						}
@@ -676,7 +657,8 @@
 						// we must check that only 0123456789-<space> are characters here
 						if (!preg_match('/^[+-]?[0123456789 \t]+$/', $GLOBALS['_xh']['ac']))
 						{
-							/// @todo find a better way of throwing an error than this!
+							/// @todo find a better way of throwing an error
+							// than this!
 							error_log('XML-RPC: non numeric value received in INT: '.$GLOBALS['_xh']['ac']);
 							$GLOBALS['_xh']['value']='ERROR_NON_NUMERIC_FOUND';
 						}
@@ -879,7 +861,7 @@
 			{
 				$parts = parse_url($path);
 				$server = $parts['host'];
-				$path = isset($parts['path']) ? $parts['path'] : '';
+				$path = $parts['path'];
 				if(isset($parts['query']))
 				{
 					$path .= '?'.$parts['query'];
@@ -990,21 +972,21 @@
 		{
 			if ($is_dir)
 			{
-				$this->cacertdir = $cacert;
+				$this->cacert = $cacert;
 			}
 			else
 			{
-				$this->cacert = $cacert;
+				$this->cacertdir = $cacert;
 			}
 		}
 
 		/**
 		* Set attributes for SSL communication: private SSL key
-		* NB: does not work in older php/curl installs
-		* Thanks to Daniel Convissor
 		* @param string $key The name of a file containing a private SSL key
 		* @param string $keypass The secret password needed to use the private SSL key
 		* @access public
+		* NB: does not work in older php/curl installs
+		* Thanks to Daniel Convissor
 		*/
 		function setKey($key, $keypass)
 		{
@@ -1300,28 +1282,24 @@
 			// Cookie generation, as per rfc2965 (version 1 cookies) or
 			// netscape's rules (version 0 cookies)
 			$cookieheader='';
-			if (count($this->cookies))
+			foreach ($this->cookies as $name => $cookie)
 			{
-				$version = '';
-				foreach ($this->cookies as $name => $cookie)
+				if ($cookie['version'])
 				{
-					if ($cookie['version'])
-					{
-						$version = ' $Version="' . $cookie['version'] . '";';
-						$cookieheader .= ' ' . $name . '="' . $cookie['value'] . '";';
-						if ($cookie['path'])
-							$cookieheader .= ' $Path="' . $cookie['path'] . '";';
-						if ($cookie['domain'])
-							$cookieheader .= ' $Domain="' . $cookie['domain'] . '";';
-						if ($cookie['port'])
-							$cookieheader .= ' $Port="' . $cookie['port'] . '";';
-					}
-					else
-					{
-						$cookieheader .= ' ' . $name . '=' . $cookie['value'] . ";";
-					}
+					$cookieheader .= 'Cookie: $Version="' . $cookie['version'] . '"; ';
+					$cookieheader .= $name . '="' . $cookie['value'] . '";';
+					if ($cookie['path'])
+						$cookieheader .= ' $Path="' . $cookie['path'] . '";';
+					if ($cookie['domain'])
+						$cookieheader .= ' $Domain="' . $cookie['domain'] . '";';
+					if ($cookie['port'])
+						$cookieheader .= ' $Port="' . $cookie['domain'] . '";';
+					$cookieheader = substr($cookieheader, 0, -1) . "\r\n";
 				}
-				$cookieheader = 'Cookie:' . $version . substr($cookieheader, 0, -1) . "\r\n";
+				else
+				{
+					$cookieheader .= 'Cookie: ' . $name . '=' . $cookie['value'] . "\r\n";
+				}
 			}
 
 			$op= 'POST ' . $uri. " HTTP/1.0\r\n" .
@@ -1368,7 +1346,6 @@
 
 			if(!fputs($fp, $op, strlen($op)))
 			{
-    			fclose($fp);
 				$this->errstr='Write error';
 				$r=&new xmlrpcresp(0, $GLOBALS['xmlrpcerr']['http_error'], $this->errstr);
 				return $r;
@@ -1381,12 +1358,12 @@
 			// G. Giunta 2005/10/24: close socket before parsing.
 			// should yeld slightly better execution times, and make easier recursive calls (e.g. to follow http redirects)
 			$ipd='';
-			do
+			while($data=fread($fp, 32768))
 			{
 				// shall we check for $data === FALSE?
 				// as per the manual, it signals an error
-				$ipd.=fread($fp, 32768);
-			} while(!feof($fp));
+				$ipd.=$data;
+			}
 			fclose($fp);
 			$r =& $msg->parseResponse($ipd, false, $this->return_type);
 			return $r;
@@ -1609,7 +1586,7 @@
 				{
 					$proxyport = 8080; // NB: even for HTTPS, local connection is on port 8080
 				}
-				curl_setopt($curl, CURLOPT_PROXY, $proxyhost.':'.$proxyport);
+				curl_setopt($curl, CURLOPT_PROXY,$proxyhost.':'.$proxyport);
 				//curl_setopt($curl, CURLOPT_PROXYPORT,$proxyport);
 				if($proxyusername)
 				{
@@ -1627,35 +1604,26 @@
 
 			// NB: should we build cookie http headers by hand rather than let CURL do it?
 			// the following code does not honour 'expires', 'path' and 'domain' cookie attributes
-			// set to client obj the the user...
+			// set to clint obj the the user...
 			if (count($this->cookies))
 			{
 				$cookieheader = '';
 				foreach ($this->cookies as $name => $cookie)
 				{
-					$cookieheader .= $name . '=' . $cookie['value'] . '; ';
+					$cookieheader .= $name . '=' . $cookie['value'] . ', ';
 				}
 				curl_setopt($curl, CURLOPT_COOKIE, substr($cookieheader, 0, -2));
 			}
 
 			$result = curl_exec($curl);
 
-			if ($this->debug > 1)
-			{
-				print "<PRE>\n---CURL INFO---\n";
-				foreach(curl_getinfo($curl) as $name => $val)
-					 print $name . ': ' . htmlentities($val). "\n";
-				print "---END---\n</PRE>";
-			}
-
-			if(!$result) /// @todo we should use a better check here - what if we get back '' or '0'?
+			if(!$result)
 			{
 				$this->errstr='no response';
 				$resp=&new xmlrpcresp(0, $GLOBALS['xmlrpcerr']['curl_fail'], $GLOBALS['xmlrpcstr']['curl_fail']. ': '. curl_error($curl));
-				curl_close($curl);
-				if($keepalive)
+				if(!$keepalive)
 				{
-					$this->xmlrpc_curl_handle = null;
+					curl_close($curl);
 				}
 			}
 			else
@@ -2197,11 +2165,6 @@ xmlrpc_encode_entitites($this->errstr, $GLOBALS['xmlrpc_internalencoding'], $cha
 		/**
 		* Given an open file handle, read all data available and parse it as axmlrpc response.
 		* NB: the file handle is not closed by this function.
-		* NNB: might have trouble in rare cases to work on network streams, as we
-        *      check for a read of 0 bytes instead of feof($fp).
-		*      But since checking for feof(null) returns false, we would risk an
-		*      infinite loop in that case, because we cannot trust the caller
-		*      to give us a valid pointer to an open file...
 		* @access public
 		* @return xmlrpcresp
 		* @todo add 2nd & 3rd param to be passed to ParseResponse() ???
@@ -2306,7 +2269,7 @@ xmlrpc_encode_entitites($this->errstr, $GLOBALS['xmlrpc_internalencoding'], $cha
 					}
 				}
 				// be tolerant to line endings, and extra empty lines
-				$ar = preg_split("/\r?\n/", trim(substr($data, 0, $pos)));
+				$ar = split("\r?\n", trim(substr($data, 0, $pos)));
 				while(list(,$line) = @each($ar))
 				{
 					// take care of multi-line headers and cookies
@@ -2340,7 +2303,6 @@ xmlrpc_encode_entitites($this->errstr, $GLOBALS['xmlrpc_internalencoding'], $cha
 									$GLOBALS['_xh']['headers'][$header_name] = trim($cookie);
 								// parse cookie attributes, in case user wants to correctly honour them
 								// feature creep: only allow rfc-compliant cookie attributes?
-								// @todo support for server sending multiple time cookie with same name, but using different PATHs
 								$cookie = explode(';', $cookie);
 								foreach ($cookie as $pos => $val)
 								{
@@ -2356,10 +2318,7 @@ xmlrpc_encode_entitites($this->errstr, $GLOBALS['xmlrpc_internalencoding'], $cha
 									}
 									else
 									{
-										if ($tag != 'value')
-										{
-										  $GLOBALS['_xh']['cookies'][$cookiename][$tag] = $val;
-										}
+										$GLOBALS['_xh']['cookies'][$cookiename][$tag] = $val;
 									}
 								}
 							}
@@ -2562,19 +2521,8 @@ xmlrpc_encode_entitites($this->errstr, $GLOBALS['xmlrpc_internalencoding'], $cha
 			$parser = xml_parser_create($resp_encoding);
 			xml_parser_set_option($parser, XML_OPTION_CASE_FOLDING, true);
 			// G. Giunta 2005/02/13: PHP internally uses ISO-8859-1, so we have to tell
-			// the xml parser to give us back data in the expected charset.
-			// What if internal encoding is not in one of the 3 allowed?
-			// we use the broadest one, ie. utf8
-			// This allows to send data which is native in various charset,
-			// by extending xmlrpc_encode_entitites() and setting xmlrpc_internalencoding
-			if (!in_array($GLOBALS['xmlrpc_internalencoding'], array('UTF-8', 'ISO-8859-1', 'US-ASCII')))
-			{
-				xml_parser_set_option($parser, XML_OPTION_TARGET_ENCODING, 'UTF-8');
-			}
-			else
-			{
-				xml_parser_set_option($parser, XML_OPTION_TARGET_ENCODING, $GLOBALS['xmlrpc_internalencoding']);
-			}
+			// the xml parser to give us back data in the expected charset
+			xml_parser_set_option($parser, XML_OPTION_TARGET_ENCODING, $GLOBALS['xmlrpc_internalencoding']);
 
 			if ($return_type == 'phpvals')
 			{
@@ -2931,12 +2879,7 @@ xmlrpc_encode_entitites($this->errstr, $GLOBALS['xmlrpc_internalencoding'], $cha
 							$rs.="<${typ}>".(int)$val."</${typ}>";
 							break;
 						case $GLOBALS['xmlrpcDouble']:
-    						// avoid using standard conversion of float to string because it is locale-dependent,
-    						// and also because the xmlrpc spec forbids exponential notation
-    						// sprintf('%F') would be most likely ok but it is only available since PHP 4.3.10 and PHP 5.0.3.
-    						// The code below tries its best at keeping max precision while avoiding exp notation,
-    						// but there is of course no limit in the number of decimal places to be used...
-    						$rs.="<${typ}>".preg_replace('/\\.?0+$/','',number_format((double)$val, 128, '.', ''))."</${typ}>";
+							$rs.="<${typ}>".(double)$val."</${typ}>";
 							break;
 						case $GLOBALS['xmlrpcNull']:
 							$rs.="<nil/>";
@@ -3467,16 +3410,7 @@ xmlrpc_encode_entitites($this->errstr, $GLOBALS['xmlrpc_internalencoding'], $cha
 		/// @todo 'guestimate' encoding
 		$parser = xml_parser_create();
 		xml_parser_set_option($parser, XML_OPTION_CASE_FOLDING, true);
-		// What if internal encoding is not in one of the 3 allowed?
-		// we use the broadest one, ie. utf8!
-		if (!in_array($GLOBALS['xmlrpc_internalencoding'], array('UTF-8', 'ISO-8859-1', 'US-ASCII')))
-		{
-			xml_parser_set_option($parser, XML_OPTION_TARGET_ENCODING, 'UTF-8');
-		}
-		else
-		{
-			xml_parser_set_option($parser, XML_OPTION_TARGET_ENCODING, $GLOBALS['xmlrpc_internalencoding']);
-		}
+		xml_parser_set_option($parser, XML_OPTION_TARGET_ENCODING, $GLOBALS['xmlrpc_internalencoding']);
 		xml_set_element_handler($parser, 'xmlrpc_se_any', 'xmlrpc_ee');
 		xml_set_character_data_handler($parser, 'xmlrpc_cd');
 		xml_set_default_handler($parser, 'xmlrpc_dh');
@@ -3581,8 +3515,9 @@ xmlrpc_encode_entitites($this->errstr, $GLOBALS['xmlrpc_internalencoding'], $cha
 
 	/**
 	* xml charset encoding guessing helper function.
-	* Tries to determine the charset encoding of an XML chunk received over HTTP.
-	* NB: according to the spec (RFC 3023), if text/xml content-type is received over HTTP without a content-type,
+	* Tries to determine the charset encoding of an XML chunk
+	* received over HTTP.
+	* NB: according to the spec (RFC 3023, if text/xml content-type is received over HTTP without a content-type,
 	* we SHOULD assume it is strictly US-ASCII. But we try to be more tolerant of unconforming (legacy?) clients/servers,
 	* which will be most probably using UTF-8 anyway...
 	*
@@ -3600,19 +3535,16 @@ xmlrpc_encode_entitites($this->errstr, $GLOBALS['xmlrpc_internalencoding'], $cha
 		//Details:
 		// LWS:           (\13\10)?( |\t)+
 		// token:         (any char but excluded stuff)+
-		// quoted string: " (any char but double quotes and cointrol chars)* "
 		// header:        Content-type = ...; charset=value(; ...)*
 		//   where value is of type token, no LWS allowed between 'charset' and value
 		// Note: we do not check for invalid chars in VALUE:
 		//   this had better be done using pure ereg as below
-		// Note 2: we might be removing whitespace/tabs that ought to be left in if
-        //   the received charset is a quoted string. But nobody uses such charset names...
 
 		/// @todo this test will pass if ANY header has charset specification, not only Content-Type. Fix it?
 		$matches = array();
-		if(preg_match('/;\s*charset\s*=([^;]+)/i', $httpheader, $matches))
+		if(preg_match('/;\s*charset=([^;]+)/i', $httpheader, $matches))
 		{
-			return strtoupper(trim($matches[1], " \t\""));
+			return strtoupper(trim($matches[1]));
 		}
 
 		// 2 - scan the first bytes of the data for a UTF-16 (or other) BOM pattern
@@ -3669,7 +3601,7 @@ xmlrpc_encode_entitites($this->errstr, $GLOBALS['xmlrpc_internalencoding'], $cha
 		else
 		{
 			// no encoding specified: as per HTTP1.1 assume it is iso-8859-1?
-			// Both RFC 2616 (HTTP 1.1) and 1945 (HTTP 1.0) clearly state that for text/xxx content types
+			// Both RFC 2616 (HTTP 1.1) and 1945(http 1.0) clearly state that for text/xxx content types
 			// this should be the standard. And we should be getting text/xml as request and response.
 			// BUT we have to be backward compatible with the lib, which always used UTF-8 as default...
 			return $GLOBALS['xmlrpc_defencoding'];
